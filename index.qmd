@@ -1,5 +1,5 @@
 ---
-Tittle: "SPRING 2026 - STA 9750 MOG" 
+Title: "SPRING 2026 - STA 9750 MOG" 
 ---
 
 # Welcome
