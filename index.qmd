@@ -1,0 +1,40 @@
+---
+Tittle: "SPRING 2026 - STA 9750 MOG" 
+---
+
+# Welcome
+
+Hi, I'm Miguel Osorio Gonzalez, a graduate student at Baruch College in the MS Business Analytics program, with an interest in data analysis, visualization, and statistical learning.  
+
+On this site, you’ll find examples of my coursework, mini‑projects from STA 9750, and other work I’ve done using R and Quarto. I enjoy working with real-world datasets to answer practical questions and communicate results clearly.  
+
+![Headshot of me](images/headshot.jpg)
+
+You can connect with me on [LinkedIn](https://www.linkedin.com/in/miguelosoriogonzalez/).
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+if(!require("leaflet")){
+    options(repos=c(CRAN="https://cloud.r-project.org"))
+    install.packages("leaflet")
+    stopifnot(require("leaflet"))
+}
+
+baruch_longitude <- -73.98333
+baruch_latitude  <- +40.74028
+
+leaflet() |>
+  addTiles() |>
+  setView(baruch_longitude, baruch_latitude, zoom=17) |>
+  addPopups(baruch_longitude, baruch_latitude, 
+            "I am a Master's student at <b>Baruch College</b>!")
+```
+
+```{r}
+#| include: false
+1+1
+```
+--------------
+Last Updated: `r format(Sys.time(), "%A %m %d, %Y at %H:%M%p")`
