@@ -1,17 +1,21 @@
 ---
 Title: "SPRING 2026 - STA 9750 MOG" 
 ---
-
 ![Miguel Osorio Gonzalez](miguel-headshot.jpg){width=200 fig-align="center"}
 
 # Miguel Osorio Gonzalez  
 **Associate Director, Horizon Media** | *MS Business Analytics, Baruch College (exp. Summer 2026)*
 
-Hi! I use **SQL** daily in my job, I have some working experience with **Python** and **R**, plus strong background in data visualization, mostly in **Tableau**. I returned to graduate school to sharpen my technical skills amid AI's rapid evolution while balancing a full-time role + 3 graduate courses. 
 
-A personal goal of mine is to reach conversational level in **Mandarin** and **Portuguese** and become a polyglot. Currently, I am taking **Mandarin** classes in hopes that in the upcoming years I can visit and have a smooth time getting around and talking to the locals.
+Hi! I’m Miguel, thanks for stopping by my page.  
+I’ve spent the past nine years working in advertising, where I use **SQL** every day and occasionally dive into **Python** and **R**. I love exploring data to uncover hidden insights and turning them into visuals that tell a clear story, usually with **Tableau**.
 
-On this site, you'll find examples of my coursework, mini-projects from STA 9750, and hands-on work with R and Quarto exploring real-world datasets to answer practical questions and communicate actionable insights clearly.
+I came back to grad school to deepen my technical skills and keep learning as AI continues to change how we work with data. Balancing a full-time job and three classes has been intense, but I’ve been enjoying every bit of it as I am learning new things that I do not normally see at work. 
+
+Outside of work, I’m really into languages. I’m currently taking **Mandarin** classes and hope to reach a level where I can travel, explore, and chat comfortably with locals. **Portuguese** is next on the list!  
+
+Here you’ll find snippets of my coursework, mini-projects from **STA 9750**, and explorations in **R** and **Quarto**, all focused on applying data to real-world questions and communicating insights simply and clearly.  
+
 
 You can connect with me on [LinkedIn](https://www.linkedin.com/in/miguelosoriogonzalez/).
 
