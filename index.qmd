@@ -10,7 +10,7 @@ I code daily in SQL, with strong experience in Python and R plus deep expertise 
 
 On this site, you'll find examples of my coursework, mini-projects from STA 9750, and hands-on work with R and Quarto exploring real-world datasets to answer practical questions and communicate actionable insights clearly.
 
-![Headshot of me]miguel-headshot.jpg.jpg){fig-align="center" width="250px"}
+![Headshot of me](miguel-headshot.jpg){fig-align="center" width="250px"}
 
 
 You can connect with me on [LinkedIn](https://www.linkedin.com/in/miguelosoriogonzalez/).
