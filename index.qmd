@@ -4,11 +4,14 @@ Title: "SPRING 2026 - STA 9750 MOG"
 
 # Welcome
 
-Hi, I'm Miguel Osorio Gonzalez, a graduate student at Baruch College in the MS Business Analytics program, with an interest in data analysis, visualization, and statistical learning.  
+Hi, I'm Miguel Osorio Gonzalez, Associate Director at Horizon Media in advertising, while pursuing my MS in Business Analytics at Baruch College (expected Summer 2026).
 
-On this site, you’ll find examples of my coursework, mini‑projects from STA 9750, and other work I’ve done using R and Quarto. I enjoy working with real-world datasets to answer practical questions and communicate results clearly.  
+I code daily in SQL, with strong experience in Python and R plus deep expertise in data visualization, and returned to graduate school to sharpen my technical edge amid AI's rapid evolution. Beyond balancing a full-time role with three graduate courses, I'm learning Mandarin to become conversational and visit China in the coming years.
 
-![Headshot of me](images/headshot.jpg)
+On this site, you'll find examples of my coursework, mini-projects from STA 9750, and hands-on work with R and Quarto exploring real-world datasets to answer practical questions and communicate actionable insights clearly.
+
+![Headshot of me]miguel-headshot.jpg.jpg){fig-align="center" width="250px"}
+
 
 You can connect with me on [LinkedIn](https://www.linkedin.com/in/miguelosoriogonzalez/).
 ```{r}
