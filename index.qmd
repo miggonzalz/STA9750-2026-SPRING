@@ -1,9 +1,9 @@
 ---
 Title: "SPRING 2026 - STA 9750 MOG" 
 ---
-![Miguel Osorio Gonzalez](miguel-headshot.jpg){width=200 fig-align="center"}
+![Miguel Osorio](miguel-headshot.jpg){width=200 fig-align="center"}
 
-# Miguel Osorio Gonzalez  
+# Miguel Osorio  
 **Associate Director, Horizon Media** | *MS Business Analytics, Baruch College (exp. Summer 2026)*
 
 
