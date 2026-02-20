@@ -1,6 +1,7 @@
 ---
 Title: "SPRING 2026 - STA 9750 MOG" 
 ---
+
 ![Miguel Osorio](miguel-headshot.jpg){width=200 fig-align="center"}
 
 # Miguel Osorio  
