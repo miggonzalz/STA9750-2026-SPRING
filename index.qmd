@@ -1,34 +1,20 @@
 ---
 title: "STA 9750 Submission Material"
-title-block-banner: false  # This helps prevent some default title rendering
 about:
-  id: hero-heading
   template: jolla
-  image: miguel-headshot.jpg # Quarto will handle the circular aspect ratio
+  image: miguel-headshot.jpg
   links:
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/miguelosoriogonzalez/
-    - icon: github # Added Github based on your example
+    - icon: github
       text: Github
       href: https://github.com/miggonzalz
-
 format: 
   html:
     css: styles.css
-    include-in-header:
-      text: |
-        <style>
-        .quarto-title { display: none; }
-        </style>
 ---
 
-<div class="custom-style">
-
-<h1 style="text-align: center;">STA 9750 Submission Material</h1>
-<hr>
-
-::: {#hero-heading}
 # Miguel Osorio
 **Associate Director, Horizon Media** | *MS Business Analytics, Baruch College (exp. Summer 2026)*
 
@@ -40,8 +26,6 @@ I came back to grad school to deepen my technical skills and keep learning as AI
 Outside of work, I’m really into languages. I’m currently taking **Mandarin** classes and hope to reach a level where I can travel, explore, and chat comfortably with locals. **Portuguese** is next on the list!
 
 Here you’ll find snippets of my coursework, mini-projects from **STA 9750**, and explorations in **R** and **Quarto**, all focused on applying data to real-world questions and communicating insights simply and clearly.
-
-:::
 
 
 ## Featured Work
@@ -73,5 +57,3 @@ leaflet() |>
 ```
 --------------
 Last Updated: `r format(Sys.time(), "%A %m %d, %Y at %H:%M%p")`
-
-</div>
