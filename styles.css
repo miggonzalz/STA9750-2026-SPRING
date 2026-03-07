@@ -1,0 +1,42 @@
+/* This targets the <div> you wrapped around your content */
+.custom-style {
+  background-color: #ffffff; /* White card */
+  color: #444444;           /* Soft dark gray text */
+  padding: 40px;
+  border: 1px solid #eeeeee; /* Light border like the example */
+  border-radius: 15px;      /* Rounded corners for the 'card' */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Subtle shadow */
+  max-width: 800px;
+  margin: 40px auto;        /* Centers the card on the page */
+}
+/* ADD THIS PART HERE: This specifically styles the title at the top of the card */
+.custom-style h1 {
+  margin-top: 0;        /* Removes extra space above the title */
+  margin-bottom: 20px;  /* Adds a clean gap before the photo */
+  text-align: center;   /* Keeps it centered */
+  font-weight: 700;
+  color: #222222;
+}
+/* Adjust the body background to light gray to make the white card pop */
+body {
+  background-color: #fcfcfc;
+}
+/* This ensures the 'Jolla' content (photo + links) stays centered */
+.quarto-about-jolla {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* This adds a little space between your headshot and your name */
+.about-image {
+  margin-bottom: 2rem;
+}
+
+/* This styles your 'Last Updated' footer to be smaller and centered */
+hr + p {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #888888;
+}

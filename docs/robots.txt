@@ -1,1 +1,1 @@
-Sitemap: git@github.com:miggonzalz/STA9750-2026-SPRING.git/sitemap.xml
+Sitemap: https://miggonzalz.github.io/STA9750-2026-SPRING/sitemap.xml
