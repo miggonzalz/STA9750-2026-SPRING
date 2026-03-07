@@ -1,18 +1,17 @@
 ---
-title: "STA 9750 Submission Material"
+title: ""
 about:
   template: jolla
   image: miguel-headshot.jpg
+  image-width: 15em
+  image-shape: round
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://www.linkedin.com/in/miguelosoriogonzalez/
+      href: https://linkedin.com
     - icon: github
       text: Github
-      href: https://github.com/miggonzalz
-format: 
-  html:
-    css: styles.css
+      href: https://github.com
 ---
 
 # Miguel Osorio
