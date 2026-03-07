@@ -4,17 +4,17 @@ project:
 
 website:
   title: "STA 9750 Submission Material"
-  description:
-    Course Projects for STA 9750 at Baruch College
-  site-url: "git@github.com:miggonzalz/STA9750-2026-SPRING.git"
+  description: "Course Projects for STA 9750 at Baruch College"
+  site-url: "https://miggonzalz.github.io/STA9750-2026-SPRING/" # Updated to the web URL
   navbar:
-    background: primary
+    background: light # Changed from primary to light for that clean look
     search: false
-    
+
 format:
   html:
-    theme: slate
+    theme: default # 'default' or 'cosmo' matches your reference image best
     toc: false
+    css: styles.css
 
 editor:
   mode: source
