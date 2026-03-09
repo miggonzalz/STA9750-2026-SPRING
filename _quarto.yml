@@ -9,12 +9,6 @@ website:
   navbar:
     background: light # Changed from primary to light for that clean look
     search: false
-  sidebar:
-    background: light  # Matches your navbar
-    contents: auto     # Auto-builds from .qmd files/folders
-    # Or for custom order: contents:
-    #   - index.qmd
-    #   - href: folder1.yml
 format:
   html:
     theme: default # 'default' or 'cosmo' matches your reference image best
