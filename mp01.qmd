@@ -1,0 +1,909 @@
+---
+title: "Mini-Project 01 - Assessing the Impact of SFFA on Campus Diversity One-Year Later"
+author: "miggonzalz"
+about:
+    template: jolla
+editor:
+    mode: source
+format:
+    html:
+        code-fold: true
+---
+
+## Introduction - Project Objective
+
+In this mini-project, I intend to demonstrate
+my skills at **Data Summarization, Exploratory Analysis, and Table Formatting** in an analysis of **Official Statistics/Demography data**.
+
+Using [**IPEDS**](https://nces.ed.gov/ipeds) enrollment data, I load, clean, and summarize demographic trends pre and post [SFFA v. Harvard (2023)](https://en.wikipedia.org/wiki/Students_for_Fair_Admissions_v._Harvard), creating formatted tables and a few visualizations that reveal shifts in campus diversity one year after the Supreme Court ruling. 
+
+## Data Acquisition and Preparation
+
+Below, you can find the code related to Data Acquisition and Preparation.
+
+
+```{r}
+acquire_ipeds_data <- function(start_year=2010, end_year=2024){
+    library(tidyverse)
+    library(glue)
+    
+    data_dir <- file.path("data", "mp01")
+    
+    if(!dir.exists(data_dir)){
+        dir.create(data_dir, showWarnings=FALSE, recursive=TRUE)
+    }
+    
+    YEARS <- seq(start_year, end_year)
+    
+    EFA_ALL <- map(YEARS, function(yy){
+        if(yy <= 2022){
+            ef_url <- glue("https://nces.ed.gov/ipeds/datacenter/data/EF{yy}A.zip")
+            
+        } else {
+            ef_url <- glue("https://nces.ed.gov/ipeds/data-generator?year={yy}&tableName=EF{yy}A&HasRV=0&type=csv")
+        }
+        
+        ef_file <- file.path(data_dir, glue("ef{yy}a.csv.zip"))
+        
+        if(!file.exists(ef_file)){
+            message(glue("Downloading Enrollment Data for {yy} from {ef_url}"))
+            download.file(ef_url, destfile = ef_file, quiet=TRUE, mode="wb")    
+        }
+        
+        read_csv(ef_file, 
+                 show_col_types=FALSE) |>
+            mutate(year = yy, 
+                   # American Indian or Alaskan Native
+                   enrollment_m_aian = EFAIANM, 
+                   enrollment_f_aian = EFAIANW, 
+                   # Asian
+                   enrollment_m_asia = EFASIAM, 
+                   enrollment_f_asia = EFASIAW, 
+                   # Black or African-American, 
+                   enrollment_m_Black = EFBKAAM, 
+                   enrollment_f_Black = EFBKAAW, 
+                   # Hispanic 
+                   enrollment_m_hisp = EFHISPM, 
+                   enrollment_f_hisp = EFHISPW, 
+                   # Native Hawaiian or Other Pacific Islander 
+                   enrollment_m_nhpi = EFNHPIM, 
+                   enrollment_f_nhpi = EFNHPIW, 
+                   # White
+                   enrollment_m_whit = EFWHITM, 
+                   enrollment_f_whit = EFWHITW, 
+                   # Two or More Races
+                   enrollment_m_2mor = EF2MORM, 
+                   enrollment_f_2mor = EF2MORW, 
+                   # Unknown / Undisclosed Race
+                   enrollment_m_unkn = EFUNKNM, 
+                   enrollment_f_unkn = EFUNKNW, 
+                   # US Non-Resident
+                   enrollment_m_nral = EFNRALM, 
+                   enrollment_f_nral = EFNRALW, 
+            ) |> filter(
+                (EFALEVEL %in% c(2, 12)) | (LINE %in% c(1, 15))
+                # Per 2024 Data Dictionary, 
+                # - EFALEVEL 2 = undergrad 
+                # - EFALELVE 12 = grad
+                # - Line 1 = first year first time full-time undergrad
+                # - Line 15 = first year first time part-time undergrad
+            ) |> mutate(level = case_when(
+                       EFALEVEL == 2 ~ "all undergrad", 
+                       EFALEVEL == 12 ~ "all graduate",
+                       LINE %in% c(1, 15) ~ "first year undergrad"
+                   )
+            ) |>
+            select(institution_id = UNITID, 
+                   year, 
+                   level,
+                   starts_with("enrollment_")) |>
+            group_by(institution_id, 
+                     year, 
+                     level) |>
+            summarize(across(starts_with("enrollment_"), sum), 
+                      .groups = "drop")
+        
+    }) |> bind_rows()
+    
+    DESC_ALL <- map(YEARS, function(yy){
+        if(yy <= 2022){
+            hd_url <- glue("https://nces.ed.gov/ipeds/datacenter/data/HD{yy}.zip")
+            
+        } else {
+            hd_url <- glue("https://nces.ed.gov/ipeds/data-generator?year={yy}&tableName=HD{yy}&HasRV=0&type=csv")
+        }
+        
+        hd_file <- file.path(data_dir, glue("hd{yy}.csv.zip"))
+        
+        if(!file.exists(hd_file)){
+            message(glue("Downloading Institutional Descriptions for {yy} from {hd_url}"))
+            download.file(hd_url, destfile = hd_file, quiet=TRUE, mode="wb")    
+        }
+        
+        suppressWarnings(
+            read_csv(hd_file, 
+                 show_col_types=FALSE, 
+                 locale=locale(encoding=if_else(yy==2024, "utf-8", "windows-1252"))) |>
+            mutate(year = yy, 
+                   INSTNM) |> 
+            select(institution_id = UNITID, 
+                   institution_name = INSTNM, 
+                   state = STABBR, 
+                   year)
+        )
+        
+    }) |> bind_rows()
+    
+    inner_join(EFA_ALL, 
+               DESC_ALL, 
+               join_by(institution_id == institution_id, 
+                       year == year))
+}
+
+IPEDS <- acquire_ipeds_data()
+```
+
+## Data Exploration - What do we see at first glance 
+
+```{r}
+#addiing CUNY flags 
+IPEDS <- IPEDS |>
+  mutate(is_cuny = str_detect(institution_name,'CUNY'))
+#creates a column to identify which institutions are CUNY
+IPEDS |>
+  filter(is_cuny) |>
+  distinct(institution_name) |>
+  pull(institution_name) # check the names of the CUNY schools
+  
+
+#adding Calpublic flag, ensured only true public schools were accounted for 
+IPEDS <- IPEDS |>
+  mutate(
+    is_calpublic = 
+      (str_detect(institution_name, "University of California") | 
+       str_detect(institution_name, "California State")) &
+      !str_detect(institution_name, "Dominican|Bethesda") &
+      !str_detect(institution_name, "University of California-Hastings College of Law") &
+      !str_detect(institution_name, "University of California College of the Law-San Francisco")
+  )
+
+# 2. SECOND: Check results (NEW pipe - NOT connected to IPEDS<-)
+IPEDS |> 
+  filter(is_calpublic) |> 
+  distinct(institution_name) |> 
+  pull(institution_name)
+
+# 3. Verify IPEDS structure
+glimpse(IPEDS)
+
+```
+**Top-level summary of IPEDS data**
+After loading and doing the first round of cleaning, we now have a total of `r ncol(IPEDS)` variables/columns, `r nrow(IPEDS)` rows, and `r n_distinct(IPEDS$institution_id)` unique institutions.
+
+#Looking enrollment trends over the last five years
+
+```{r}
+#| label: enrollment-trends-line
+library(dplyr); library(ggplot2)
+
+enroll_trends <- IPEDS |> 
+  filter(year >= 2020, level == "all undergrad") |> 
+  group_by(year) |> 
+  summarise(
+    total_enrollment = sum(rowSums(across(starts_with("enrollment_")), na.rm = TRUE)),
+    .groups = "drop"
+  )
+
+ggplot(enroll_trends, aes(x = year, y = total_enrollment/1000000, group = 1)) +
+  geom_line(linewidth = 2, color = "#2E86AB") +
+  geom_point(size = 4, color = "#2E86AB") +
+  geom_text(aes(label = sprintf("%.2fM", total_enrollment/1000000)), 
+            vjust = -0.8, size = 3.5, fontface = "bold", color = "black") +
+  scale_y_continuous(labels = scales::label_number(suffix = "M"), 
+                     expand = expansion(mult = c(0.02, 0.15))) +
+  scale_x_continuous(breaks = 2020:2024, expand = expansion(mult = c(0.05, 0.05))) +
+  labs(
+    title = "Undergraduate Enrollment Trends (2020-2024)",
+    subtitle = "3.6% total growth (2020-2024); post-SSFA recovery vs Harvard (2023)",
+    x = "Year",
+    y = "Total Enrollment",
+    caption = "*Data from IPEDS Enrollment"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    plot.caption = element_text(color = "grey40", size = 10, hjust = 0),
+    panel.grid.minor = element_blank(),
+    axis.title = element_text(size = 12)
+  )
+
+```
+
+**Key Insight**
+Enrollment stabilized back to its Pre-COVID volumes in the 23/24 academic year. One year post the post SFFA v. Harvard court decision, there is a notable 3.6% increase in enrollment. **Early data does not show any negative effects** on overall enrollment post SSFA v. Harvard.
+
+## Overview of enrollments rates between Males and Females
+
+```{r}
+#| label: gender-trends-line
+library(dplyr); library(ggplot2); library(tidyr)
+
+gender_data <- IPEDS |> 
+  filter(year >= 2020, level == "all undergrad") |> 
+  group_by(year) |> 
+  summarise(
+    male_total = sum(rowSums(across(starts_with("enrollment_m_")), na.rm = TRUE)),
+    female_total = sum(rowSums(across(starts_with("enrollment_f_")), na.rm = TRUE)),
+    .groups = "drop"
+  ) |> 
+  pivot_longer(-year, names_to = "gender", values_to = "enrollment") |> 
+  mutate(gender = recode(gender, male_total = "Male", female_total = "Female"))
+
+ggplot(gender_data, aes(x = year, y = enrollment/1000000, color = gender)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 4) +
+  geom_text(aes(label = sprintf("%.2fM", enrollment/1000000)), 
+            vjust = -0.7, size = 3.2, fontface = "bold", color = "black") +
+  scale_y_continuous(labels = scales::label_number(suffix = "M"), 
+                     expand = expansion(mult = c(0.02, 0.18))) +
+  scale_x_continuous(breaks = 2020:2024, expand = expansion(mult = c(0.05, 0.05))) +
+  labs(
+    title = "Undergraduate Enrollment by Gender (2020-2024)",
+    subtitle = "Females consistently enrolled at higher rates than males",
+    x = "Year",
+    y = "Total Enrollment",
+    caption = "*Data from IPEDS Enrollment"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    plot.caption = element_text(color = "grey40", size = 10, hjust = 0),
+    legend.title = element_blank(),
+    legend.position = "bottom",
+    panel.grid.minor = element_blank()
+  )
+
+```
+
+**Key Insight**
+Females have enrolled in higher education at higher numbers than their male counterparts, highlighting education as a higher priority for them.
+
+
+## Enrollment trends by racial groups 
+```{r}
+#| label: race-top4-composition
+library(dplyr); library(ggplot2); library(tidyr)
+
+# Top 4 groups by enrollment (Asian, Black, Hispanic, White)
+race_data <- IPEDS |> 
+  filter(year >= 2020, level == "all undergrad") |> 
+  group_by(year) |> 
+  summarise(
+    top4_total = sum(enrollment_m_asia + enrollment_f_asia +
+                      enrollment_m_Black  + enrollment_f_Black  +
+                       enrollment_m_hisp + enrollment_f_hisp +
+                       enrollment_m_whit + enrollment_f_whit, na.rm = TRUE),
+    asian_total = sum(enrollment_m_asia + enrollment_f_asia, na.rm = TRUE),
+    black_or_african_American_total = sum(enrollment_m_Black  + enrollment_f_Black , na.rm = TRUE),
+    hispanic_total = sum(enrollment_m_hisp + enrollment_f_hisp, na.rm = TRUE),
+    white_total = sum(enrollment_m_whit + enrollment_f_whit, na.rm = TRUE),
+    .groups = "drop"
+  ) |> 
+  pivot_longer(-c(year, top4_total), names_to = "race", values_to = "count") |> 
+  mutate(
+    pct = count / top4_total * 100,
+    race = case_when(
+      race == "asian_total" ~ "Asian",
+      race == "black_or_african_American_total" ~ "Black or African American", 
+      race == "hispanic_total" ~ "Hispanic",
+      race == "white_total" ~ "White"
+    )
+  )
+
+ggplot(race_data, aes(x = factor(year), y = count/top4_total, fill = race)) +
+  geom_col(color = "black", linewidth = 0.5, width = 0.7) +
+  geom_text(aes(label = sprintf("%.1f%%", pct)), 
+            position = position_fill(vjust = 0.5), 
+            size = 4, fontface = "bold", color = "black") +
+  scale_y_continuous(labels = scales::label_percent(accuracy = 1L), 
+                     expand = expansion(mult = c(0, 0.01))) +
+  labs(
+    title = "Top 4 Undergraduate Enrollment Groups (2020-2024)",
+    subtitle = "All groups except White saw slight enrollment increases",
+    caption = "*Top 4 groups only (excludes AI/AN 1.5%, NHPI 0.2%, Unknown 11%, Non-resident 1%, 2+ races 1%)",
+    x = "Year",
+    y = "% Share Among Top 4 Groups"
+  ) +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    plot.caption = element_text(size = 10, color = "grey40", hjust = 0, margin = margin(t = 10)),
+    legend.title = element_blank(),
+    legend.position = "bottom",
+    panel.grid.major.x = element_blank()
+  ) +
+  guides(fill = guide_legend(nrow = 1))
+```
+**Key Insight**
+Looking at the top four racial groups, Asian, Black, and Hispanic enrollment has grown while white enrollment has declined year-over-year. 
+
+
+## Additional Exploratory analysis 
+
+In this section, we will look to answer the following professor led questions: 
+
+**1.How many distinct institutions appear in this data set?**
+
+```{r}
+library(skimr)
+
+IPEDS |> skim()
+library(skimr)
+library(gt)  
+
+IPEDS |> 
+  summarise(Total = scales::comma(n_distinct(institution_id))) |> 
+  gt() |> 
+  tab_header("IPEDS Distinct Institutions") 
+```
+
+A: There are a total of **8,983 distinct institutions**.
+
+**2.How many graduate students were enrolled at Baruch in 2024?**
+
+```{r}
+#| label: baruch-grad-2024
+
+
+IPEDS |> 
+  filter(str_detect(institution_name, "Baruch"),
+         year == 2024,
+         level == "all graduate") |> 
+  mutate(total_grad = rowSums(across(starts_with("enrollment_")), na.rm = TRUE)) |> 
+  summarise(
+    institution_name = first(institution_name),
+    `Graduate Enrollment` = sum(total_grad, na.rm = TRUE),
+    .groups = "drop"
+  ) |> 
+  gt() |>
+  tab_header(
+    title = md("**Baruch College Graduate Enrollment (2024)**"),
+    subtitle = md("Total graduate students across all programs")
+  ) |>
+  fmt_number(
+    columns = `Graduate Enrollment`,
+    decimals = 0,
+    use_seps = TRUE,
+    pattern = "{x}"
+  ) |>
+  cols_label(
+    institution_name = md("**Institution**")
+  ) |>
+  tab_source_note(
+    source_note = md("*Data from IPEDS Enrollment*")
+  ) |>
+  tab_options(
+    table.font.size = "14px",
+    heading.title.font.size = "18px",
+    column_labels.background.color = "#f9f9f9",
+    table.width = px(450)
+  )
+
+```
+
+A: in 2024, there was a total of **3,585 graduate students enrolled** at Baruch.
+
+**3.How many total students were enrolled at Baruch in 2024?**
+
+```{r}
+#| label: baruch-total-2024
+
+IPEDS |> 
+  filter(str_detect(institution_name, "Baruch"),
+         year == 2024,
+         level %in% c("all undergrad", "all graduate")) |> 
+  mutate(total_enroll = rowSums(across(starts_with("enrollment_")), na.rm = TRUE)) |> 
+  summarise(
+    institution_name = first(institution_name),
+    `Total Enrollment` = sum(total_enroll, na.rm = TRUE),
+    .groups = "drop"
+  ) |> 
+  gt() |>
+  tab_header(
+    title = md("**Baruch College Total Enrollment (2024)**"),
+    subtitle = md("Undergraduate + Graduate students")
+  ) |>
+  fmt_number(
+    columns = `Total Enrollment`,
+    decimals = 0,
+    use_seps = TRUE,
+    pattern = "{x}"
+  ) |>
+  cols_label(
+    institution_name = md("**Institution**")
+  ) |>
+  tab_source_note(
+    source_note = md("*Data from IPEDS Enrollment*")
+  ) |>
+  tab_options(
+    table.font.size = "14px",
+    heading.title.font.size = "18px",
+    column_labels.background.color = "#f9f9f9",
+    table.width = px(450)
+  )
+
+
+```
+
+A: In the 2024 Academic year, Baruch College had a total of **20,801 students enrolled**.
+
+**4.Which institution had the highest number of enrolled female students in 2019?**
+
+```{r}
+library(dplyr)
+library(gt)
+
+IPEDS |> 
+  filter(year == 2019, 
+         level %in% c("all undergrad", "all graduate")) |> 
+  group_by(institution_name) |> 
+  summarise(
+    total_female = sum(rowSums(across(contains("_f_")), na.rm = TRUE)),
+    .groups = "drop"
+  ) |> 
+  arrange(desc(total_female)) |> 
+  slice_head(n = 5) |> 
+  gt() |> 
+  fmt_number(columns = total_female, decimals = 0) |> 
+  tab_header(
+    title = "Top 5 Institutions by Female Enrollment",
+    subtitle = "2019 IPEDS Data (Undergrad + Graduate)"
+  ) |> 
+  cols_label(
+    institution_name = "Institution",
+    total_female = "Total Female"
+  )
+
+```
+
+A: Below are the top 5 institutions that had the highest number of enrolled female students in 2019, with Western Governors University having a total of **88,877 females students enrolled**.
+
+**5.Which institution with over 1000 total students admitted the highest proportion of Native Hawaiian or Pacific Islander (nhpi) first-year undergraduates in 2024?**
+
+```{r}
+library(dplyr)
+library(gt)
+
+IPEDS |> 
+  filter(year == 2024, level == "first year undergrad") |> 
+  mutate(
+    total_in_level = rowSums(across(starts_with("enrollment_")), na.rm = TRUE),
+    nhpi_total = enrollment_m_nhpi + enrollment_f_nhpi,
+    nhpi_prop = nhpi_total / total_in_level
+  ) |> 
+  filter(total_in_level > 1000) |> 
+  arrange(desc(nhpi_prop)) |> 
+  select(institution_name, nhpi_prop, total_in_level) |> 
+  slice_head(n = 5) |> 
+  mutate(nhpi_prop = scales::percent(nhpi_prop, accuracy = 0.1)) |> 
+  gt() |> 
+  fmt_number(total_in_level, decimals = 0) |> 
+  tab_header(
+    title = "Top 5 Institutions: NHPI First-Year Undergrads",
+    subtitle = "2024 IPEDS (Enrollment > 1,000)"
+  ) |> 
+  cols_label(
+    institution_name = "Institution",
+    nhpi_prop = "NHPI %",
+    total_in_level = "Total Enrollment"
+  )
+
+```
+
+A: **University of Hawaii at Manoa** admitted the highest proportion of Native Hawaiian/Pacific Islander first-year undergraduates in 2024 (3.0%)
+
+**6.Which 5 states had the highest number of graduate students across all institutions located in that state?**
+
+```{r}
+library(gt)
+library(dplyr)
+
+IPEDS |>
+  filter(level == "all graduate") |>
+  # Calculate total for each row
+  mutate(grad_total = rowSums(across(starts_with("enrollment_")))) |>
+  group_by(state) |> 
+  summarise(total_graduate_students = sum(grad_total, na.rm = TRUE)) |>
+  slice_max(total_graduate_students, n = 5) |>
+  gt() |>
+  tab_header(title = "Top 5 States by Graduate Enrollment") |>
+  fmt_number(columns = total_graduate_students, decimals = 0)
+
+```
+
+A: **California, New York, Texas, Illinois, and Pennsylvania**, were the **top states** with the largest number of graduate students. 
+
+**7.In 2024, how many first year undergraduate students were enrolled at CUNY colleges and which colleges did they attend? Report both absolute enrollment numbers and percent of total first-year undergraduates?**
+
+```{r}
+total_fy_2024 <- IPEDS |>
+  filter(year == 2024, level == "first year undergrad") |>
+  summarise(total = sum(rowSums(across(starts_with("enrollment_"))))) |>
+  pull(total)
+
+cuny_data <- IPEDS |>
+  filter(year == 2024, 
+         level == "first year undergrad", 
+         str_detect(institution_name, "CUNY")) |>
+  mutate(enrollment   = rowSums(across(starts_with("enrollment_"))),
+         pct_of_total = enrollment / total_fy_2024) |>
+  arrange(desc(pct_of_total)) |>
+  select(institution_name, enrollment, pct_of_total)
+
+# Add grand total row  
+bind_rows(cuny_data, 
+          tibble(institution_name = "**CUNY Total**",
+                 enrollment = sum(cuny_data$enrollment),
+                 pct_of_total = sum(cuny_data$pct_of_total))) |>
+  gt() |>
+  tab_header(title = "CUNY First-Year Enrollment (2024)") |>
+  fmt_number(columns = enrollment, decimals = 0) |>
+  fmt_percent(columns = pct_of_total, decimals = 2) |>
+  cols_label(institution_name = "Institution",
+             enrollment = "Enrollment",
+             pct_of_total = "% of NYC Total")
+
+```
+
+A; CUNY in 2024 has a total of 35,490 (1.14%) first year undergraduate students enrolled at CUNY school throughout all of it's campuses. Among the top 5 are BMCC (**0.15%**),NYC Tech (**0.12%**), Hunter (**0.09%**), and with (**0.08%**) each CCNY and Baruch.
+
+
+**8.How has Baruch’s total undergraduate enrollment changed over the study period? Report both enrollment numbers and percent change year-over-year.**
+
+
+```{r}
+IPEDS |>
+  filter(str_detect(institution_name, "Baruch"), 
+         level == "all undergrad") |>
+  mutate(total_enrollment = rowSums(across(starts_with("enrollment_")))) |>
+  arrange(year) |>
+  mutate(pct_change = (total_enrollment - lag(total_enrollment)) / lag(total_enrollment)) |>
+  select(year, total_enrollment, pct_change) |>
+  gt() |>
+  tab_header(title = "Baruch College Undergraduate Enrollment Trends") |>
+  fmt_number(columns = total_enrollment, decimals = 0) |>
+  fmt_percent(columns = pct_change, decimals = 1) |>
+  sub_missing(columns = pct_change, missing_text = "-") # For the first year in data
+
+```
+
+A: Baruch's total undergraduate enrollment has fluctuated over the years with the highest percentage change in 2011(**8.7%**) and in 2014 with (**5.5%**)
+
+
+**9.At what 5 institutions did the fraction of white students decrease the most over the period from 2010 to 2020?**
+
+```{r}
+library(dplyr); library(gt); library(tidyr)
+
+white_decline <- IPEDS |>
+  filter(year %in% c(2010, 2020), level == "all undergrad") |>
+  mutate(
+    total_enroll = rowSums(across(starts_with("enrollment_")), na.rm = TRUE),
+    white_total = enrollment_m_whit + enrollment_f_whit
+  ) |>
+  filter(total_enroll > 1000) |>
+  group_by(institution_name, year) |>
+  summarise(
+    total_enroll = sum(total_enroll, na.rm = TRUE),
+    white_total = sum(white_total, na.rm = TRUE),
+    white_frac = sum(white_total, na.rm = TRUE) / sum(total_enroll, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  select(-total_enroll, -white_total) |>  # Drop intermediate columns
+  pivot_wider(names_from = year, values_from = white_frac) |> 
+  drop_na(`2010`, `2020`) |> 
+  mutate(change = `2020` - `2010`) |>
+  arrange(change) |> 
+  slice_head(n = 5)
+
+white_decline |> 
+  gt() |> 
+  fmt_percent(2:4, decimals = 1) |>  # Format ALL 3 percentage columns
+  tab_header(title = "Largest Decrease in White Student Fraction (2010-2020)") |>
+  cols_label(
+    institution_name = "Institution",
+    `2010` = "2010 White %",
+    `2020` = "2020 White %", 
+    change = "Change (pts)"
+  )
+```
+
+A: These are the top 5 institutions that had the largest white student fraction decrease. For the [University of the Cumberlands](https://www.ucumberlands.edu/news/university-cumberlands-recognized-among-fastest-growing-colleges-nationwide), their expansion of online programs shifted their student body makeup.
+
+**10.In which 3 states did the fraction of female undergraduates increase the most over the period from 2010 to 2024?**
+
+```{r}
+IPEDS |>
+  filter(year %in% c(2010, 2024), 
+         level == "all undergrad",
+         state %in% state.abb) |>  # Only 50 U.S. states
+  group_by(state, year) |>
+  summarise(
+    total_fem = sum(rowSums(across(contains("_f_"))), na.rm = TRUE),
+    total_enroll = sum(rowSums(across(starts_with("enrollment_"))), na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  mutate(fem_frac = total_fem / total_enroll) |>
+  select(state, year, fem_frac) |>
+  pivot_wider(names_from = year, values_from = fem_frac) |>
+  mutate(increase = `2024` - `2010`) |>
+  slice_max(increase, n = 3) |>
+  gt() |>
+  fmt_percent(columns = c(`2010`, `2024`, increase), decimals = 1)
+
+```
+
+A:The three states/territories with the largest increase in female undergraduate fraction from 2010 to 2024 New Hampshire (NH) (**+4.7%**), MN (MN) (**+4.4%**), and Hawaii (HI) (**+3.7%**).
+
+## Explaration work prepared for Op-ed 
+
+Code related to the final deliverable of the assignment goes here. 
+```{r}
+#baruch's class make up
+enroll_2024 <- IPEDS |> 
+  filter(str_detect(institution_name, "Baruch"), year == 2024) |> 
+  mutate(total_enroll = rowSums(across(starts_with("enrollment_")), na.rm = TRUE)) |> 
+  group_by(level) |> 
+  summarise(enrollment = sum(total_enroll, na.rm = TRUE), .groups = "drop") |> 
+  mutate(level = case_when(
+    level == "first year undergrad" ~ "1st Year Undergrad",
+    level == "all undergrad" ~ "Other Undergrad", 
+    level == "all graduate" ~ "Graduate",
+    TRUE ~ level
+  )) |> 
+  mutate(pct = round(enrollment / sum(enrollment) * 100, 0),
+         level = factor(level, levels = c("1st Year Undergrad", "Other Undergrad", "Graduate")))
+
+ggplot(enroll_2024, aes(x = 1, y = enrollment, fill = level)) +
+  geom_col(color = "white", size = 0.8) +
+  geom_text(aes(label = paste0(pct, "%")), 
+            position = position_stack(vjust = 0.5), 
+            size = 5, fontface = "bold", color = "white") +
+  coord_polar(theta = "y") +
+  labs(title = "Baruch College Enrollment, Fall 2024") +
+  theme_void(base_size = 14) +
+  theme(
+    plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+    legend.position = "bottom"
+  ) +
+  scale_fill_manual(values = c("1st Year Undergrad" = "#2E86AB", 
+                              "Other Undergrad" = "#F18F01", 
+                              "Graduate" = "#A23B72"))
+
+
+```
+
+```{r}
+#freshmen enrollment trends >15 years 
+baruch_first_year <- IPEDS |>
+  filter(str_detect(institution_name, "Baruch"), 
+         level == "first year undergrad",
+         year >= 2015) |>  # Last 10 years: 2015-2024
+  mutate(total_enroll = rowSums(across(starts_with("enrollment_")), na.rm = TRUE)) |>
+  arrange(year) |>
+  group_by(year) |>
+  summarise(
+    first_year_total = sum(total_enroll, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  mutate(
+    pct_change = (first_year_total - lag(first_year_total)) / lag(first_year_total),
+    pct_change = scales::percent(pct_change, accuracy = 0.1)
+  ) |>
+  select(
+    Year = year,
+    `First-Year Enrollment` = first_year_total,
+    `% Change YoY` = pct_change
+  ) |>
+  gt() |>
+  tab_header(
+    title = md("**Baruch College First-Year Trends (2015-2024)**"),
+    subtitle = md("Post-SFFA stability after decade of growth")
+  ) |>
+  fmt_number(
+    columns = `First-Year Enrollment`,
+    decimals = 0,
+    use_seps = TRUE
+  ) |>
+  sub_missing(
+    columns = `% Change YoY`,
+    missing_text = "-"
+  ) |>
+  cols_label(
+    `First-Year Enrollment` = md("**Total Students**"),
+    `% Change YoY` = md("**Year-over-Year**")
+  ) |>
+  tab_source_note(
+    source_note = md("*IPEDS: First-time first-year undergrads (full+part-time)*")
+  ) |>
+  tab_options(
+    table.font.size = "14px",
+    heading.title.font.size = "18px",
+    column_labels.background.color = "#f9f9f9",
+    table.width = px(500)
+  )
+
+baruch_first_year
+
+```
+
+
+```{r}
+# first year cali vs Baruch
+
+IPEDS |> 
+  filter(year %in% c(2023,2024), level == "first year undergrad", 
+         str_detect(institution_name, "Baruch") | is_calpublic) |> 
+  mutate(total = rowSums(across(starts_with("enrollment_")), na.rm = TRUE)) |> 
+  group_by(year, school = ifelse(str_detect(institution_name, "Baruch"), "Baruch", "CA Publics")) |> 
+  summarise(enroll = sum(total), .groups = "drop") |> 
+  tidyr::pivot_wider(names_from = year, values_from = enroll) |> 
+  mutate(`% Chg` = scales::percent((`2024`-`2023`)/`2023`, accuracy = 0.1)) |> 
+  gt() |> 
+  fmt_number(2:3, decimals = 0) |> 
+  cols_label(school = "School", `% Chg` = "% Change YoY**")
+
+
+```
+
+
+```{r}
+#total school YoY racial groups
+baruch_total <- IPEDS |> 
+  filter(str_detect(institution_name, "Baruch"), year %in% c(2023, 2024)) |> 
+  mutate(total_enroll = rowSums(across(starts_with("enrollment_")), na.rm = TRUE)) |> 
+  group_by(year) |> 
+  summarise(enrollment = sum(total_enroll, na.rm = TRUE), .groups = "drop") |> 
+  mutate(pct_change = scales::percent((enrollment - lag(enrollment)) / lag(enrollment), accuracy = 0.1))
+
+baruch_total |> 
+  gt() |> 
+  fmt_number(enrollment, decimals = 0, use_seps = TRUE) |>
+  fmt_percent(pct_change, decimals = 1) |>
+  tab_header("Baruch Total Enrollment (2023-2024)") |>
+  cols_label(enrollment = "Total Students", pct_change = "% Change YoY")
+
+# Block 2: \
+baruch_all_race <- IPEDS |> 
+  filter(str_detect(institution_name, "Baruch"), year %in% c(2023, 2024)) |> 
+  select(year, starts_with("enrollment_")) |> 
+  pivot_longer(-year, names_to = "race_raw", values_to = "count") |> 
+  group_by(year, race_raw) |> 
+  summarise(count = sum(count, na.rm = TRUE), .groups = "drop") |> 
+  mutate(race = case_when(
+    str_detect(race_raw, "asia") ~ "Asian",
+    str_detect(race_raw, "Black") ~ "Black or African American",
+    str_detect(race_raw, "hisp") ~ "Hispanic", 
+    str_detect(race_raw, "whit") ~ "White",
+    str_detect(race_raw, "aian") ~ "AI/AN",
+    str_detect(race_raw, "nhpi") ~ "NHPI",
+    str_detect(race_raw, "nral") ~ "Non-resident",
+    str_detect(race_raw, "2mor") ~ "2+ Races", 
+    str_detect(race_raw, "unkn") ~ "Unknown",
+    TRUE ~ race_raw
+  )) |> 
+  select(year, race, count) |> 
+  pivot_wider(names_from = year, values_from = count, values_fn = sum) |> 
+  mutate(pct_change = round((`2024` - `2023`) / `2023` * 100, 1)) |> 
+  arrange(desc(pct_change))
+
+baruch_all_race |> 
+  mutate(pct_change_display = case_when(
+    `2023` < 50 ~ paste0("(", `2024` - `2023`, " students)"),  
+    TRUE ~ paste0(round((`2024` - `2023`) / `2023` * 100, 1), "%")
+  )) |> 
+  select(race, `2023`, `2024`, pct_change_display) |> 
+  arrange(desc(`2024`)) |> 
+  gt() |> 
+  fmt_number(columns = c(`2023`, `2024`), decimals = 0, use_seps = TRUE) |>  # Add this line
+  tab_header(
+    title = md("**Baruch College Racial Demographics**"), 
+    subtitle = md("**2023 → 2024 Enrollment Changes**")
+  ) |>
+  tab_stubhead(label = md("**Racial Group**"))
+```
+
+
+
+```{r}
+#non white/non asian | Baruch vs 3 cali schools
+ca_freshmen_diversity <- IPEDS |> 
+  filter(year %in% c(2023, 2024), 
+         level == "first year undergrad",
+         (str_detect(institution_name, "Baruch") | 
+          str_detect(institution_name, "University of California-(Los Angeles|Berkeley|San Diego)"))) |> 
+  mutate(
+    school_type = case_when(
+      str_detect(institution_name, "Baruch") ~ "Baruch",
+      str_detect(institution_name, "Los Angeles") ~ "UCLA",
+      str_detect(institution_name, "Berkeley") ~ "UC Berkeley", 
+      str_detect(institution_name, "San Diego") ~ "UC San Diego"
+    ),
+    asian_total = enrollment_m_asia + enrollment_f_asia,
+    white_total = enrollment_m_whit + enrollment_f_whit,
+    total_enroll = rowSums(across(starts_with("enrollment_")), na.rm = TRUE),
+    diversity_pct = 1 - (asian_total + white_total) / pmax(total_enroll, 1)
+  ) |> 
+  filter(total_enroll > 0) |> 
+  group_by(school_type, year) |> 
+  summarise(diversity_pct = mean(diversity_pct, na.rm = TRUE), .groups = "drop") |> 
+  distinct() |> 
+  pivot_wider(names_from = year, values_from = diversity_pct, values_fill = 0) |> 
+  mutate(`pt_change` = round((`2024` - `2023`) * 100, 1)) |>  # % POINT change
+  select(school_type, `2023`, `2024`, pt_change)
+
+ca_freshmen_diversity |> 
+  gt() |> 
+  fmt_percent(c(`2023`, `2024`), decimals = 1) |>
+  fmt_number(pt_change, decimals = 1) |>
+  cols_label(
+    school_type = "Institution",
+    `2023` = "2023",
+    `2024` = "2024**",
+    pt_change = "Pt Change"
+  ) |>
+  tab_header(
+    title = md("Non-White/Non-Asian Freshmen Share"), 
+    subtitle = md("Baruch is stable YoY")
+  ) |>
+  tab_stubhead(label = md("Institution")) |>
+  tab_source_note("IPEDS")
+```
+
+##Final Insights and Deliverable
+
+---
+title: "A Year After the Supreme Court Ruling – **Baruch’s Diversity Thrives**"
+---
+
+Hello students, faculty, parents, and members of the **Baruch community**,
+
+Picture walking down any hallway at **Baruch**, and you'll see representation from **every corner of the world**. A first-gen Colombian, a SWUFE exchange student, a third-generation Jamaican, an Ohio native—all collaborating on case competitions together. **That's our melting pot**. It reflects both **New York City** and a college that has long thrived on openness and shared ambition.
+
+Our diversity fosters **intellectual, socioeconomic, and cultural pluralism**, the organic mix of perspectives that fuels innovation in our classrooms.
+
+One year after ***Students for Fair Admissions v. Harvard*** (2023) ended race-conscious admissions policies that colleges used to promote campus diversity—a setback for equitable access—**I'm proud to say our college continues to thrive in diversity**.
+
+Our **IPEDS 2024 enrollment data** prove this:
+- Total student body: 17,216 undergraduates (83%), 3,585 graduates (17%)
+- **Hispanic students**: Leading with **4.2% YoY growth**
+- White students: +2.5% YoY
+- Black/African American: +1.4% YoY
+- Asian students: Stable YoY ~40% of enrollment
+
+These are **not declines but gains across the board**, mirroring **New York City's demographics** while defying predictions. **Hispanic enrollment surged** while others held steady or grew, showing Baruch attracts top talent regardless of background.
+
+Compared to California public universities (race-neutral since 1996), Baruch demonstrates **resilience**. Our diversity is just as strong a year after the decision—our **non-White/non-Asian enrollment remains flat**, whereas UC Berkeley, UC San Diego, and UCLA report mixed changes ranging from -1.7 to +2.0 percentage points year over year.
+
+Walk through those hallways today, tomorrow, **always**—and you will still see **our melting pot thriving**. **Baruch is a place for everyone**.
+
+**Miguel Gonzalez**  
+*President, Baruch College*
+
+
+::: {.callout-note title="AI Usage Statement" collapse="true"}
+
+Perplexity was used to help write the code in this project, but all non-code text was generated without the use of any Generative AI tools. Additionally, Perplexity was used to provide additional background information on the topic and to brainstorm ideas for the final open-ended prompt.
+
+:::
+------------------------------------------------------------------------
+
+This work ©2025 by miggonzalz was initially prepared as a Mini-Project for
+STA 9750 at Baruch College. More details about this course can be found at
+[the course site](https://michael-weylandt.com/STA9750) and instructions for
+this assignment can be found at 
+[MP #01](https://michael-weylandt.com/STA9750/mini/mini01.html)

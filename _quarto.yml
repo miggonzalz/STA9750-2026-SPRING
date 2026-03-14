@@ -5,13 +5,15 @@ project:
 website:
   title: "STA 9750 Submission Material"
   description: "Course Projects for STA 9750 at Baruch College"
-  site-url: "https://miggonzalz.github.io/STA9750-2026-SPRING/" # Updated to the web URL
+  site-url: "https://miggonzalz.github.io/STA9750-2026-SPRING/"
   navbar:
-    background: light # Changed from primary to light for that clean look
+    background: light 
+    left:              
+      - mp01.qmd       
     search: false
 format:
   html:
-    theme: default # 'default' or 'cosmo' matches your reference image best
+    theme: default 
     toc: false
     css: styles.css
 
