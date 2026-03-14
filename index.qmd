@@ -28,7 +28,8 @@ Here you’ll find snippets of my coursework, mini-projects from **STA 9750**, a
 
 
 ## Featured Work
-- **Under construction - come back soon!**
+ **[Baruch Diversity Op-Ed](mp01.html)** - A Year After the Supreme Court Ruling
+
 ```{r}
 #| echo: false
 #| message: false
