@@ -866,9 +866,7 @@ ca_freshmen_diversity |>
 
 ##Final Insights and Deliverable
 
----
-title: "A Year After the Supreme Court Ruling – **Baruch’s Diversity Thrives**"
----
+"A Year After the Supreme Court Ruling – **Baruch’s Diversity Thrives**"
 
 Hello students, faculty, parents, and members of the **Baruch community**,
 
