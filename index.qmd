@@ -28,7 +28,7 @@ Here you’ll find snippets of my coursework, mini-projects from **STA 9750**, a
 
 
 ## Featured Work
-**[Baruch Diversity Op-Ed](./mp01.html)** - A Year After the Supreme Court Ruling
+[**Baruch Diversity Op-Ed**](./mp01.html) - A Year After the Supreme Court Ruling
 
  <br>
 
