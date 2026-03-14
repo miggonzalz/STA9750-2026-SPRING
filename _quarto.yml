@@ -9,7 +9,8 @@ website:
   navbar:
     background: light 
     left:              
-      - mp01.qmd       
+      - text: "mp01"
+      href: mp01.html  
     search: false
 format:
   html:
