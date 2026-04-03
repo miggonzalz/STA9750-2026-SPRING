@@ -16,14 +16,17 @@ website:
         href: mp01.qmd
       - text: "MP02"        # Added your current project
         href: mp02.qmd
+execute:
+  warning: false
+  message: false
 
 format:
   html:
-    theme: cosmo          # 'cosmo' or 'flatly' are great for data projects
-    toc: true             # Highly recommended for long MP02 analysis
+    theme: cosmo
+    toc: true
     toc-depth: 3
     code-fold: true
-    page-layout: full     # THIS is the magic line to fix centering
+    page-layout: full
     css: styles.css
 
 editor:

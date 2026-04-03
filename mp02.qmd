@@ -260,9 +260,10 @@ resp_2003_alone0 |>
 ```
 
 
-### Exploratory analysis with additional Demographic variables
+### Exploratory analysis with additional Demographic variables {.tabset .tabset-pills}
 
-**Q1.How many children under the age of 18 live in the respondent’s home?**
+###Q1
+**How many children under the age of 18 live in the respondent’s home?**
 ```{r}
 
 library(scales)
@@ -281,7 +282,8 @@ kids_summary <- resp |>
 ```
 **A:** `r kids_summary |> pull(Count)[2]` participants have children under 18.
 
-**Q2. Is the respondent married?**
+###Q2
+**Is the respondent married?**
 ```{r}
 # can just use the rep table r
 marital_summary <- resp |> 
@@ -293,7 +295,8 @@ marital_summary <- resp |>
 ```
 **A:** `r marital_summary |> filter(Status == "Married, spouse present") |> pull(count)` are married with spouse present.
 
-**Q3. What is the respondent’s employment status (employed, unemployed, retired, etc.)?** 
+###Q3 
+**What is the respondent’s employment status (employed, unemployed, retired, etc.)?** 
 ```{r}
 # Employment Status Counts - ATUS Respondents
 employment_summary <- resp |> 
@@ -307,10 +310,11 @@ employment_summary <- resp |>
 
 #employment_summary
 ```
-Employment Summary: `r employment_summary |> filter(Status == "Employed") |> pull(Count) employed, r (employment_summary |> filter(Status != "Employed") |> pull(Count))[1]` not employed.
 
-**Q4.Location of Activities**
+**A**: Employment Summary: `r employment_summary |> filter(Status == "Employed") |> pull(Count) employed, r (employment_summary |> filter(Status != "Employed") |> pull(Count))[1]` not employed.
 
+###Q4
+**Location of Activities**
 ```{r}
 location_summary <- act |> 
   # Count occurrences of the physical locations
@@ -329,9 +333,10 @@ location_summary <- act |>
 #location_summary
 ```
 
-**A** Top activity location is `r location_summary$task_level3[1] with r location_summary$Count[1]` occurrences.
+**A** Top activity location is `r location_summary$`Activity Location`[1]` with `r location_summary$Count[1]` occurrences.
 
-**Q5.Is the respondent enrolled in a college or university (not high school)?**
+###Q5
+**Is the respondent enrolled in a college or university (not high school)?**
 ```{r}
 college_summary <- resp |> 
   count(college_student, name = "count") |> 
@@ -341,7 +346,7 @@ college_summary <- resp |>
   ) |> 
   select(Status, Count)
 
-college_summary
+#college_summary
 total_resp <- nrow(resp)
 college_pct <- round(mean(resp$college_student, na.rm = TRUE) * 100, 1)
 cat(glue::glue("{scales::comma(sum(resp$college_student, na.rm = TRUE))} ({college_pct}%)"))
@@ -368,9 +373,10 @@ resp |>
 ```
 
  
-### Inline questions
+### Inline questions {.tabset .tabset-pills}
 
-**Q1. How many different respondents have answered an ATUS survey since 2003?**
+###Q1
+**How many different respondents have answered an ATUS survey since 2003?**
 ````{r}
 #count the respondents 
 n_respondents <- nrow(resp)
@@ -379,7 +385,8 @@ n_respondents <- nrow(resp)
 **A:** There are `r scales::comma(n_respondents)` different respondents who have answered an ATUS survey since 2003.
 
 
-**Q2.Americans enjoy watching a variety of sports. How many different sports does ATUS ask about watching as a “Level 3” task**
+###Q2
+**Americans enjoy watching a variety of sports. How many different sports does ATUS ask about watching as a “Level 3” task**
 
 ```{r}
 #get total of the level 3 answers
@@ -391,7 +398,8 @@ sports_count <- act |>
 
 **A:** ATUS asks about `r sports_count` different sports as Level 3 watching tasks.
 
-**Q3.Approximately what percent of Americans are retired?:**
+###Q3 
+**Approximately what percent of Americans are retired?:**
 ```{r}
 retired_data <- resp |> 
   left_join(rost |> filter(relation_to_resp == 1) |> select(participant_id, age), 
@@ -402,9 +410,10 @@ retired_data <- resp |>
 
 ```
 
-**A:**Approximately `r retired_pct%` of Americans are retired.
+**A:** Approximately `r retired_data`% of Americans are retired.
 
-**Q4.On average, how many hours do Americans sleep per night?**
+###Q4
+**On average, how many hours do Americans sleep per night?**
 ```{r}
 sleep_hours <- act |> 
   left_join(resp |> select(participant_id, survey_weight), by = "participant_id") |> 
@@ -419,7 +428,8 @@ sleep_hours <- act |>
 
 **A:** On average, Americans sleep `r sleep_hours` hours per night
 
-**Q5. On average, how many hours do Americans with one or more children in the home spend taking care of their children?**
+###Q5
+**On average, how many hours do Americans with one or more children in the home spend taking care of their children?**
 
 ```{r}
 childcare_hours <- act |> 
@@ -433,7 +443,7 @@ childcare_hours <- act |>
   pull(avg_childcare_hours) |> round(2)
 ```
 
-**A:** Americans with children spend on average `r childcare_hours hours` per day taking care of their children.
+**A:** Americans with children spend on average `r childcare_hours` hours per day taking care of their children.
 
 
 ## Exploratory Analysis
