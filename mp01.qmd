@@ -864,7 +864,7 @@ ca_freshmen_diversity |>
   tab_source_note("IPEDS")
 ```
 
-##Final Insights and Deliverable
+## Final Insights and Deliverable
 
 "A Year After the Supreme Court Ruling – **Baruch’s Diversity Thrives**"
 

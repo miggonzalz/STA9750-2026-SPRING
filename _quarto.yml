@@ -7,16 +7,23 @@ website:
   description: "Course Projects for STA 9750 at Baruch College"
   site-url: "https://miggonzalz.github.io/STA9750-2026-SPRING/"
   navbar:
-    background: light
+    background: primary  # Changed to 'primary' for a more distinct header
+    search: true         # Helpful for navigating large data projects
     left:
-      - text: "mp01"
-        href: mp01.html    # ← Fixed: 8 spaces (2 extra)
-    search: false
+      - text: "Home"
+        href: index.qmd
+      - text: "MP01"
+        href: mp01.qmd
+      - text: "MP02"        # Added your current project
+        href: mp02.qmd
 
 format:
   html:
-    theme: default
-    toc: false
+    theme: cosmo          # 'cosmo' or 'flatly' are great for data projects
+    toc: true             # Highly recommended for long MP02 analysis
+    toc-depth: 3
+    code-fold: true
+    page-layout: full     # THIS is the magic line to fix centering
     css: styles.css
 
 editor:
