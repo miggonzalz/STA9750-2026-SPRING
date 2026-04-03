@@ -29,7 +29,7 @@ Here you’ll find snippets of my coursework, mini-projects from **STA 9750**, a
 
 ## Featured Work
 [**Baruch Diversity Op-Ed**](./mp01.html) - A Year After the Supreme Court Ruling
-[**How Do you do You?**] (./mp02.html)] -  How Do You Do ‘You Do You’?
+[**How Do you do You?**](./mp02.html) -  How Do You Do ‘You Do You’?
 
  <br>
 
