@@ -262,7 +262,7 @@ resp_2003_alone0 |>
 
 ### Exploratory analysis with additional Demographic variables {.tabset .tabset-pills .unnumbered}
 
-### Q1
+### Children {.unnumbered}
 **How many children under the age of 18 live in the respondent’s home?**
 ```{r}
 
@@ -282,7 +282,7 @@ kids_summary <- resp |>
 ```
 **A:** `r kids_summary |> filter(Status == "Has Children") |> pull("Count_formatted")` participants have children under 18.
 
-### Q2
+### Marital {.unnumbered}
 **Is the respondent married?**
 ```{r}
 #| echo: false
@@ -299,7 +299,7 @@ marital_summary <- resp |>
 ```
 **A:** `r marital_summary |> filter(Status == "Married, spouse present") |> pull("Count")` are married with spouse present.
 
-### Q3 
+### Employment Staus {.unnumbered}
 **What is the respondent’s employment status (employed, unemployed, retired, etc.)?** 
 ```{r}
 # Employment Status Counts - ATUS Respondents
@@ -322,7 +322,7 @@ employment_summary <- resp |>
 
 **A**: Employment Summary: `r employment_summary |> filter(Status == "Employed - at work") |> pull("Count")` employed, `r employment_summary |> filter(Status != "Employed - at work") |> pull("Count") |> dplyr::first()` not employed.
 
-### Q4
+### Location {.unnumbered}
 **Location of Activities**
 ```{r}
 location_summary <- act |> 
@@ -344,7 +344,7 @@ location_summary <- act |>
 
 **A:** Top activity location is `r location_summary[["Activity Location"]][1]` with `r location_summary$Count[1]` occurrences.
 
-### Q5
+### College/Universities {.unnumbered}
 **Is the respondent enrolled in a college or university (not high school)?**
 ```{r}
 #| label: college-university-summary
@@ -392,7 +392,7 @@ resp |>
  
 ### Inline questions {.tabset .tabset-pills .unnumbered}
 
-### Q1
+### Number of respondents {.unnumbered}
 **How many different respondents have answered an ATUS survey since 2003?**
 ````{r}
 #count the respondents 
@@ -402,7 +402,7 @@ n_respondents <- nrow(resp)
 **A:** There are `r scales::comma(n_respondents)` different respondents who have answered an ATUS survey since 2003.
 
 
-### Q2
+### Sports {.unnumbered}
 **Americans enjoy watching a variety of sports. How many different sports does ATUS ask about watching as a “Level 3” task**
 
 ```{r}
@@ -415,7 +415,7 @@ sports_count <- act |>
 
 **A:** ATUS asks about `r sports_count` different sports as Level 3 watching tasks.
 
-### Q3 
+### Retired {.unnumbered} 
 **Approximately what percent of Americans are retired?:**
 ```{r}
 retired_data <- resp |> 
@@ -429,7 +429,7 @@ retired_data <- resp |>
 
 **A:** Approximately `r retired_data`% of Americans are retired.
 
-### Q4
+### Sleep per night {.unnumbered}
 **On average, how many hours do Americans sleep per night?**
 ```{r}
 sleep_hours <- act |> 
@@ -445,7 +445,7 @@ sleep_hours <- act |>
 
 **A:** On average, Americans sleep `r sleep_hours` hours per night
 
-### Q5
+### Childcare {.unnumbered}
 **On average, how many hours do Americans with one or more children in the home spend taking care of their children?**
 
 ```{r}
@@ -1048,7 +1048,8 @@ This is our biggest potential win for user health. The data reveals a massive "S
 :::{.callout-warning title="Young Professionals: Breaking the 'Exercise Wall'"}
 For our "Hustle" segment, the typical exercise time is low—closer to the zero mark than we would like to see. To keep them motivated, we will not lead with the 1.5-hour "App Target" immediately. Instead, our UI will offer "Rookie of the Year" milestones that celebrate even 20-30 minutes of daily activity as being "Better than Average" among their peers. We will reserve the full 85th-percentile benchmark for a final "Iron Peak" challenge.
 
-
+ <br> 
+ 
 ## Extra credit
 ```{r}
 #| label: fig-productivity-rings
