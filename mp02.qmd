@@ -187,12 +187,12 @@ act  <- load_atus_data("act")
 activities <- load_atus_activities()
 
 # Verify the join will work 
-test_join <- act |> 
-  left_join(activities, by = c("level3_code" = "code_level3")) |> 
-  select(level3_code, task_level3) |> 
-  slice_head(n=5)
+#test_join <- act |> 
+#  left_join(activities, by = c("level3_code" = "code_level3")) |> 
+#  select(level3_code, task_level3) |> 
+#  slice_head(n=5)
 
-print(test_join)
+#print(test_join)
 
 ```
 
@@ -202,7 +202,7 @@ print(test_join)
 # Baseline type/distribution checks
 library(dplyr)
 library(pillar)  
-glimpse(resp)
+
 cat("=== RESPONDENT DATA ===\n")
 glimpse(resp); summary(resp); count(resp, survey_year, sort = TRUE)
 
@@ -211,16 +211,20 @@ glimpse(rost); summary(rost); count(rost, sex, sort = TRUE)
 
 cat("\n=== ACTIVITIES DATA ===\n")
 glimpse(act); summary(act)
-count(act, activity_n_of_day, sort = TRUE) |> print(n = 20)
+count(act, activity_n_of_day, sort = TRUE) 
 
-cat("\n=== ACTIVITIES CODES ===\n")
-glimpse(activities); summary(activities)
-count(activities, code_level1, sort = TRUE) |> print(n = 20)
+# |> print(n = 20)
+
+#cat("\n=== ACTIVITIES CODES ===\n")
+#glimpse(activities); summary(activities)
+#count(activities, code_level1, sort = TRUE) 
+
+# |> print(n = 20)
 ```
 
 
 
-How many total hours were recorded on sleeping-type activities?
+**Q1.How many total hours were recorded on sleeping-type activities?**
 ```{r}
 # needs time spent level13 code for sleeping filter and resp for wurvey weight on the populating
 sleeping_result <- act |> 
@@ -233,7 +237,7 @@ sleeping_hours <- sleeping_result$total_minutes / 60
 scales::comma(sleeping_hours, accuracy = 1, suffix = " hours")
 ```
 
-How many female participants reported spending no time alone in 2003?
+**Q2.How many female participants reported spending no time alone in 2003?**
 ```{r}
 #q about the female participants. need resp for usage and  rost to identy who is female
 female_alone_2003 <- resp |> 
@@ -256,9 +260,9 @@ resp_2003_alone0 |>
 ```
 
 
-### Exploratory Questions - Inline Values
+### Exploratory analysis with additional Demographic variables
 
-1.**How many children under the age of 18 live in the respondent’s home?**
+**Q1.How many children under the age of 18 live in the respondent’s home?**
 ```{r}
 
 library(scales)
@@ -273,26 +277,23 @@ kids_summary <- resp |>
   ) |> 
   select(Status, Count)
 
-kids_summary
-
+#kids_summary
 ```
-**A:** r kids_summary |> pull(Count)[2] participants have children under 18.
+**A:** `r kids_summary |> pull(Count)[2]` participants have children under 18.
 
-**Is the respondent married?**
-
+**Q2. Is the respondent married?**
 ```{r}
 # can just use the rep table r
 marital_summary <- resp |> 
   count(marital_status, name = "count") |> 
   mutate(count = scales::comma(count)) |> 
   rename(Status = marital_status, Count = count)     
-marital_summary
+#marital_summary
 
 ```
-**A:** r marital_summary |> filter(Status == "Married, spouse present") |> pull(count) are married with spouse present.
+**A:** `r marital_summary |> filter(Status == "Married, spouse present") |> pull(count)` are married with spouse present.
 
-##Employment status 
-
+**Q3. What is the respondent’s employment status (employed, unemployed, retired, etc.)?** 
 ```{r}
 # Employment Status Counts - ATUS Respondents
 employment_summary <- resp |> 
@@ -304,11 +305,11 @@ employment_summary <- resp |>
   ) |> 
   select(Status, Count, Pct)
 
-employment_summary
+#employment_summary
 ```
-Employment Summary: r employment_summary |> filter(Status == "Employed") |> pull(Count) employed, r (employment_summary |> filter(Status != "Employed") |> pull(Count))[1] not employed.
+Employment Summary: `r employment_summary |> filter(Status == "Employed") |> pull(Count) employed, r (employment_summary |> filter(Status != "Employed") |> pull(Count))[1]` not employed.
 
-## Activity Location Exploratory 
+**Q4.Location of Activities**
 
 ```{r}
 location_summary <- act |> 
@@ -325,13 +326,12 @@ location_summary <- act |>
   ) |> 
   select(`Activity Location`, Count)
 
-location_summary
+#location_summary
 ```
 
-**A** Top activity location is r location_summary$task_level3[1] with r location_summary$Count[1] occurrences.
+**A** Top activity location is `r location_summary$task_level3[1] with r location_summary$Count[1]` occurrences.
 
-## College student? (not highschool)
-
+**Q5.Is the respondent enrolled in a college or university (not high school)?**
 ```{r}
 college_summary <- resp |> 
   count(college_student, name = "count") |> 
@@ -346,7 +346,10 @@ total_resp <- nrow(resp)
 college_pct <- round(mean(resp$college_student, na.rm = TRUE) * 100, 1)
 cat(glue::glue("{scales::comma(sum(resp$college_student, na.rm = TRUE))} ({college_pct}%)"))
 ```
-## Weight average times total 
+**A** `r glue::glue("Enrolled in college: {scales::comma(sum(resp$college_student, na.rm = TRUE))} ({round(mean(resp$college_student, na.rm = TRUE) * 100, 1)}%).")`
+
+
+**Data Integration and Initial Exploration - Survey Weighting**  
 ```{r} 
 # All years
 resp |> summarise(avg_time_alone = weighted.mean(time_alone, survey_weight, na.rm = TRUE))
@@ -365,18 +368,18 @@ resp |>
 ```
 
  
-### Task 4 - Inline questions
+### Inline questions
 
-**How many different respondents have answered an ATUS survey since 2003?**
+**Q1. How many different respondents have answered an ATUS survey since 2003?**
 ````{r}
 #count the respondents 
 n_respondents <- nrow(resp)
 ````
 
-**A:** There are r scales::comma(n_respondents) different respondents who have answered an ATUS survey since 2003.
+**A:** There are `r scales::comma(n_respondents)` different respondents who have answered an ATUS survey since 2003.
 
 
-**Americans enjoy watching a variety of sports. How many different sports does ATUS ask about watching as a “Level 3” task**
+**Q2.Americans enjoy watching a variety of sports. How many different sports does ATUS ask about watching as a “Level 3” task**
 
 ```{r}
 #get total of the level 3 answers
@@ -386,9 +389,9 @@ sports_count <- act |>
   nrow()
 ```
 
-**A:** ATUS asks about r sports_count different sports as Level 3 watching tasks.
+**A:** ATUS asks about `r sports_count` different sports as Level 3 watching tasks.
 
-**Approximately what percent of Americans are retired?:**
+**Q3.Approximately what percent of Americans are retired?:**
 ```{r}
 retired_data <- resp |> 
   left_join(rost |> filter(relation_to_resp == 1) |> select(participant_id, age), 
@@ -399,9 +402,9 @@ retired_data <- resp |>
 
 ```
 
-**A:**Approximately r retired_pct% of Americans are retired.
+**A:**Approximately `r retired_pct%` of Americans are retired.
 
-**On average, how many hours do Americans sleep per night?**
+**Q4.On average, how many hours do Americans sleep per night?**
 ```{r}
 sleep_hours <- act |> 
   left_join(resp |> select(participant_id, survey_weight), by = "participant_id") |> 
@@ -414,9 +417,9 @@ sleep_hours <- act |>
 
 ```
 
-**A:** On average, Americans sleep r sleep_hours hours per night
+**A:** On average, Americans sleep `r sleep_hours` hours per night
 
-**On average, how many hours do Americans with one or more children in the home spend taking care of their children?**
+**Q5. On average, how many hours do Americans with one or more children in the home spend taking care of their children?**
 
 ```{r}
 childcare_hours <- act |> 
@@ -430,7 +433,7 @@ childcare_hours <- act |>
   pull(avg_childcare_hours) |> round(2)
 ```
 
-**A:** Americans with children spend on average r childcare_hours hours per day taking care of their children.
+**A:** Americans with children spend on average `r childcare_hours hours` per day taking care of their children.
 
 
 ## Exploratory Analysis
