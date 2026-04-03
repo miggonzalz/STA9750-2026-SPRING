@@ -1,14 +1,15 @@
 ---
 title: "Mini-Project 01 - Assessing the Impact of SFFA on Campus Diversity One-Year Later"
 author: "miggonzalz"
-about:
-    template: jolla
 editor:
     mode: source
 format:
-    html:
-        code-fold: true
+  html:
+    code-fold: true
+    toc: true            
+    number-sections: true #
 ---
+
 
 ## Introduction - Project Objective
 
