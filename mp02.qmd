@@ -1034,77 +1034,65 @@ For our "Hustle" segment, the typical exercise time is low—closer to the zero 
 
 ## Extra credit
 ```{r}
+#| label: fig-productivity-rings
+#| message: false
+#| warning: false
+
 library(tidyverse)
-library(stringr)
 
-# 1. Prepare Mock Data (Actuals updated for a better visual story)
-ring_data <- tribble(
-    ~Activity,   ~Type,     ~Hours,
-    "Exercise",  "Target",  1.8,   # High bar
-    "Exercise",  "Typical", 0.5,   
-    "Exercise",  "Actual",  1.2,   
-    
-    "Education", "Target",  3.5,   
-    "Education", "Typical", 1.8,   
-    "Education", "Actual",  2.8,   
-    
-    "Sleep",     "Target",  8.5,   
-    "Sleep",     "Typical", 7.0,   
-    "Sleep",     "Actual",  6.0    
-)
-
-# 2. Normalize and calculate fractions
-plot_data <- ring_data %>%
-    group_by(Activity) %>%
+# 1. Data Prep
+plot_data <- tribble(
+    ~Activity,   ~Target, ~Actual,
+    "Exercise",  1.8,     1.2,
+    "Education", 3.5,     4.2, 
+    "Sleep",     8.5,     6.0  
+) %>%
     mutate(
-        max_val = max(Hours[Type == "Target"]),
-        # If actual time exceeds target, cap it at 1 for the ring (e.g., exercise > target)
-        fraction = pmin(Hours / max_val, 1)
-    ) %>%
-    ungroup() %>%
-    filter(Type == "Actual")
+        fraction = Actual / Target,
+        # Split the progress into two parts: the first 100% and the "Extra"
+        base_progress = pmin(fraction, 1),
+        extra_progress = pmax(0, fraction - 1),
+        ring_pos = case_when(
+            Activity == "Exercise" ~ 1,
+            Activity == "Education" ~ 2,
+            Activity == "Sleep" ~ 3
+        )
+    )
 
-# 3. Enhanced "Activity Ring" Visualization with Center Hole
-ggplot(plot_data, aes(x = Activity, y = fraction, fill = Activity)) +
-    # 1. Background tracks (Dark Gray)
-    geom_col(aes(y = 1), fill = "#2c2c2e", width = 0.85) +
-    # 2. Progress Rings
-    geom_col(width = 0.85, show.legend = FALSE) +
-    # The 'donut hole' trick: use y = 0 for the base circle,
-    # and annotate for the label. The `y = -1` creates the central void.
-    coord_polar(theta = "y", start = 0) +
-    scale_y_continuous(limits = c(-1, 1.25)) +  # Creates the central 'hole'
-    theme_void() +
+# 2. Plot
+ggplot(plot_data, aes(x = ring_pos, fill = Activity)) +
+    # Background Tracks (Dark Gray)
+    geom_col(aes(y = 1), fill = "#2c2c2e", width = 0.8) +
+    
+    # Base Progress (Up to 100%)
+    geom_col(aes(y = base_progress), width = 0.8, show.legend = FALSE) +
+    
+    # Extra Progress (The "Overlap" for Education)
+    # We use a slightly different alpha or color to make it 'pop'
+    geom_col(aes(y = extra_progress), width = 0.8, show.legend = FALSE, alpha = 0.8) +
+
+    coord_polar(theta = "y") +
+    scale_x_continuous(limits = c(0, 4)) + 
+    scale_y_continuous(limits = c(0, 1)) + 
     scale_fill_manual(values = c(
-        "Exercise" = "#fa114f", # Neon Red
-        "Education" = "#9efd38", # Neon Green
-        "Sleep" = "#00d2ff"     # Bright Blue
+        "Exercise" = "#fa114f", 
+        "Education" = "#9efd38", 
+        "Sleep" = "#00d2ff"
     )) +
+    theme_void() +
     labs(
-        # CRITICAL FIX: Wrapped titles with very narrow width for Quarto
-        title = str_wrap("Personal Productivity vs. Peer Benchmarks", width = 20),
-        subtitle = str_wrap("Actual Weekly Time Use for Young Professional Segment", width = 30),
-        caption = "Outer Ring: Target | Inner Fill: Your Progress"
+        title = "Weekly Intensity",
+        subtitle = "Education (Green) is crushing it at 120%!",
+        caption = "Red: Exercise | Green: Education | Blue: Sleep"
     ) +
     theme(
-        # Dark Mode Aesthetic
         plot.background = element_rect(fill = "black", color = "black"),
         panel.background = element_rect(fill = "black", color = "black"),
-        # Fixed Title Cutoff with wrap and margins
-        plot.title = element_text(color = "white", face = "bold", size = 18, 
-                                  hjust = 0.5, lineheight = 1.1, margin = margin(t = 20, b = 5)),
-        plot.subtitle = element_text(color = "#8e8e93", size = 11, 
-                                     hjust = 0.5, lineheight = 1.1, margin = margin(b = 20)),
-        plot.caption = element_text(color = "#8e8e93", size = 9, hjust = 0.5, margin = margin(t = 20))
-    ) +
-    # Center text annotation (replaces individual labels to avoid legibility issues)
-    # This text sits in the new central "donut hole"
-    annotate("text", x = 1, y = 0, label = "YOU", color = "black", fontface = "bold", size = 8, vjust = -1) +
-    annotate("text", x = 1, y = 0, label = "EX", color = "black", fontface = "bold", size = 3, vjust = -1.5) +
-    annotate("text", x = 2, y = 0, label = "ED", color = "black", fontface = "bold", size = 3, vjust = -1.5) +
-    annotate("text", x = 3, y = 0, label = "SL", color = "black", fontface = "bold", size = 3, vjust = -1.5)
+        plot.title = element_text(color = "white", face = "bold", size = 22, hjust = 0.5),
+        plot.subtitle = element_text(color = "#9efd38", size = 12, hjust = 0.5),
+        plot.caption = element_text(color = "#8e8e93", size = 10, hjust = 0.5)
+    )
 ```
-
 
 
 ::: {.callout-note title="AI Usage Statement" collapse="true"}
