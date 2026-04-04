@@ -1115,7 +1115,7 @@ By leveraging these benchmarks, we aren't just tracking time, we are empowering 
 
  <br> 
  
-### Extra credit {.tabset .tabset-pills .unnumbered}
+### Extra credit {.tabset .tabset-pills 
 
 ### Data Relationship Diagram 
 ```{r}
