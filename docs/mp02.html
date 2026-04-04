@@ -104,6 +104,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="site_libs/viz-1.8.2/viz.js"></script>
+
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+
+<script src="site_libs/grViz-binding-1.0.11/grViz.js"></script>
+
 
 
 <link rel="stylesheet" href="styles.css">
@@ -174,7 +184,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#task-6-exploratory-questions---graph-answers" id="toc-task-6-exploratory-questions---graph-answers" class="nav-link" data-scroll-target="#task-6-exploratory-questions---graph-answers"><span class="header-section-number">0.4</span> Task 6: Exploratory Questions - Graph Answers</a></li>
   <li><a href="#code-for-final-insights-an-deliverable" id="toc-code-for-final-insights-an-deliverable" class="nav-link" data-scroll-target="#code-for-final-insights-an-deliverable"><span class="header-section-number">1</span> Code for Final insights an deliverable</a>
   <ul class="collapse">
-  <li><a href="#final-insights-and-deliverable" id="toc-final-insights-and-deliverable" class="nav-link" data-scroll-target="#final-insights-and-deliverable"><span class="header-section-number">1.1</span> Final Insights and Deliverable</a></li>
+  <li><a href="#final-insights-and-deliverable" id="toc-final-insights-and-deliverable" class="nav-link" data-scroll-target="#final-insights-and-deliverable"><span class="header-section-number">1.1</span> Final Insights and Deliverable</a>
+  <ul class="collapse">
+  <li><a href="#extra-credit" id="toc-extra-credit" class="nav-link" data-scroll-target="#extra-credit">Extra credit</a></li>
+  <li><a href="#data-relationship-diagram" id="toc-data-relationship-diagram" class="nav-link" data-scroll-target="#data-relationship-diagram"><span class="header-section-number">1.1.1</span> Data Relationship Diagram</a></li>
+  <li><a href="#ring-visualizations" id="toc-ring-visualizations" class="nav-link" data-scroll-target="#ring-visualizations"><span class="header-section-number">1.1.2</span> Ring Visualizations</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -925,23 +940,23 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
 </figcaption>
 <div aria-describedby="tbl-lawn-retired-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="uruwwormmx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uruwwormmx table {
+<div id="yggfesnkmv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yggfesnkmv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uruwwormmx thead, #uruwwormmx tbody, #uruwwormmx tfoot, #uruwwormmx tr, #uruwwormmx td, #uruwwormmx th {
+#yggfesnkmv thead, #yggfesnkmv tbody, #yggfesnkmv tfoot, #yggfesnkmv tr, #yggfesnkmv td, #yggfesnkmv th {
   border-style: none;
 }
 
-#uruwwormmx p {
+#yggfesnkmv p {
   margin: 0;
   padding: 0;
 }
 
-#uruwwormmx .gt_table {
+#yggfesnkmv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -967,12 +982,12 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-left-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_caption {
+#yggfesnkmv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uruwwormmx .gt_title {
+#yggfesnkmv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -984,7 +999,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-bottom-width: 0;
 }
 
-#uruwwormmx .gt_subtitle {
+#yggfesnkmv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -996,7 +1011,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-top-width: 0;
 }
 
-#uruwwormmx .gt_heading {
+#yggfesnkmv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1008,13 +1023,13 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-right-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_bottom_border {
+#yggfesnkmv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_col_headings {
+#yggfesnkmv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1029,7 +1044,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-right-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_col_heading {
+#yggfesnkmv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1049,7 +1064,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   overflow-x: hidden;
 }
 
-#uruwwormmx .gt_column_spanner_outer {
+#yggfesnkmv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1061,15 +1076,15 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   padding-right: 4px;
 }
 
-#uruwwormmx .gt_column_spanner_outer:first-child {
+#yggfesnkmv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uruwwormmx .gt_column_spanner_outer:last-child {
+#yggfesnkmv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uruwwormmx .gt_column_spanner {
+#yggfesnkmv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1081,11 +1096,11 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   width: 100%;
 }
 
-#uruwwormmx .gt_spanner_row {
+#yggfesnkmv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uruwwormmx .gt_group_heading {
+#yggfesnkmv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1111,7 +1126,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   text-align: left;
 }
 
-#uruwwormmx .gt_empty_group_heading {
+#yggfesnkmv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1126,15 +1141,15 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   vertical-align: middle;
 }
 
-#uruwwormmx .gt_from_md > :first-child {
+#yggfesnkmv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uruwwormmx .gt_from_md > :last-child {
+#yggfesnkmv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uruwwormmx .gt_row {
+#yggfesnkmv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1153,7 +1168,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   overflow-x: hidden;
 }
 
-#uruwwormmx .gt_stub {
+#yggfesnkmv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1166,7 +1181,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   padding-right: 5px;
 }
 
-#uruwwormmx .gt_stub_row_group {
+#yggfesnkmv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1180,15 +1195,15 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   vertical-align: top;
 }
 
-#uruwwormmx .gt_row_group_first td {
+#yggfesnkmv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uruwwormmx .gt_row_group_first th {
+#yggfesnkmv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uruwwormmx .gt_summary_row {
+#yggfesnkmv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1198,16 +1213,16 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   padding-right: 5px;
 }
 
-#uruwwormmx .gt_first_summary_row {
+#yggfesnkmv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_first_summary_row.thick {
+#yggfesnkmv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uruwwormmx .gt_last_summary_row {
+#yggfesnkmv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1217,7 +1232,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-bottom-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_grand_summary_row {
+#yggfesnkmv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1227,7 +1242,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   padding-right: 5px;
 }
 
-#uruwwormmx .gt_first_grand_summary_row {
+#yggfesnkmv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1237,7 +1252,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-top-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_last_grand_summary_row_top {
+#yggfesnkmv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1247,11 +1262,11 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-bottom-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_striped {
+#yggfesnkmv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uruwwormmx .gt_table_body {
+#yggfesnkmv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1260,7 +1275,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-bottom-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_footnotes {
+#yggfesnkmv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1274,7 +1289,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-right-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_footnote {
+#yggfesnkmv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1283,7 +1298,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   padding-right: 5px;
 }
 
-#uruwwormmx .gt_sourcenotes {
+#yggfesnkmv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1297,7 +1312,7 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   border-right-color: #D3D3D3;
 }
 
-#uruwwormmx .gt_sourcenote {
+#yggfesnkmv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1305,72 +1320,72 @@ Table&nbsp;1: Lawn Care Hours: Retired vs Full-Time Employed
   padding-right: 5px;
 }
 
-#uruwwormmx .gt_left {
+#yggfesnkmv .gt_left {
   text-align: left;
 }
 
-#uruwwormmx .gt_center {
+#yggfesnkmv .gt_center {
   text-align: center;
 }
 
-#uruwwormmx .gt_right {
+#yggfesnkmv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uruwwormmx .gt_font_normal {
+#yggfesnkmv .gt_font_normal {
   font-weight: normal;
 }
 
-#uruwwormmx .gt_font_bold {
+#yggfesnkmv .gt_font_bold {
   font-weight: bold;
 }
 
-#uruwwormmx .gt_font_italic {
+#yggfesnkmv .gt_font_italic {
   font-style: italic;
 }
 
-#uruwwormmx .gt_super {
+#yggfesnkmv .gt_super {
   font-size: 65%;
 }
 
-#uruwwormmx .gt_footnote_marks {
+#yggfesnkmv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uruwwormmx .gt_asterisk {
+#yggfesnkmv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uruwwormmx .gt_indent_1 {
+#yggfesnkmv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uruwwormmx .gt_indent_2 {
+#yggfesnkmv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uruwwormmx .gt_indent_3 {
+#yggfesnkmv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uruwwormmx .gt_indent_4 {
+#yggfesnkmv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uruwwormmx .gt_indent_5 {
+#yggfesnkmv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#uruwwormmx .katex-display {
+#yggfesnkmv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#uruwwormmx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yggfesnkmv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1443,23 +1458,23 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
 </figcaption>
 <div aria-describedby="tbl-social-marital-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="ohajbgwlof" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ohajbgwlof table {
+<div id="kudawvfayh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kudawvfayh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ohajbgwlof thead, #ohajbgwlof tbody, #ohajbgwlof tfoot, #ohajbgwlof tr, #ohajbgwlof td, #ohajbgwlof th {
+#kudawvfayh thead, #kudawvfayh tbody, #kudawvfayh tfoot, #kudawvfayh tr, #kudawvfayh td, #kudawvfayh th {
   border-style: none;
 }
 
-#ohajbgwlof p {
+#kudawvfayh p {
   margin: 0;
   padding: 0;
 }
 
-#ohajbgwlof .gt_table {
+#kudawvfayh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1485,12 +1500,12 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-left-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_caption {
+#kudawvfayh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ohajbgwlof .gt_title {
+#kudawvfayh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1502,7 +1517,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-bottom-width: 0;
 }
 
-#ohajbgwlof .gt_subtitle {
+#kudawvfayh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1514,7 +1529,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-top-width: 0;
 }
 
-#ohajbgwlof .gt_heading {
+#kudawvfayh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1526,13 +1541,13 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-right-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_bottom_border {
+#kudawvfayh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_col_headings {
+#kudawvfayh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1547,7 +1562,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-right-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_col_heading {
+#kudawvfayh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1567,7 +1582,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   overflow-x: hidden;
 }
 
-#ohajbgwlof .gt_column_spanner_outer {
+#kudawvfayh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1579,15 +1594,15 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   padding-right: 4px;
 }
 
-#ohajbgwlof .gt_column_spanner_outer:first-child {
+#kudawvfayh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ohajbgwlof .gt_column_spanner_outer:last-child {
+#kudawvfayh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ohajbgwlof .gt_column_spanner {
+#kudawvfayh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1599,11 +1614,11 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   width: 100%;
 }
 
-#ohajbgwlof .gt_spanner_row {
+#kudawvfayh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ohajbgwlof .gt_group_heading {
+#kudawvfayh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1629,7 +1644,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   text-align: left;
 }
 
-#ohajbgwlof .gt_empty_group_heading {
+#kudawvfayh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1644,15 +1659,15 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   vertical-align: middle;
 }
 
-#ohajbgwlof .gt_from_md > :first-child {
+#kudawvfayh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ohajbgwlof .gt_from_md > :last-child {
+#kudawvfayh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ohajbgwlof .gt_row {
+#kudawvfayh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1671,7 +1686,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   overflow-x: hidden;
 }
 
-#ohajbgwlof .gt_stub {
+#kudawvfayh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1684,7 +1699,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   padding-right: 5px;
 }
 
-#ohajbgwlof .gt_stub_row_group {
+#kudawvfayh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1698,15 +1713,15 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   vertical-align: top;
 }
 
-#ohajbgwlof .gt_row_group_first td {
+#kudawvfayh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ohajbgwlof .gt_row_group_first th {
+#kudawvfayh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ohajbgwlof .gt_summary_row {
+#kudawvfayh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1716,16 +1731,16 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   padding-right: 5px;
 }
 
-#ohajbgwlof .gt_first_summary_row {
+#kudawvfayh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_first_summary_row.thick {
+#kudawvfayh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ohajbgwlof .gt_last_summary_row {
+#kudawvfayh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1735,7 +1750,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-bottom-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_grand_summary_row {
+#kudawvfayh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1745,7 +1760,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   padding-right: 5px;
 }
 
-#ohajbgwlof .gt_first_grand_summary_row {
+#kudawvfayh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1755,7 +1770,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-top-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_last_grand_summary_row_top {
+#kudawvfayh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1765,11 +1780,11 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-bottom-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_striped {
+#kudawvfayh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ohajbgwlof .gt_table_body {
+#kudawvfayh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1778,7 +1793,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-bottom-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_footnotes {
+#kudawvfayh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1792,7 +1807,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-right-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_footnote {
+#kudawvfayh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1801,7 +1816,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   padding-right: 5px;
 }
 
-#ohajbgwlof .gt_sourcenotes {
+#kudawvfayh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1815,7 +1830,7 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   border-right-color: #D3D3D3;
 }
 
-#ohajbgwlof .gt_sourcenote {
+#kudawvfayh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1823,72 +1838,72 @@ Table&nbsp;2: Social/Recreation Hours: Married vs Unmarried
   padding-right: 5px;
 }
 
-#ohajbgwlof .gt_left {
+#kudawvfayh .gt_left {
   text-align: left;
 }
 
-#ohajbgwlof .gt_center {
+#kudawvfayh .gt_center {
   text-align: center;
 }
 
-#ohajbgwlof .gt_right {
+#kudawvfayh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ohajbgwlof .gt_font_normal {
+#kudawvfayh .gt_font_normal {
   font-weight: normal;
 }
 
-#ohajbgwlof .gt_font_bold {
+#kudawvfayh .gt_font_bold {
   font-weight: bold;
 }
 
-#ohajbgwlof .gt_font_italic {
+#kudawvfayh .gt_font_italic {
   font-style: italic;
 }
 
-#ohajbgwlof .gt_super {
+#kudawvfayh .gt_super {
   font-size: 65%;
 }
 
-#ohajbgwlof .gt_footnote_marks {
+#kudawvfayh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ohajbgwlof .gt_asterisk {
+#kudawvfayh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ohajbgwlof .gt_indent_1 {
+#kudawvfayh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ohajbgwlof .gt_indent_2 {
+#kudawvfayh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ohajbgwlof .gt_indent_3 {
+#kudawvfayh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ohajbgwlof .gt_indent_4 {
+#kudawvfayh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ohajbgwlof .gt_indent_5 {
+#kudawvfayh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ohajbgwlof .katex-display {
+#kudawvfayh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ohajbgwlof div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kudawvfayh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1968,23 +1983,23 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
 </figcaption>
 <div aria-describedby="tbl-high-earners-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="amzmngzmho" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#amzmngzmho table {
+<div id="xtgbsnxfhh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xtgbsnxfhh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#amzmngzmho thead, #amzmngzmho tbody, #amzmngzmho tfoot, #amzmngzmho tr, #amzmngzmho td, #amzmngzmho th {
+#xtgbsnxfhh thead, #xtgbsnxfhh tbody, #xtgbsnxfhh tfoot, #xtgbsnxfhh tr, #xtgbsnxfhh td, #xtgbsnxfhh th {
   border-style: none;
 }
 
-#amzmngzmho p {
+#xtgbsnxfhh p {
   margin: 0;
   padding: 0;
 }
 
-#amzmngzmho .gt_table {
+#xtgbsnxfhh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2010,12 +2025,12 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-left-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_caption {
+#xtgbsnxfhh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#amzmngzmho .gt_title {
+#xtgbsnxfhh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2027,7 +2042,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-bottom-width: 0;
 }
 
-#amzmngzmho .gt_subtitle {
+#xtgbsnxfhh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2039,7 +2054,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-top-width: 0;
 }
 
-#amzmngzmho .gt_heading {
+#xtgbsnxfhh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2051,13 +2066,13 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-right-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_bottom_border {
+#xtgbsnxfhh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_col_headings {
+#xtgbsnxfhh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2072,7 +2087,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-right-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_col_heading {
+#xtgbsnxfhh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2092,7 +2107,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   overflow-x: hidden;
 }
 
-#amzmngzmho .gt_column_spanner_outer {
+#xtgbsnxfhh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2104,15 +2119,15 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   padding-right: 4px;
 }
 
-#amzmngzmho .gt_column_spanner_outer:first-child {
+#xtgbsnxfhh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#amzmngzmho .gt_column_spanner_outer:last-child {
+#xtgbsnxfhh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#amzmngzmho .gt_column_spanner {
+#xtgbsnxfhh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2124,11 +2139,11 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   width: 100%;
 }
 
-#amzmngzmho .gt_spanner_row {
+#xtgbsnxfhh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#amzmngzmho .gt_group_heading {
+#xtgbsnxfhh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2154,7 +2169,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   text-align: left;
 }
 
-#amzmngzmho .gt_empty_group_heading {
+#xtgbsnxfhh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2169,15 +2184,15 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   vertical-align: middle;
 }
 
-#amzmngzmho .gt_from_md > :first-child {
+#xtgbsnxfhh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#amzmngzmho .gt_from_md > :last-child {
+#xtgbsnxfhh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#amzmngzmho .gt_row {
+#xtgbsnxfhh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2196,7 +2211,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   overflow-x: hidden;
 }
 
-#amzmngzmho .gt_stub {
+#xtgbsnxfhh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2209,7 +2224,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   padding-right: 5px;
 }
 
-#amzmngzmho .gt_stub_row_group {
+#xtgbsnxfhh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2223,15 +2238,15 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   vertical-align: top;
 }
 
-#amzmngzmho .gt_row_group_first td {
+#xtgbsnxfhh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#amzmngzmho .gt_row_group_first th {
+#xtgbsnxfhh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#amzmngzmho .gt_summary_row {
+#xtgbsnxfhh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2241,16 +2256,16 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   padding-right: 5px;
 }
 
-#amzmngzmho .gt_first_summary_row {
+#xtgbsnxfhh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_first_summary_row.thick {
+#xtgbsnxfhh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#amzmngzmho .gt_last_summary_row {
+#xtgbsnxfhh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2260,7 +2275,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-bottom-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_grand_summary_row {
+#xtgbsnxfhh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2270,7 +2285,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   padding-right: 5px;
 }
 
-#amzmngzmho .gt_first_grand_summary_row {
+#xtgbsnxfhh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2280,7 +2295,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-top-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_last_grand_summary_row_top {
+#xtgbsnxfhh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2290,11 +2305,11 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-bottom-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_striped {
+#xtgbsnxfhh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#amzmngzmho .gt_table_body {
+#xtgbsnxfhh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2303,7 +2318,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-bottom-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_footnotes {
+#xtgbsnxfhh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2317,7 +2332,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-right-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_footnote {
+#xtgbsnxfhh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2326,7 +2341,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   padding-right: 5px;
 }
 
-#amzmngzmho .gt_sourcenotes {
+#xtgbsnxfhh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2340,7 +2355,7 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   border-right-color: #D3D3D3;
 }
 
-#amzmngzmho .gt_sourcenote {
+#xtgbsnxfhh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2348,72 +2363,72 @@ Table&nbsp;3: High-Earners (&gt;90th percentile wage) Time Allocation
   padding-right: 5px;
 }
 
-#amzmngzmho .gt_left {
+#xtgbsnxfhh .gt_left {
   text-align: left;
 }
 
-#amzmngzmho .gt_center {
+#xtgbsnxfhh .gt_center {
   text-align: center;
 }
 
-#amzmngzmho .gt_right {
+#xtgbsnxfhh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#amzmngzmho .gt_font_normal {
+#xtgbsnxfhh .gt_font_normal {
   font-weight: normal;
 }
 
-#amzmngzmho .gt_font_bold {
+#xtgbsnxfhh .gt_font_bold {
   font-weight: bold;
 }
 
-#amzmngzmho .gt_font_italic {
+#xtgbsnxfhh .gt_font_italic {
   font-style: italic;
 }
 
-#amzmngzmho .gt_super {
+#xtgbsnxfhh .gt_super {
   font-size: 65%;
 }
 
-#amzmngzmho .gt_footnote_marks {
+#xtgbsnxfhh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#amzmngzmho .gt_asterisk {
+#xtgbsnxfhh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#amzmngzmho .gt_indent_1 {
+#xtgbsnxfhh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#amzmngzmho .gt_indent_2 {
+#xtgbsnxfhh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#amzmngzmho .gt_indent_3 {
+#xtgbsnxfhh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#amzmngzmho .gt_indent_4 {
+#xtgbsnxfhh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#amzmngzmho .gt_indent_5 {
+#xtgbsnxfhh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#amzmngzmho .katex-display {
+#xtgbsnxfhh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#amzmngzmho div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xtgbsnxfhh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2496,23 +2511,23 @@ Table&nbsp;4: Top Activities While Using Public Transit
 </figcaption>
 <div aria-describedby="tbl-transit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="pfbheaslbv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pfbheaslbv table {
+<div id="fargtykcom" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fargtykcom table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pfbheaslbv thead, #pfbheaslbv tbody, #pfbheaslbv tfoot, #pfbheaslbv tr, #pfbheaslbv td, #pfbheaslbv th {
+#fargtykcom thead, #fargtykcom tbody, #fargtykcom tfoot, #fargtykcom tr, #fargtykcom td, #fargtykcom th {
   border-style: none;
 }
 
-#pfbheaslbv p {
+#fargtykcom p {
   margin: 0;
   padding: 0;
 }
 
-#pfbheaslbv .gt_table {
+#fargtykcom .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2538,12 +2553,12 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-left-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_caption {
+#fargtykcom .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pfbheaslbv .gt_title {
+#fargtykcom .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2555,7 +2570,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-bottom-width: 0;
 }
 
-#pfbheaslbv .gt_subtitle {
+#fargtykcom .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2567,7 +2582,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-top-width: 0;
 }
 
-#pfbheaslbv .gt_heading {
+#fargtykcom .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2579,13 +2594,13 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-right-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_bottom_border {
+#fargtykcom .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_col_headings {
+#fargtykcom .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2600,7 +2615,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-right-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_col_heading {
+#fargtykcom .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2620,7 +2635,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   overflow-x: hidden;
 }
 
-#pfbheaslbv .gt_column_spanner_outer {
+#fargtykcom .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2632,15 +2647,15 @@ Table&nbsp;4: Top Activities While Using Public Transit
   padding-right: 4px;
 }
 
-#pfbheaslbv .gt_column_spanner_outer:first-child {
+#fargtykcom .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pfbheaslbv .gt_column_spanner_outer:last-child {
+#fargtykcom .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pfbheaslbv .gt_column_spanner {
+#fargtykcom .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2652,11 +2667,11 @@ Table&nbsp;4: Top Activities While Using Public Transit
   width: 100%;
 }
 
-#pfbheaslbv .gt_spanner_row {
+#fargtykcom .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pfbheaslbv .gt_group_heading {
+#fargtykcom .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2682,7 +2697,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   text-align: left;
 }
 
-#pfbheaslbv .gt_empty_group_heading {
+#fargtykcom .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2697,15 +2712,15 @@ Table&nbsp;4: Top Activities While Using Public Transit
   vertical-align: middle;
 }
 
-#pfbheaslbv .gt_from_md > :first-child {
+#fargtykcom .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pfbheaslbv .gt_from_md > :last-child {
+#fargtykcom .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pfbheaslbv .gt_row {
+#fargtykcom .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2724,7 +2739,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   overflow-x: hidden;
 }
 
-#pfbheaslbv .gt_stub {
+#fargtykcom .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2737,7 +2752,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   padding-right: 5px;
 }
 
-#pfbheaslbv .gt_stub_row_group {
+#fargtykcom .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2751,15 +2766,15 @@ Table&nbsp;4: Top Activities While Using Public Transit
   vertical-align: top;
 }
 
-#pfbheaslbv .gt_row_group_first td {
+#fargtykcom .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pfbheaslbv .gt_row_group_first th {
+#fargtykcom .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pfbheaslbv .gt_summary_row {
+#fargtykcom .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2769,16 +2784,16 @@ Table&nbsp;4: Top Activities While Using Public Transit
   padding-right: 5px;
 }
 
-#pfbheaslbv .gt_first_summary_row {
+#fargtykcom .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_first_summary_row.thick {
+#fargtykcom .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pfbheaslbv .gt_last_summary_row {
+#fargtykcom .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2788,7 +2803,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-bottom-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_grand_summary_row {
+#fargtykcom .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2798,7 +2813,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   padding-right: 5px;
 }
 
-#pfbheaslbv .gt_first_grand_summary_row {
+#fargtykcom .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2808,7 +2823,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-top-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_last_grand_summary_row_top {
+#fargtykcom .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2818,11 +2833,11 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-bottom-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_striped {
+#fargtykcom .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pfbheaslbv .gt_table_body {
+#fargtykcom .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2831,7 +2846,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-bottom-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_footnotes {
+#fargtykcom .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2845,7 +2860,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-right-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_footnote {
+#fargtykcom .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2854,7 +2869,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   padding-right: 5px;
 }
 
-#pfbheaslbv .gt_sourcenotes {
+#fargtykcom .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2868,7 +2883,7 @@ Table&nbsp;4: Top Activities While Using Public Transit
   border-right-color: #D3D3D3;
 }
 
-#pfbheaslbv .gt_sourcenote {
+#fargtykcom .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2876,72 +2891,72 @@ Table&nbsp;4: Top Activities While Using Public Transit
   padding-right: 5px;
 }
 
-#pfbheaslbv .gt_left {
+#fargtykcom .gt_left {
   text-align: left;
 }
 
-#pfbheaslbv .gt_center {
+#fargtykcom .gt_center {
   text-align: center;
 }
 
-#pfbheaslbv .gt_right {
+#fargtykcom .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pfbheaslbv .gt_font_normal {
+#fargtykcom .gt_font_normal {
   font-weight: normal;
 }
 
-#pfbheaslbv .gt_font_bold {
+#fargtykcom .gt_font_bold {
   font-weight: bold;
 }
 
-#pfbheaslbv .gt_font_italic {
+#fargtykcom .gt_font_italic {
   font-style: italic;
 }
 
-#pfbheaslbv .gt_super {
+#fargtykcom .gt_super {
   font-size: 65%;
 }
 
-#pfbheaslbv .gt_footnote_marks {
+#fargtykcom .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pfbheaslbv .gt_asterisk {
+#fargtykcom .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pfbheaslbv .gt_indent_1 {
+#fargtykcom .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pfbheaslbv .gt_indent_2 {
+#fargtykcom .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pfbheaslbv .gt_indent_3 {
+#fargtykcom .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pfbheaslbv .gt_indent_4 {
+#fargtykcom .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pfbheaslbv .gt_indent_5 {
+#fargtykcom .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pfbheaslbv .katex-display {
+#fargtykcom .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pfbheaslbv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fargtykcom div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3043,23 +3058,23 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
 </figcaption>
 <div aria-describedby="tbl-miguel-age-analysis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="acmjzshkco" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#acmjzshkco table {
+<div id="mzrfilievb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mzrfilievb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#acmjzshkco thead, #acmjzshkco tbody, #acmjzshkco tfoot, #acmjzshkco tr, #acmjzshkco td, #acmjzshkco th {
+#mzrfilievb thead, #mzrfilievb tbody, #mzrfilievb tfoot, #mzrfilievb tr, #mzrfilievb td, #mzrfilievb th {
   border-style: none;
 }
 
-#acmjzshkco p {
+#mzrfilievb p {
   margin: 0;
   padding: 0;
 }
 
-#acmjzshkco .gt_table {
+#mzrfilievb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3085,12 +3100,12 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-left-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_caption {
+#mzrfilievb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#acmjzshkco .gt_title {
+#mzrfilievb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3102,7 +3117,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-bottom-width: 0;
 }
 
-#acmjzshkco .gt_subtitle {
+#mzrfilievb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3114,7 +3129,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-top-width: 0;
 }
 
-#acmjzshkco .gt_heading {
+#mzrfilievb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3126,13 +3141,13 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-right-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_bottom_border {
+#mzrfilievb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_col_headings {
+#mzrfilievb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3147,7 +3162,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-right-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_col_heading {
+#mzrfilievb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3167,7 +3182,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   overflow-x: hidden;
 }
 
-#acmjzshkco .gt_column_spanner_outer {
+#mzrfilievb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3179,15 +3194,15 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   padding-right: 4px;
 }
 
-#acmjzshkco .gt_column_spanner_outer:first-child {
+#mzrfilievb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#acmjzshkco .gt_column_spanner_outer:last-child {
+#mzrfilievb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#acmjzshkco .gt_column_spanner {
+#mzrfilievb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3199,11 +3214,11 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   width: 100%;
 }
 
-#acmjzshkco .gt_spanner_row {
+#mzrfilievb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#acmjzshkco .gt_group_heading {
+#mzrfilievb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3229,7 +3244,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   text-align: left;
 }
 
-#acmjzshkco .gt_empty_group_heading {
+#mzrfilievb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3244,15 +3259,15 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   vertical-align: middle;
 }
 
-#acmjzshkco .gt_from_md > :first-child {
+#mzrfilievb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#acmjzshkco .gt_from_md > :last-child {
+#mzrfilievb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#acmjzshkco .gt_row {
+#mzrfilievb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3271,7 +3286,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   overflow-x: hidden;
 }
 
-#acmjzshkco .gt_stub {
+#mzrfilievb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3284,7 +3299,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   padding-right: 5px;
 }
 
-#acmjzshkco .gt_stub_row_group {
+#mzrfilievb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3298,15 +3313,15 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   vertical-align: top;
 }
 
-#acmjzshkco .gt_row_group_first td {
+#mzrfilievb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#acmjzshkco .gt_row_group_first th {
+#mzrfilievb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#acmjzshkco .gt_summary_row {
+#mzrfilievb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3316,16 +3331,16 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   padding-right: 5px;
 }
 
-#acmjzshkco .gt_first_summary_row {
+#mzrfilievb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_first_summary_row.thick {
+#mzrfilievb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#acmjzshkco .gt_last_summary_row {
+#mzrfilievb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3335,7 +3350,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-bottom-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_grand_summary_row {
+#mzrfilievb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3345,7 +3360,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   padding-right: 5px;
 }
 
-#acmjzshkco .gt_first_grand_summary_row {
+#mzrfilievb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3355,7 +3370,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-top-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_last_grand_summary_row_top {
+#mzrfilievb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3365,11 +3380,11 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-bottom-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_striped {
+#mzrfilievb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#acmjzshkco .gt_table_body {
+#mzrfilievb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3378,7 +3393,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-bottom-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_footnotes {
+#mzrfilievb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3392,7 +3407,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-right-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_footnote {
+#mzrfilievb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3401,7 +3416,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   padding-right: 5px;
 }
 
-#acmjzshkco .gt_sourcenotes {
+#mzrfilievb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3415,7 +3430,7 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   border-right-color: #D3D3D3;
 }
 
-#acmjzshkco .gt_sourcenote {
+#mzrfilievb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3423,72 +3438,72 @@ Table&nbsp;5: Life Stage Analysis: How Time Use Shifts Across Generations
   padding-right: 5px;
 }
 
-#acmjzshkco .gt_left {
+#mzrfilievb .gt_left {
   text-align: left;
 }
 
-#acmjzshkco .gt_center {
+#mzrfilievb .gt_center {
   text-align: center;
 }
 
-#acmjzshkco .gt_right {
+#mzrfilievb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#acmjzshkco .gt_font_normal {
+#mzrfilievb .gt_font_normal {
   font-weight: normal;
 }
 
-#acmjzshkco .gt_font_bold {
+#mzrfilievb .gt_font_bold {
   font-weight: bold;
 }
 
-#acmjzshkco .gt_font_italic {
+#mzrfilievb .gt_font_italic {
   font-style: italic;
 }
 
-#acmjzshkco .gt_super {
+#mzrfilievb .gt_super {
   font-size: 65%;
 }
 
-#acmjzshkco .gt_footnote_marks {
+#mzrfilievb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#acmjzshkco .gt_asterisk {
+#mzrfilievb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#acmjzshkco .gt_indent_1 {
+#mzrfilievb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#acmjzshkco .gt_indent_2 {
+#mzrfilievb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#acmjzshkco .gt_indent_3 {
+#mzrfilievb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#acmjzshkco .gt_indent_4 {
+#mzrfilievb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#acmjzshkco .gt_indent_5 {
+#mzrfilievb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#acmjzshkco .katex-display {
+#mzrfilievb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#acmjzshkco div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mzrfilievb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3799,7 +3814,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Identify Target Groups using your CLEANED variable names</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Demographic 3: "Young Professionals" (Our custom choice)</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Demographic 3: "Young Professionals" (custom choice)</span></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>market_groups <span class="ot">&lt;-</span> resp <span class="sc">|&gt;</span></span>
 <span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join with roster to get age/sex</span></span>
 <span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(rost <span class="sc">|&gt;</span> <span class="fu">filter</span>(line_no <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(participant_id, age, sex), <span class="at">by =</span> <span class="st">"participant_id"</span>) <span class="sc">|&gt;</span></span>
@@ -3837,69 +3852,95 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
 <span id="cb52-37"><a href="#cb52-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">typical =</span> <span class="fu">quantile</span>(time_spent_min <span class="sc">/</span> <span class="dv">60</span>, <span class="fl">0.50</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb52-38"><a href="#cb52-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="fu">quantile</span>(time_spent_min <span class="sc">/</span> <span class="dv">60</span>, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb52-39"><a href="#cb52-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># App Target Level set at the 85th percentile (top performers)</span></span>
-<span id="cb52-40"><a href="#cb52-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_level =</span> <span class="fu">quantile</span>(time_spent_min <span class="sc">/</span> <span class="dv">60</span>, <span class="fl">0.85</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb52-40"><a href="#cb52-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_level =</span> <span class="fu">quantile</span>(time_spent_min <span class="sc">/</span> <span class="dv">60</span>, <span class="fl">0.85</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co">#this is the "high-achievers" or our motivation</span></span>
 <span id="cb52-41"><a href="#cb52-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
 <span id="cb52-42"><a href="#cb52-42" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb52-43"><a href="#cb52-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-44"><a href="#cb52-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Final Step: Calculate fraction of people hitting the target</span></span>
-<span id="cb52-45"><a href="#cb52-45" aria-hidden="true" tabindex="-1"></a><span class="co"># This creates the final metric for your pitch</span></span>
-<span id="cb52-46"><a href="#cb52-46" aria-hidden="true" tabindex="-1"></a>final_market_table <span class="ot">&lt;-</span> market_results <span class="sc">|&gt;</span></span>
-<span id="cb52-47"><a href="#cb52-47" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cross-reference back to individual data to see who beats the target_level</span></span>
-<span id="cb52-48"><a href="#cb52-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb52-49"><a href="#cb52-49" aria-hidden="true" tabindex="-1"></a>    act <span class="sc">|&gt;</span> </span>
-<span id="cb52-50"><a href="#cb52-50" aria-hidden="true" tabindex="-1"></a>      <span class="fu">inner_join</span>(market_groups, <span class="at">by =</span> <span class="st">"participant_id"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-51"><a href="#cb52-51" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">activity_name =</span> <span class="fu">case_when</span>(</span>
-<span id="cb52-52"><a href="#cb52-52" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_starts</span>(level1_code, <span class="st">"01"</span>) <span class="sc">~</span> <span class="st">"Sleeping"</span>,</span>
-<span id="cb52-53"><a href="#cb52-53" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_starts</span>(level2_code, <span class="st">"0301"</span>) <span class="sc">~</span> <span class="st">"Direct Childcare"</span>,</span>
-<span id="cb52-54"><a href="#cb52-54" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_starts</span>(level1_code, <span class="st">"06"</span>) <span class="sc">~</span> <span class="st">"Education/Studying"</span>,</span>
-<span id="cb52-55"><a href="#cb52-55" aria-hidden="true" tabindex="-1"></a>        <span class="fu">str_starts</span>(level1_code, <span class="st">"13"</span>) <span class="sc">~</span> <span class="st">"Exercise"</span>,</span>
-<span id="cb52-56"><a href="#cb52-56" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Other"</span></span>
-<span id="cb52-57"><a href="#cb52-57" aria-hidden="true" tabindex="-1"></a>      )) <span class="sc">|&gt;</span></span>
-<span id="cb52-58"><a href="#cb52-58" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(target_group, participant_id, activity_name) <span class="sc">|&gt;</span></span>
-<span id="cb52-59"><a href="#cb52-59" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">indiv_hrs =</span> <span class="fu">sum</span>(time_spent_min)<span class="sc">/</span><span class="dv">60</span>, <span class="at">.groups =</span> <span class="st">"drop"</span>),</span>
-<span id="cb52-60"><a href="#cb52-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"target_group"</span>, <span class="st">"activity_name"</span>)</span>
-<span id="cb52-61"><a href="#cb52-61" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb52-62"><a href="#cb52-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target_group, activity_name) <span class="sc">|&gt;</span></span>
-<span id="cb52-63"><a href="#cb52-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb52-64"><a href="#cb52-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="fu">first</span>(low), </span>
-<span id="cb52-65"><a href="#cb52-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">typical =</span> <span class="fu">first</span>(typical), </span>
-<span id="cb52-66"><a href="#cb52-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="fu">first</span>(high), </span>
-<span id="cb52-67"><a href="#cb52-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">target =</span> <span class="fu">first</span>(target_level),</span>
-<span id="cb52-68"><a href="#cb52-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_hitting_target =</span> <span class="fu">mean</span>(indiv_hrs <span class="sc">&gt;=</span> target_level) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb52-69"><a href="#cb52-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb52-70"><a href="#cb52-70" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb52-71"><a href="#cb52-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-72"><a href="#cb52-72" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Display the Market Research Table</span></span>
-<span id="cb52-73"><a href="#cb52-73" aria-hidden="true" tabindex="-1"></a>final_market_table <span class="sc">|&gt;</span></span>
-<span id="cb52-74"><a href="#cb52-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb52-75"><a href="#cb52-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Time-Tracking App: Target User Benchmarks"</span>,</span>
-<span id="cb52-76"><a href="#cb52-76" aria-hidden="true" tabindex="-1"></a>             <span class="at">subtitle =</span> <span class="st">"Estimates for 'Typical' and 'Target' time use patterns"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-77"><a href="#cb52-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="fu">c</span>(low, typical, high, target), <span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-78"><a href="#cb52-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> pct_hitting_target, <span class="at">decimals =</span> <span class="dv">1</span>, <span class="at">suffix =</span> <span class="st">"%"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-79"><a href="#cb52-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb52-80"><a href="#cb52-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">target_group =</span> <span class="st">"Demographic"</span>,</span>
-<span id="cb52-81"><a href="#cb52-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">activity_name =</span> <span class="st">"Activity"</span>,</span>
-<span id="cb52-82"><a href="#cb52-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_hitting_target =</span> <span class="st">"% Meeting Target"</span></span>
-<span id="cb52-83"><a href="#cb52-83" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb52-45"><a href="#cb52-45" aria-hidden="true" tabindex="-1"></a><span class="co"># This creates the final metric</span></span>
+<span id="cb52-46"><a href="#cb52-46" aria-hidden="true" tabindex="-1"></a>final_market_table <span class="ot">&lt;-</span> act <span class="sc">|&gt;</span></span>
+<span id="cb52-47"><a href="#cb52-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(market_groups, <span class="at">by =</span> <span class="st">"participant_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb52-48"><a href="#cb52-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">activity_name =</span> <span class="fu">case_when</span>(</span>
+<span id="cb52-49"><a href="#cb52-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level1_code, <span class="st">"01"</span>) <span class="sc">~</span> <span class="st">"Sleeping"</span>,</span>
+<span id="cb52-50"><a href="#cb52-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level2_code, <span class="st">"0301"</span>) <span class="sc">~</span> <span class="st">"Direct Childcare"</span>,</span>
+<span id="cb52-51"><a href="#cb52-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level1_code, <span class="st">"06"</span>) <span class="sc">~</span> <span class="st">"Education/Studying"</span>,</span>
+<span id="cb52-52"><a href="#cb52-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level1_code, <span class="st">"13"</span>) <span class="sc">~</span> <span class="st">"Exercise"</span>,</span>
+<span id="cb52-53"><a href="#cb52-53" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Other"</span></span>
+<span id="cb52-54"><a href="#cb52-54" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb52-55"><a href="#cb52-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(activity_name <span class="sc">!=</span> <span class="st">"Other"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb52-56"><a href="#cb52-56" aria-hidden="true" tabindex="-1"></a>  <span class="co"># FIRST: Sum up hours per person, per day, per activity</span></span>
+<span id="cb52-57"><a href="#cb52-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target_group, participant_id, activity_name) <span class="sc">|&gt;</span></span>
+<span id="cb52-58"><a href="#cb52-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">daily_hrs =</span> <span class="fu">sum</span>(time_spent_min) <span class="sc">/</span> <span class="dv">60</span>, <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb52-59"><a href="#cb52-59" aria-hidden="true" tabindex="-1"></a>  <span class="co"># SECOND: Calculate benchmarks based on those daily totals</span></span>
+<span id="cb52-60"><a href="#cb52-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target_group, activity_name) <span class="sc">|&gt;</span></span>
+<span id="cb52-61"><a href="#cb52-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb52-62"><a href="#cb52-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="fu">quantile</span>(daily_hrs, <span class="fl">0.25</span>),</span>
+<span id="cb52-63"><a href="#cb52-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">typical =</span> <span class="fu">quantile</span>(daily_hrs, <span class="fl">0.50</span>),</span>
+<span id="cb52-64"><a href="#cb52-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="fu">quantile</span>(daily_hrs, <span class="fl">0.75</span>),</span>
+<span id="cb52-65"><a href="#cb52-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">target =</span> <span class="fu">quantile</span>(daily_hrs, <span class="fl">0.85</span>),</span>
+<span id="cb52-66"><a href="#cb52-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Now this mean() actually compares a person's total day to the 85th percentile total</span></span>
+<span id="cb52-67"><a href="#cb52-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_hitting_target =</span> <span class="fu">mean</span>(daily_hrs <span class="sc">&gt;=</span> target) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb52-68"><a href="#cb52-68" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb52-69"><a href="#cb52-69" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb52-70"><a href="#cb52-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-71"><a href="#cb52-71" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Display the Market Research Table</span></span>
+<span id="cb52-72"><a href="#cb52-72" aria-hidden="true" tabindex="-1"></a>final_market_table <span class="sc">|&gt;</span></span>
+<span id="cb52-73"><a href="#cb52-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"target_group"</span>) <span class="sc">|&gt;</span> <span class="co"># Groups by Demographic to reduce repetition</span></span>
+<span id="cb52-74"><a href="#cb52-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb52-75"><a href="#cb52-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Time-Tracking App: Target User Benchmarks"</span>,</span>
+<span id="cb52-76"><a href="#cb52-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Estimates for 'Typical' and 'Target' daily time use patterns"</span></span>
+<span id="cb52-77"><a href="#cb52-77" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb52-78"><a href="#cb52-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. Formatting the hours columns with a clear decimal and alignment</span></span>
+<span id="cb52-79"><a href="#cb52-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb52-80"><a href="#cb52-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(low, typical, high, target), </span>
+<span id="cb52-81"><a href="#cb52-81" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb52-82"><a href="#cb52-82" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb52-83"><a href="#cb52-83" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. Correctly formatting the percentage column</span></span>
+<span id="cb52-84"><a href="#cb52-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb52-85"><a href="#cb52-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> pct_hitting_target, </span>
+<span id="cb52-86"><a href="#cb52-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">1</span>, </span>
+<span id="cb52-87"><a href="#cb52-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">pattern =</span> <span class="st">"{x}%"</span> <span class="co"># This ensures the % sign is right next to the number</span></span>
+<span id="cb52-88"><a href="#cb52-88" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb52-89"><a href="#cb52-89" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3. Improving labels to specify units</span></span>
+<span id="cb52-90"><a href="#cb52-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb52-91"><a href="#cb52-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">activity_name =</span> <span class="st">"Activity"</span>,</span>
+<span id="cb52-92"><a href="#cb52-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">"Low (hrs)"</span>,</span>
+<span id="cb52-93"><a href="#cb52-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">typical =</span> <span class="st">"Typical (hrs)"</span>,</span>
+<span id="cb52-94"><a href="#cb52-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="st">"High (hrs)"</span>,</span>
+<span id="cb52-95"><a href="#cb52-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">target =</span> <span class="st">"Target (hrs)"</span>,</span>
+<span id="cb52-96"><a href="#cb52-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_hitting_target =</span> <span class="st">"% Meeting Target"</span></span>
+<span id="cb52-97"><a href="#cb52-97" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb52-98"><a href="#cb52-98" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4. Aesthetic touches for a professional look</span></span>
+<span id="cb52-99"><a href="#cb52-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(</span>
+<span id="cb52-100"><a href="#cb52-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">heading.title.font.size =</span> <span class="fu">px</span>(<span class="dv">20</span>),</span>
+<span id="cb52-101"><a href="#cb52-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span>,</span>
+<span id="cb52-102"><a href="#cb52-102" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.font.weight =</span> <span class="st">"bold"</span>,</span>
+<span id="cb52-103"><a href="#cb52-103" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.background.color =</span> <span class="st">"#f9f9f9"</span></span>
+<span id="cb52-104"><a href="#cb52-104" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb52-105"><a href="#cb52-105" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Highlight the Target column to make it pop</span></span>
+<span id="cb52-106"><a href="#cb52-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb52-107"><a href="#cb52-107" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">"lightyellow"</span>),</span>
+<span id="cb52-108"><a href="#cb52-108" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(<span class="at">columns =</span> target)</span>
+<span id="cb52-109"><a href="#cb52-109" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="abhvrimyly" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#abhvrimyly table {
+<div id="axsixtiflc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#axsixtiflc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#abhvrimyly thead, #abhvrimyly tbody, #abhvrimyly tfoot, #abhvrimyly tr, #abhvrimyly td, #abhvrimyly th {
+#axsixtiflc thead, #axsixtiflc tbody, #axsixtiflc tfoot, #axsixtiflc tr, #axsixtiflc td, #axsixtiflc th {
   border-style: none;
 }
 
-#abhvrimyly p {
+#axsixtiflc p {
   margin: 0;
   padding: 0;
 }
 
-#abhvrimyly .gt_table {
+#axsixtiflc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3925,14 +3966,14 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-left-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_caption {
+#axsixtiflc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#abhvrimyly .gt_title {
+#axsixtiflc .gt_title {
   color: #333333;
-  font-size: 125%;
+  font-size: 20px;
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3942,7 +3983,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-bottom-width: 0;
 }
 
-#abhvrimyly .gt_subtitle {
+#axsixtiflc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3954,7 +3995,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-top-width: 0;
 }
 
-#abhvrimyly .gt_heading {
+#axsixtiflc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3966,13 +4007,13 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-right-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_bottom_border {
+#axsixtiflc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_col_headings {
+#axsixtiflc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3987,11 +4028,11 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-right-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_col_heading {
+#axsixtiflc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
-  font-weight: normal;
+  font-weight: bold;
   text-transform: inherit;
   border-left-style: none;
   border-left-width: 1px;
@@ -4007,11 +4048,11 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   overflow-x: hidden;
 }
 
-#abhvrimyly .gt_column_spanner_outer {
+#axsixtiflc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
-  font-weight: normal;
+  font-weight: bold;
   text-transform: inherit;
   padding-top: 0;
   padding-bottom: 0;
@@ -4019,15 +4060,15 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   padding-right: 4px;
 }
 
-#abhvrimyly .gt_column_spanner_outer:first-child {
+#axsixtiflc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#abhvrimyly .gt_column_spanner_outer:last-child {
+#axsixtiflc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#abhvrimyly .gt_column_spanner {
+#axsixtiflc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4039,19 +4080,19 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   width: 100%;
 }
 
-#abhvrimyly .gt_spanner_row {
+#axsixtiflc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#abhvrimyly .gt_group_heading {
+#axsixtiflc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F9F9F9;
   font-size: 100%;
-  font-weight: initial;
+  font-weight: bold;
   text-transform: inherit;
   border-top-style: solid;
   border-top-width: 2px;
@@ -4069,12 +4110,12 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   text-align: left;
 }
 
-#abhvrimyly .gt_empty_group_heading {
+#axsixtiflc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F9F9F9;
   font-size: 100%;
-  font-weight: initial;
+  font-weight: bold;
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4084,15 +4125,15 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   vertical-align: middle;
 }
 
-#abhvrimyly .gt_from_md > :first-child {
+#axsixtiflc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#abhvrimyly .gt_from_md > :last-child {
+#axsixtiflc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#abhvrimyly .gt_row {
+#axsixtiflc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4111,7 +4152,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   overflow-x: hidden;
 }
 
-#abhvrimyly .gt_stub {
+#axsixtiflc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4124,7 +4165,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   padding-right: 5px;
 }
 
-#abhvrimyly .gt_stub_row_group {
+#axsixtiflc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4138,15 +4179,15 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   vertical-align: top;
 }
 
-#abhvrimyly .gt_row_group_first td {
+#axsixtiflc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#abhvrimyly .gt_row_group_first th {
+#axsixtiflc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#abhvrimyly .gt_summary_row {
+#axsixtiflc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4156,16 +4197,16 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   padding-right: 5px;
 }
 
-#abhvrimyly .gt_first_summary_row {
+#axsixtiflc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_first_summary_row.thick {
+#axsixtiflc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#abhvrimyly .gt_last_summary_row {
+#axsixtiflc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4175,7 +4216,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-bottom-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_grand_summary_row {
+#axsixtiflc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4185,7 +4226,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   padding-right: 5px;
 }
 
-#abhvrimyly .gt_first_grand_summary_row {
+#axsixtiflc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4195,7 +4236,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-top-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_last_grand_summary_row_top {
+#axsixtiflc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4205,11 +4246,11 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-bottom-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_striped {
+#axsixtiflc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#abhvrimyly .gt_table_body {
+#axsixtiflc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4218,7 +4259,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-bottom-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_footnotes {
+#axsixtiflc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4232,7 +4273,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-right-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_footnote {
+#axsixtiflc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4241,7 +4282,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   padding-right: 5px;
 }
 
-#abhvrimyly .gt_sourcenotes {
+#axsixtiflc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4255,7 +4296,7 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   border-right-color: #D3D3D3;
 }
 
-#abhvrimyly .gt_sourcenote {
+#axsixtiflc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4263,72 +4304,72 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
   padding-right: 5px;
 }
 
-#abhvrimyly .gt_left {
+#axsixtiflc .gt_left {
   text-align: left;
 }
 
-#abhvrimyly .gt_center {
+#axsixtiflc .gt_center {
   text-align: center;
 }
 
-#abhvrimyly .gt_right {
+#axsixtiflc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#abhvrimyly .gt_font_normal {
+#axsixtiflc .gt_font_normal {
   font-weight: normal;
 }
 
-#abhvrimyly .gt_font_bold {
+#axsixtiflc .gt_font_bold {
   font-weight: bold;
 }
 
-#abhvrimyly .gt_font_italic {
+#axsixtiflc .gt_font_italic {
   font-style: italic;
 }
 
-#abhvrimyly .gt_super {
+#axsixtiflc .gt_super {
   font-size: 65%;
 }
 
-#abhvrimyly .gt_footnote_marks {
+#axsixtiflc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#abhvrimyly .gt_asterisk {
+#axsixtiflc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#abhvrimyly .gt_indent_1 {
+#axsixtiflc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#abhvrimyly .gt_indent_2 {
+#axsixtiflc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#abhvrimyly .gt_indent_3 {
+#axsixtiflc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#abhvrimyly .gt_indent_4 {
+#axsixtiflc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#abhvrimyly .gt_indent_5 {
+#axsixtiflc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#abhvrimyly .katex-display {
+#axsixtiflc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#abhvrimyly div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#axsixtiflc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -4336,129 +4377,125 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<td colspan="7" class="gt_heading gt_title gt_font_normal">Time-Tracking App: Target User Benchmarks</td>
+<td colspan="6" class="gt_heading gt_title gt_font_normal">Time-Tracking App: Target User Benchmarks</td>
 </tr>
 <tr class="gt_heading even">
-<td colspan="7" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Estimates for 'Typical' and 'Target' time use patterns</td>
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Estimates for 'Typical' and 'Target' daily time use patterns</td>
 </tr>
 <tr class="gt_col_headings header">
-<th id="target_group" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Demographic</th>
 <th id="activity_name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Activity</th>
-<th id="low" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">low</th>
-<th id="typical" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">typical</th>
-<th id="high" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">high</th>
-<th id="target" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">target</th>
+<th id="low" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Low (hrs)</th>
+<th id="typical" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Typical (hrs)</th>
+<th id="high" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">High (hrs)</th>
+<th id="target" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Target (hrs)</th>
 <th id="pct_hitting_target" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Meeting Target</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="target_group">College Undergrads</td>
-<td class="gt_row gt_left" headers="activity_name">Direct Childcare</td>
-<td class="gt_row gt_right" headers="low">0.17</td>
-<td class="gt_row gt_right" headers="typical">0.25</td>
-<td class="gt_row gt_right" headers="high">0.50</td>
-<td class="gt_row gt_right" headers="target">1.00</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">55.6</td>
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="College Undergrads" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">College Undergrads</th>
 </tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="target_group">College Undergrads</td>
-<td class="gt_row gt_left" headers="activity_name">Education/Studying</td>
-<td class="gt_row gt_right" headers="low">1.00</td>
-<td class="gt_row gt_right" headers="typical">1.72</td>
-<td class="gt_row gt_right" headers="high">3.00</td>
-<td class="gt_row gt_right" headers="target">3.57</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">57.5</td>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="College Undergrads  activity_name">Direct Childcare</td>
+<td class="gt_row gt_right" headers="College Undergrads  low">0.33</td>
+<td class="gt_row gt_right" headers="College Undergrads  typical">1.02</td>
+<td class="gt_row gt_right" headers="College Undergrads  high">2.30</td>
+<td class="gt_row gt_right" headers="College Undergrads  target" style="background-color: #FFFFE0">3.17</td>
+<td class="gt_row gt_right" headers="College Undergrads  pct_hitting_target">15.2%</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="target_group">College Undergrads</td>
-<td class="gt_row gt_left" headers="activity_name">Exercise</td>
-<td class="gt_row gt_right" headers="low">0.50</td>
-<td class="gt_row gt_right" headers="typical">1.00</td>
-<td class="gt_row gt_right" headers="high">2.00</td>
-<td class="gt_row gt_right" headers="target">2.50</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">26.7</td>
+<td class="gt_row gt_left" headers="College Undergrads  activity_name">Education/Studying</td>
+<td class="gt_row gt_right" headers="College Undergrads  low">2.00</td>
+<td class="gt_row gt_right" headers="College Undergrads  typical">4.17</td>
+<td class="gt_row gt_right" headers="College Undergrads  high">6.75</td>
+<td class="gt_row gt_right" headers="College Undergrads  target" style="background-color: #FFFFE0">8.00</td>
+<td class="gt_row gt_right" headers="College Undergrads  pct_hitting_target">15.2%</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="target_group">College Undergrads</td>
-<td class="gt_row gt_left" headers="activity_name">Sleeping</td>
-<td class="gt_row gt_right" headers="low">0.50</td>
-<td class="gt_row gt_right" headers="typical">2.08</td>
-<td class="gt_row gt_right" headers="high">5.00</td>
-<td class="gt_row gt_right" headers="target">5.75</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">96.8</td>
+<td class="gt_row gt_left" headers="College Undergrads  activity_name">Exercise</td>
+<td class="gt_row gt_right" headers="College Undergrads  low">1.00</td>
+<td class="gt_row gt_right" headers="College Undergrads  typical">1.50</td>
+<td class="gt_row gt_right" headers="College Undergrads  high">2.50</td>
+<td class="gt_row gt_right" headers="College Undergrads  target" style="background-color: #FFFFE0">3.50</td>
+<td class="gt_row gt_right" headers="College Undergrads  pct_hitting_target">15.5%</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="target_group">Stay-at-Home Dads</td>
-<td class="gt_row gt_left" headers="activity_name">Direct Childcare</td>
-<td class="gt_row gt_right" headers="low">0.17</td>
-<td class="gt_row gt_right" headers="typical">0.33</td>
-<td class="gt_row gt_right" headers="high">0.75</td>
-<td class="gt_row gt_right" headers="target">1.00</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">59.8</td>
+<td class="gt_row gt_left" headers="College Undergrads  activity_name">Sleeping</td>
+<td class="gt_row gt_right" headers="College Undergrads  low">8.65</td>
+<td class="gt_row gt_right" headers="College Undergrads  typical">10.05</td>
+<td class="gt_row gt_right" headers="College Undergrads  high">11.67</td>
+<td class="gt_row gt_right" headers="College Undergrads  target" style="background-color: #FFFFE0">12.50</td>
+<td class="gt_row gt_right" headers="College Undergrads  pct_hitting_target">16.1%</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="6" id="Stay-at-Home Dads" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Stay-at-Home Dads</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="Stay-at-Home Dads  activity_name">Direct Childcare</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  low">0.50</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  typical">1.17</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  high">2.53</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  target" style="background-color: #FFFFE0">3.67</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  pct_hitting_target">15.2%</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="target_group">Stay-at-Home Dads</td>
-<td class="gt_row gt_left" headers="activity_name">Education/Studying</td>
-<td class="gt_row gt_right" headers="low">1.00</td>
-<td class="gt_row gt_right" headers="typical">2.00</td>
-<td class="gt_row gt_right" headers="high">3.32</td>
-<td class="gt_row gt_right" headers="target">4.17</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">67.8</td>
+<td class="gt_row gt_left" headers="Stay-at-Home Dads  activity_name">Education/Studying</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  low">3.00</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  typical">6.50</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  high">7.83</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  target" style="background-color: #FFFFE0">8.70</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  pct_hitting_target">15.1%</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="target_group">Stay-at-Home Dads</td>
-<td class="gt_row gt_left" headers="activity_name">Exercise</td>
-<td class="gt_row gt_right" headers="low">0.67</td>
-<td class="gt_row gt_right" headers="typical">1.00</td>
-<td class="gt_row gt_right" headers="high">2.00</td>
-<td class="gt_row gt_right" headers="target">2.75</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">31.6</td>
+<td class="gt_row gt_left" headers="Stay-at-Home Dads  activity_name">Exercise</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  low">1.00</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  typical">2.00</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  high">3.00</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  target" style="background-color: #FFFFE0">4.00</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  pct_hitting_target">17.8%</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="target_group">Stay-at-Home Dads</td>
-<td class="gt_row gt_left" headers="activity_name">Sleeping</td>
-<td class="gt_row gt_right" headers="low">0.50</td>
-<td class="gt_row gt_right" headers="typical">2.50</td>
-<td class="gt_row gt_right" headers="high">5.00</td>
-<td class="gt_row gt_right" headers="target">6.00</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">96.7</td>
+<td class="gt_row gt_left" headers="Stay-at-Home Dads  activity_name">Sleeping</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  low">8.67</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  typical">10.00</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  high">11.83</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  target" style="background-color: #FFFFE0">12.75</td>
+<td class="gt_row gt_right" headers="Stay-at-Home Dads  pct_hitting_target">15.5%</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="Young Professionals" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Young Professionals</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="Young Professionals  activity_name">Direct Childcare</td>
+<td class="gt_row gt_right" headers="Young Professionals  low">0.92</td>
+<td class="gt_row gt_right" headers="Young Professionals  typical">1.08</td>
+<td class="gt_row gt_right" headers="Young Professionals  high">1.25</td>
+<td class="gt_row gt_right" headers="Young Professionals  target" style="background-color: #FFFFE0">1.32</td>
+<td class="gt_row gt_right" headers="Young Professionals  pct_hitting_target">50.0%</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="target_group">Young Professionals</td>
-<td class="gt_row gt_left" headers="activity_name">Direct Childcare</td>
-<td class="gt_row gt_right" headers="low">0.27</td>
-<td class="gt_row gt_right" headers="typical">0.54</td>
-<td class="gt_row gt_right" headers="high">0.81</td>
-<td class="gt_row gt_right" headers="target">0.89</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">50.0</td>
+<td class="gt_row gt_left" headers="Young Professionals  activity_name">Education/Studying</td>
+<td class="gt_row gt_right" headers="Young Professionals  low">1.75</td>
+<td class="gt_row gt_right" headers="Young Professionals  typical">3.00</td>
+<td class="gt_row gt_right" headers="Young Professionals  high">5.17</td>
+<td class="gt_row gt_right" headers="Young Professionals  target" style="background-color: #FFFFE0">6.75</td>
+<td class="gt_row gt_right" headers="Young Professionals  pct_hitting_target">15.2%</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="target_group">Young Professionals</td>
-<td class="gt_row gt_left" headers="activity_name">Education/Studying</td>
-<td class="gt_row gt_right" headers="low">1.00</td>
-<td class="gt_row gt_right" headers="typical">1.83</td>
-<td class="gt_row gt_right" headers="high">2.92</td>
-<td class="gt_row gt_right" headers="target">3.50</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">42.9</td>
+<td class="gt_row gt_left" headers="Young Professionals  activity_name">Exercise</td>
+<td class="gt_row gt_right" headers="Young Professionals  low">0.83</td>
+<td class="gt_row gt_right" headers="Young Professionals  typical">1.25</td>
+<td class="gt_row gt_right" headers="Young Professionals  high">2.17</td>
+<td class="gt_row gt_right" headers="Young Professionals  target" style="background-color: #FFFFE0">3.00</td>
+<td class="gt_row gt_right" headers="Young Professionals  pct_hitting_target">17.6%</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="target_group">Young Professionals</td>
-<td class="gt_row gt_left" headers="activity_name">Exercise</td>
-<td class="gt_row gt_right" headers="low">0.50</td>
-<td class="gt_row gt_right" headers="typical">1.00</td>
-<td class="gt_row gt_right" headers="high">1.75</td>
-<td class="gt_row gt_right" headers="target">2.33</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">23.9</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="target_group">Young Professionals</td>
-<td class="gt_row gt_left" headers="activity_name">Sleeping</td>
-<td class="gt_row gt_right" headers="low">0.50</td>
-<td class="gt_row gt_right" headers="typical">2.00</td>
-<td class="gt_row gt_right" headers="high">5.00</td>
-<td class="gt_row gt_right" headers="target">5.75</td>
-<td class="gt_row gt_right" headers="pct_hitting_target">96.9</td>
+<td class="gt_row gt_left" headers="Young Professionals  activity_name">Sleeping</td>
+<td class="gt_row gt_right" headers="Young Professionals  low">8.38</td>
+<td class="gt_row gt_right" headers="Young Professionals  typical">9.67</td>
+<td class="gt_row gt_right" headers="Young Professionals  high">11.16</td>
+<td class="gt_row gt_right" headers="Young Professionals  target" style="background-color: #FFFFE0">12.00</td>
+<td class="gt_row gt_right" headers="Young Professionals  pct_hitting_target">16.6%</td>
 </tr>
 </tbody>
 </table>
@@ -4468,76 +4505,114 @@ Figure&nbsp;5: The ‘Dilution’ of Parental Attention: Daily Care Minutes Per 
 </div>
 <section id="final-insights-and-deliverable" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="final-insights-and-deliverable"><span class="header-section-number">1.1</span> Final Insights and Deliverable</h2>
-<p><strong>Product Strategy: Leveraging Social Comparison</strong> Our time-tracking app moves beyond simple scheduling by leveraging Social Comparison Theory. By providing users with “Peer Benchmarks,” we transform abstract time data into actionable, competitive, and rewarding goals.</p>
-<p><strong>Target Demographic Definitions</strong> To power our gamification engine, we have identified three high-value segments based on life-stage and time-use priorities:</p>
-<p><strong>Stay-at-Home Dads (SAHDs)</strong>: Defined as males with at least one child in the household who are not currently in the labor force.</p>
-<p><strong>College Undergrads</strong>: Students aged 18–24 currently enrolled in a degree program.</p>
-<p><strong>Young Professionals (The “Hustle” Segment)</strong>: Employed adults aged 22–29 with no children, focused on fitness and career.</p>
-<p><strong>Activity Benchmarking</strong> We analyzed 20+ years of ATUS data to establish what “Typical” looks like versus an “Aspirational Target” (defined as the 85th percentile of peers).</p>
-<p><strong>Strategic Insights for the UI/UX Team: The Gamification “Nudge”</strong> The visualization below reveals clear, impactful “gaps to greatness” across all three of our target segments. We can use these benchmarks to trigger relevant notifications and reward milestones, moving users from “Typical” to “Top Tier.”</p>
+<p><strong>Product Strategy: Leveraging Social Comparison</strong></p>
+<p>Team, I’m excited to share some breakthrough insights from our deep dive into the American Time Use Survey(ATUS) data. After analyzing how thousands of people actually spend their days, we’ve identified exactly where our app ‘Be a Better You’,can step in and change people’s lives. We aren’t just building another time tracking app, we are building a roadmap to a more balanced life. Comparing “Typical” daily habits to our “Inspirational” benchmark (top 15% of their peers), we;ve found three ‘growth targets’ where our users are struggling the most. As a reminder, our goal isn’t to make them work harder, it is to help them live better.</p>
+<p><strong>Target Demographic Definitions</strong> Below are some top line points that will help you understand our three <strong>Growth segments</strong>:</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="College Undergrads: The 'Sleep Hygeine' Gap">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>College Undergrads: The ‘Sleep Hygeine’ Gap
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Definition: Students aged 18–24 currently enrolled in a degree program.</p>
+<p>These students are highly motivated but the data shows a gap when it comes to sleeping.Most are struggling to find a full night’s sleep more than likely because they are balancing the college experience with a heavy focus on their studies. Our app will help them redefine their life to increase and prioritize sleep. This will ensure that they find that time away from the books and release some stress by increasing their sleep time.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Stay-at-Home Dads: The 'Deep Connection'">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Stay-at-Home Dads: The ‘Deep Connection’
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Definition: These are are males with at least one child in the household who are not currently in the labor force.</p>
+<p>After reviewing the data for this segment, I found a gap a gap in their child’s life that we can help bridge. Dads are home all day, their “Direct Child Care” (active,focused parenting) averages less than an hour a day while our “inspirational/high achievers” spend on average about four hours. With the help of our app, these four hours will become the “Gold Standard” for building a strong connection with their children.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Young Professionals: Breaking the 'Exercise Wall'">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Young Professionals: Breaking the ‘Exercise Wall’
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Definition: Employed adults aged 22–29 with no children, focused on fitness and career.</p>
+<p>This segment is more than likely at the beginning stages of their career path and as such they sacrifice physical activity. Our analysis shows that young professionals spend very few minutes exercising, while our “Inspirational” group are averaging about an hour and a half of movement. We want to support these young professionals in prioritizing their own health. By showing that small moments of movement put them ahead of the typical peer and fuels their career success.</p>
+</div>
+</div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. GENERATE THE DATA</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>market_plot_data <span class="ot">&lt;-</span> resp <span class="sc">|&gt;</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(rost <span class="sc">|&gt;</span> <span class="fu">filter</span>(line_no <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(participant_id, age, sex), <span class="at">by =</span> <span class="st">"participant_id"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define our three specific tribes</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">target_group =</span> <span class="fu">case_when</span>(</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    sex <span class="sc">==</span> <span class="st">"M"</span> <span class="sc">&amp;</span> children_count <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> employment_status <span class="sc">==</span> <span class="st">"Not in Labor Force"</span> <span class="sc">~</span> <span class="st">"Stay-at-Home Dads"</span>,</span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">24</span> <span class="sc">&amp;</span> college_student <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"College Undergrads"</span>,</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">22</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">29</span> <span class="sc">&amp;</span> employment_status <span class="sc">==</span> <span class="st">"Employed"</span> <span class="sc">&amp;</span> children_count <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Young Professionals"</span>,</span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(target_group)) <span class="sc">|&gt;</span></span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(act, <span class="at">by =</span> <span class="st">"participant_id"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group activities by logical themes</span></span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">activity_name =</span> <span class="fu">case_when</span>(</span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level1_code, <span class="st">"01"</span>) <span class="sc">~</span> <span class="st">"Sleeping"</span>,</span>
-<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level2_code, <span class="st">"0301"</span>) <span class="sc">~</span> <span class="st">"Childcare"</span>,</span>
-<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level1_code, <span class="st">"06"</span>) <span class="sc">~</span> <span class="st">"Education"</span>,</span>
-<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level1_code, <span class="st">"13"</span>) <span class="sc">~</span> <span class="st">"Exercise"</span>,</span>
-<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Other"</span></span>
-<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
-<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(activity_name <span class="sc">!=</span> <span class="st">"Other"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># IMPORTANT: Filter for "Doers" so the 'Typical' isn't just 0</span></span>
-<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time_spent_min <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target_group, activity_name) <span class="sc">|&gt;</span></span>
-<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">typical =</span> <span class="fu">quantile</span>(time_spent_min <span class="sc">/</span> <span class="dv">60</span>, <span class="fl">0.50</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">target =</span> <span class="fu">quantile</span>(time_spent_min <span class="sc">/</span> <span class="dv">60</span>, <span class="fl">0.85</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb53-30"><a href="#cb53-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. CREATE THE PLOT</span></span>
-<span id="cb53-32"><a href="#cb53-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(market_plot_data, <span class="fu">aes</span>(<span class="at">x =</span> activity_name, <span class="at">y =</span> typical, <span class="at">fill =</span> activity_name)) <span class="sc">+</span></span>
-<span id="cb53-33"><a href="#cb53-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The Bar represents the 'starting line' (Average person)</span></span>
-<span id="cb53-34"><a href="#cb53-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb53-35"><a href="#cb53-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The Segment represents the 'Elite' goal</span></span>
-<span id="cb53-36"><a href="#cb53-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> target, <span class="at">ymax =</span> target, <span class="at">linetype =</span> <span class="st">"Elite Target (85th Pct)"</span>), </span>
-<span id="cb53-37"><a href="#cb53-37" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"#D73027"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">target_group =</span> <span class="fu">case_when</span>(</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    sex <span class="sc">==</span> <span class="st">"M"</span> <span class="sc">&amp;</span> children_count <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> employment_status <span class="sc">==</span> <span class="st">"Not in Labor Force"</span> <span class="sc">~</span> <span class="st">"Stay-at-Home Dads"</span>,</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">24</span> <span class="sc">&amp;</span> college_student <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"College Undergrads"</span>,</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">22</span> <span class="sc">&amp;</span> age <span class="sc">&lt;=</span> <span class="dv">29</span> <span class="sc">&amp;</span> employment_status <span class="sc">==</span> <span class="st">"Employed"</span> <span class="sc">&amp;</span> children_count <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Young Professionals"</span>,</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(target_group)) <span class="sc">|&gt;</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(act, <span class="at">by =</span> <span class="st">"participant_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">activity_name =</span> <span class="fu">case_when</span>(</span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level1_code, <span class="st">"01"</span>) <span class="sc">~</span> <span class="st">"Sleeping"</span>,</span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level2_code, <span class="st">"0301"</span>) <span class="sc">~</span> <span class="st">"Childcare"</span>,</span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level1_code, <span class="st">"06"</span>) <span class="sc">~</span> <span class="st">"Education"</span>,</span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_starts</span>(level1_code, <span class="st">"13"</span>) <span class="sc">~</span> <span class="st">"Exercise"</span>,</span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Other"</span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(activity_name <span class="sc">!=</span> <span class="st">"Other"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time_spent_min <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target_group, activity_name) <span class="sc">|&gt;</span></span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="fu">quantile</span>(time_spent_min <span class="sc">/</span> <span class="dv">60</span>, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),      </span>
+<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">typical =</span> <span class="fu">quantile</span>(time_spent_min <span class="sc">/</span> <span class="dv">60</span>, <span class="fl">0.50</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),  </span>
+<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="fu">quantile</span>(time_spent_min <span class="sc">/</span> <span class="dv">60</span>, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),     </span>
+<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">target =</span> <span class="fu">quantile</span>(time_spent_min <span class="sc">/</span> <span class="dv">60</span>, <span class="fl">0.85</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),   </span>
+<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-30"><a href="#cb53-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. CREATE THE PLOT</span></span>
+<span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(market_plot_data, <span class="fu">aes</span>(<span class="at">x =</span> activity_name, <span class="at">y =</span> typical, <span class="at">fill =</span> activity_name)) <span class="sc">+</span></span>
+<span id="cb53-32"><a href="#cb53-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb53-33"><a href="#cb53-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low, <span class="at">ymax =</span> low), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">width =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb53-34"><a href="#cb53-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> high, <span class="at">ymax =</span> high), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">width =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb53-35"><a href="#cb53-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> target, <span class="at">ymax =</span> target, <span class="at">linetype =</span> <span class="st">"Inspirational (85th Pct)"</span>), </span>
+<span id="cb53-36"><a href="#cb53-36" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"#D73027"</span>, <span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb53-37"><a href="#cb53-37" aria-hidden="true" tabindex="-1"></a>                </span>
 <span id="cb53-38"><a href="#cb53-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>target_group, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
 <span id="cb53-39"><a href="#cb53-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
 <span id="cb53-40"><a href="#cb53-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Paired"</span>) <span class="sc">+</span></span>
 <span id="cb53-41"><a href="#cb53-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">name =</span> <span class="st">"Benchmarks"</span>, <span class="at">values =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
 <span id="cb53-42"><a href="#cb53-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb53-43"><a href="#cb53-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Typical vs. Elite Daily Time Use"</span>,</span>
-<span id="cb53-44"><a href="#cb53-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Bridging the gap between average behavior and top-tier goals"</span>,</span>
+<span id="cb53-43"><a href="#cb53-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Typical vs. Inspirational Daily Time Use"</span>,</span>
+<span id="cb53-44"><a href="#cb53-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Black ticks represent the 25th and 75th percentiles"</span>,</span>
 <span id="cb53-45"><a href="#cb53-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>, </span>
-<span id="cb53-46"><a href="#cb53-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Daily Hours spent (on days activity occurred)"</span>,</span>
-<span id="cb53-47"><a href="#cb53-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Analysis of ATUS Data | Targets defined as 85th percentile of peers"</span></span>
+<span id="cb53-46"><a href="#cb53-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Daily Hours Spent</span><span class="sc">\n</span><span class="st">(On days activity occurred)"</span>,</span>
+<span id="cb53-47"><a href="#cb53-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Analysis of ATUS Data | Benchmarks defined as 85th percentile of peers"</span></span>
 <span id="cb53-48"><a href="#cb53-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb53-49"><a href="#cb53-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
 <span id="cb53-50"><a href="#cb53-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
 <span id="cb53-51"><a href="#cb53-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
 <span id="cb53-52"><a href="#cb53-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb53-53"><a href="#cb53-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
+<span id="cb53-53"><a href="#cb53-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">15</span>)) </span>
 <span id="cb53-54"><a href="#cb53-54" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-market-research-refined" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-market-research-refined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="mp02_files/figure-html/fig-market-research-refined-1.png" class="img-fluid figure-img" width="672">
+<img src="mp02_files/figure-html/fig-market-research-refined-1.png" class="img-fluid figure-img" width="960">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-market-research-refined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: Daily Time Benchmarks: Typical vs.&nbsp;Elite Performance
@@ -4546,46 +4621,30 @@ Figure&nbsp;6: Daily Time Benchmarks: Typical vs.&nbsp;Elite Performance
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Stay-at-Home Dads: The 'Deep Connection' Badge">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Stay-at-Home Dads: The ‘Deep Connection’ Badge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The data shows a massive opportunity here. The typical dad’s direct, focused engagement with his children is relatively low (just under 1 hour). Yet, our App Target (85th Pct) is over 4 hours. This huge discrepancy allows us to create an elite milestone that gamifies deep parental engagement. We will launch a “Quality Time” badge for anyone who can bridge this 3+ hour gap.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="College Undergrads: The 'Sleep Hygeine' Streak">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>College Undergrads: The ‘Sleep Hygeine’ Streak
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is our biggest potential win for user health. The data reveals a massive “Sleep Gap”—nearly 4 hours daily between the typical student and our top performers. Our app must prioritize sleep gamification. We will introduce a “Healthy Body, Healthy Mind” streak that rewards consistent, 85th-percentile sleep habits, particularly during stressful midterm and final exam weeks.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled" title="Young Professionals: Breaking the 'Exercise Wall'">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Young Professionals: Breaking the ‘Exercise Wall’
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For our “Hustle” segment, the typical exercise time is low—closer to the zero mark than we would like to see. To keep them motivated, we will not lead with the 1.5-hour “App Target” immediately. Instead, our UI will offer “Rookie of the Year” milestones that celebrate even 20-30 minutes of daily activity as being “Better than Average” among their peers. We will reserve the full 85th-percentile benchmark for a final “Iron Peak” challenge.</p>
+<p>Across all three segment, the data is clear: There is a significant performance gap between typical daily habits and the inspirational goals of our top-tier users. <strong>Be a Better You</strong> is designed to bridge these gaps. Whether is is turning a passive supervision into active parenting for dads, trading late night strees for restorative sleep for students, or intergrating movement into the hectic work schedule of young professionals, our app is there to assists.</p>
+<p>By leveraging these benchmarks, we aren’t just tracking time, we are empowering our users to reclaim it! Our app is commited to helping every user reach their <strong>inspirational potential</strong>.</p>
 <p><br></p>
-<section id="extra-credit" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="extra-credit"><span class="header-section-number">1.2</span> Extra credit</h2>
+<section id="extra-credit" class="level3 tabset tabset-pills unnumbered">
+<h3 class="tabset tabset-pills unnumbered anchored" data-anchor-id="extra-credit">Extra credit</h3>
+</section>
+<section id="data-relationship-diagram" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="data-relationship-diagram"><span class="header-section-number">1.1.1</span> Data Relationship Diagram</h3>
+<div class="cell">
+<div id="fig-data-relationship-diagram" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-relationship-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="grViz html-widget html-fill-item" id="htmlwidget-7986b3681d150fbd5788" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-7986b3681d150fbd5788">{"x":{"diagram":"\ndigraph ERD {\n  graph [layout = dot, rankdir = LR, fontsize = 11]\n  \n  node [shape = box, fontname = \"Arial\", style = filled, fillcolor = \"#FDFDFD\"]\n\n  # 1. RESPONDENTS (Full Column List from your glimpse)\n  resp [label = \"Table: resp (Respondents)\n- participant_id [PK] <chr>\n- survey_weight <dbl>\n- survey_year <dbl>\n- diary_date <date>\n- children_count <dbl>\n- employment_status <chr>\n- hh_size <dbl>\n- college_student <lgl>\"]\n  \n  # 2. ACTIVITIES (Full Column List from your glimpse)\n  act [label = \"Table: act (Activities)\n- participant_id [FK] <chr>\n- activity_n_of_day <dbl>\n- time_spent_min <dbl>\n- location_desc <chr>\n- level1_code <chr>\n- level2_code <chr>\n- level3_code <chr>\"]\n  \n  # 3. ROSTER (Full Column List from your glimpse)\n  rost [label = \"Table: rost (Roster)\n- participant_id [FK] <chr>\n- line_no [Key Filter: 1] <dbl>\n- sex <chr>\n- age <dbl>\n- relation_to_resp <dbl>\"]\n\n  # 4. RELATIONSHIPS\n  resp -> act [label = \" 1:N (One-to-Many)\"]\n  resp -> rost [label = \" 1:1 (Filter: line_no=1)\", style = dashed]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-relationship-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Data Relationship Diagram: ATUS Analysis Tables
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="ring-visualizations" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="ring-visualizations"><span class="header-section-number">1.1.2</span> Ring Visualizations</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -4651,14 +4710,14 @@ Figure&nbsp;6: Daily Time Benchmarks: Typical vs.&nbsp;Elite Performance
 <img src="mp02_files/figure-html/fig-productivity-rings-1.png" id="fig-productivity-rings" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-productivity-rings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7
+Figure&nbsp;8
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="AI Usage Statement">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -4667,7 +4726,7 @@ Figure&nbsp;7
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Perplexity was used to help write the code in this project, but all non-code text was generated without the use of any Generative AI tools. Additionally, Perplexity was used to provide additional background information on the topic and to brainstorm ideas for the final open-ended prompt.</p>
 </div>
@@ -4678,8 +4737,6 @@ Figure&nbsp;7
 
 
 </section>
-</div>
-</div>
 </section>
 </section>
 

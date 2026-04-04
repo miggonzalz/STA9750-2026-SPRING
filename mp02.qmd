@@ -906,7 +906,7 @@ Code related to the final deliverable of the assignment goes here.
 #| label: market-research-analysis-final
 
 # 1. Identify Target Groups using your CLEANED variable names
-# Demographic 3: "Young Professionals" (Our custom choice)
+# Demographic 3: "Young Professionals" (custom choice)
 market_groups <- resp |>
   # Join with roster to get age/sex
   left_join(rost |> filter(line_no == 1) |> select(participant_id, age, sex), by = "participant_id") |>
@@ -944,49 +944,75 @@ market_results <- act |>
     typical = quantile(time_spent_min / 60, 0.50, na.rm = TRUE),
     high = quantile(time_spent_min / 60, 0.75, na.rm = TRUE),
     # App Target Level set at the 85th percentile (top performers)
-    target_level = quantile(time_spent_min / 60, 0.85, na.rm = TRUE),
+    target_level = quantile(time_spent_min / 60, 0.85, na.rm = TRUE), #this is the "high-achievers" or our motivation
     .groups = "drop"
   )
 
 # 3. Final Step: Calculate fraction of people hitting the target
-# This creates the final metric for your pitch
-final_market_table <- market_results |>
-  # Cross-reference back to individual data to see who beats the target_level
-  left_join(
-    act |> 
-      inner_join(market_groups, by = "participant_id") |>
-      mutate(activity_name = case_when(
-        str_starts(level1_code, "01") ~ "Sleeping",
-        str_starts(level2_code, "0301") ~ "Direct Childcare",
-        str_starts(level1_code, "06") ~ "Education/Studying",
-        str_starts(level1_code, "13") ~ "Exercise",
-        TRUE ~ "Other"
-      )) |>
-      group_by(target_group, participant_id, activity_name) |>
-      summarise(indiv_hrs = sum(time_spent_min)/60, .groups = "drop"),
-    by = c("target_group", "activity_name")
-  ) |>
+# This creates the final metric
+final_market_table <- act |>
+  inner_join(market_groups, by = "participant_id") |>
+  mutate(activity_name = case_when(
+    str_starts(level1_code, "01") ~ "Sleeping",
+    str_starts(level2_code, "0301") ~ "Direct Childcare",
+    str_starts(level1_code, "06") ~ "Education/Studying",
+    str_starts(level1_code, "13") ~ "Exercise",
+    TRUE ~ "Other"
+  )) |>
+  filter(activity_name != "Other") |>
+  # FIRST: Sum up hours per person, per day, per activity
+  group_by(target_group, participant_id, activity_name) |>
+  summarise(daily_hrs = sum(time_spent_min) / 60, .groups = "drop") |>
+  # SECOND: Calculate benchmarks based on those daily totals
   group_by(target_group, activity_name) |>
   summarise(
-    low = first(low), 
-    typical = first(typical), 
-    high = first(high), 
-    target = first(target_level),
-    pct_hitting_target = mean(indiv_hrs >= target_level) * 100,
+    low = quantile(daily_hrs, 0.25),
+    typical = quantile(daily_hrs, 0.50),
+    high = quantile(daily_hrs, 0.75),
+    target = quantile(daily_hrs, 0.85),
+    # Now this mean() actually compares a person's total day to the 85th percentile total
+    pct_hitting_target = mean(daily_hrs >= target) * 100,
     .groups = "drop"
   )
 
 # 4. Display the Market Research Table
 final_market_table |>
-  gt() |>
-  tab_header(title = "Time-Tracking App: Target User Benchmarks",
-             subtitle = "Estimates for 'Typical' and 'Target' time use patterns") |>
-  fmt_number(columns = c(low, typical, high, target), decimals = 2) |>
-  fmt_number(columns = pct_hitting_target, decimals = 1, suffix = "%") |>
+  gt(groupname_col = "target_group") |> # Groups by Demographic to reduce repetition
+  tab_header(
+    title = "Time-Tracking App: Target User Benchmarks",
+    subtitle = "Estimates for 'Typical' and 'Target' daily time use patterns"
+  ) |>
+  # 1. Formatting the hours columns with a clear decimal and alignment
+  fmt_number(
+    columns = c(low, typical, high, target), 
+    decimals = 2
+  ) |>
+  # 2. Correctly formatting the percentage column
+  fmt_number(
+    columns = pct_hitting_target, 
+    decimals = 1, 
+    pattern = "{x}%" # This ensures the % sign is right next to the number
+  ) |>
+  # 3. Improving labels to specify units
   cols_label(
-    target_group = "Demographic",
     activity_name = "Activity",
+    low = "Low (hrs)",
+    typical = "Typical (hrs)",
+    high = "High (hrs)",
+    target = "Target (hrs)",
     pct_hitting_target = "% Meeting Target"
+  ) |>
+  # 4. Aesthetic touches for a professional look
+  tab_options(
+    heading.title.font.size = px(20),
+    column_labels.font.weight = "bold",
+    row_group.font.weight = "bold",
+    row_group.background.color = "#f9f9f9"
+  ) |>
+  # Highlight the Target column to make it pop
+  tab_style(
+    style = cell_fill(color = "lightyellow"),
+    locations = cells_body(columns = target)
   )
 
 ```
@@ -994,33 +1020,40 @@ final_market_table |>
 ## Final Insights and Deliverable
 
 **Product Strategy: Leveraging Social Comparison** 
-Our time-tracking app moves beyond simple scheduling by leveraging Social Comparison Theory. By providing users with "Peer Benchmarks," we transform abstract time data into actionable, competitive, and rewarding goals.
 
+Team, I'm excited to share some breakthrough insights from our deep dive into the American Time Use Survey(ATUS) data. After analyzing how thousands of people actually spend their days, we've identified exactly where our app 'Be a Better You',can step in and change people's lives. We aren't just building another time tracking app, we are building a roadmap to a more balanced life. Comparing "Typical" daily habits to our "Inspirational" benchmark (top 15% of their peers), we;ve found three 'growth targets' where our users are struggling the most. As a reminder, our goal isn't to make them work harder, it is to help them live better. 
 
 **Target Demographic Definitions**
-To power our gamification engine, we have identified three high-value segments based on life-stage and time-use priorities:
+Below are some top line points that will help you understand our three **Growth segments**: 
 
-**Stay-at-Home Dads (SAHDs)**: Defined as males with at least one child in the household who are not currently in the labor force.
+:::{.callout-tip title="College Undergrads: The 'Sleep Hygeine' Gap"}
+Definition: Students aged 18–24 currently enrolled in a degree program. 
 
-**College Undergrads**: Students aged 18–24 currently enrolled in a degree program.
+These students are highly motivated but the data shows a gap when it comes to sleeping.Most are struggling to find a full night's sleep more than likely because they are balancing the college experience with a heavy focus on their studies. Our app will help them redefine their life to increase and prioritize sleep. This will ensure that they find that time away from the books and release some stress by increasing their sleep time. 
+:::
 
-**Young Professionals (The "Hustle" Segment)**: Employed adults aged 22–29 with no children, focused on fitness and career.
+:::{.callout-tip title="Stay-at-Home Dads: The 'Deep Connection'"}
+Definition: These are are males with at least one child in the household who are not currently in the labor force. 
 
-**Activity Benchmarking**
-We analyzed 20+ years of ATUS data to establish what "Typical" looks like versus an "Aspirational Target" (defined as the 85th percentile of peers).
+After reviewing the data for this segment, I found a gap a gap in their child's life that we can help bridge. Dads are home all day, their "Direct Child Care" (active,focused parenting) averages less than an hour a day while our "inspirational/high achievers" spend on average about four hours. With the help of our app, these four hours will become the "Gold Standard" for building a strong connection with their children.
+:::
 
-**Strategic Insights for the UI/UX Team: The Gamification "Nudge"**
-The visualization below reveals clear, impactful "gaps to greatness" across all three of our target segments. We can use these benchmarks to trigger relevant notifications and reward milestones, moving users from "Typical" to "Top Tier."
+:::{.callout-tip title="Young Professionals: Breaking the 'Exercise Wall'"}
+Definition: Employed adults aged 22–29 with no children, focused on fitness and career.
 
+This segment is more than likely at the beginning stages of their career path and as such they sacrifice physical activity. Our analysis shows that young professionals spend very few minutes exercising, while our "Inspirational" group are averaging about an hour and a half of movement. We want to support these young professionals in prioritizing their own health. By showing that small moments of movement put them ahead of the typical peer and fuels their career success. 
+:::
 
 ```{r}
 #| label: fig-market-research-refined
 #| fig-cap: "Daily Time Benchmarks: Typical vs. Elite Performance"
+#| fig-width: 10
+#| fig-height: 7
+#| echo: true
 
 # 1. GENERATE THE DATA
 market_plot_data <- resp |>
   left_join(rost |> filter(line_no == 1) |> select(participant_id, age, sex), by = "participant_id") |>
-  # Define our three specific tribes
   mutate(target_group = case_when(
     sex == "M" & children_count > 0 & employment_status == "Not in Labor Force" ~ "Stay-at-Home Dads",
     age >= 18 & age <= 24 & college_student == TRUE ~ "College Undergrads",
@@ -1029,7 +1062,6 @@ market_plot_data <- resp |>
   )) |>
   filter(!is.na(target_group)) |>
   inner_join(act, by = "participant_id") |>
-  # Group activities by logical themes
   mutate(activity_name = case_when(
     str_starts(level1_code, "01") ~ "Sleeping",
     str_starts(level2_code, "0301") ~ "Childcare",
@@ -1038,55 +1070,86 @@ market_plot_data <- resp |>
     TRUE ~ "Other"
   )) |>
   filter(activity_name != "Other") |>
-  # IMPORTANT: Filter for "Doers" so the 'Typical' isn't just 0
   filter(time_spent_min > 0) |> 
   group_by(target_group, activity_name) |>
   summarise(
-    typical = quantile(time_spent_min / 60, 0.50, na.rm = TRUE),
-    target = quantile(time_spent_min / 60, 0.85, na.rm = TRUE),
+    low = quantile(time_spent_min / 60, 0.25, na.rm = TRUE),      
+    typical = quantile(time_spent_min / 60, 0.50, na.rm = TRUE),  
+    high = quantile(time_spent_min / 60, 0.75, na.rm = TRUE),     
+    target = quantile(time_spent_min / 60, 0.85, na.rm = TRUE),   
     .groups = "drop"
   )
 
 # 2. CREATE THE PLOT
 ggplot(market_plot_data, aes(x = activity_name, y = typical, fill = activity_name)) +
-  # The Bar represents the 'starting line' (Average person)
   geom_col(alpha = 0.8, width = 0.7, show.legend = FALSE) +
-  # The Segment represents the 'Elite' goal
-  geom_errorbar(aes(ymin = target, ymax = target, linetype = "Elite Target (85th Pct)"), 
+  geom_errorbar(aes(ymin = low, ymax = low), color = "black", width = 0.3) + 
+  geom_errorbar(aes(ymin = high, ymax = high), color = "black", width = 0.3) + 
+  geom_errorbar(aes(ymin = target, ymax = target, linetype = "Inspirational (85th Pct)"), 
                 color = "#D73027", linewidth = 1.2) +
+                
   facet_wrap(~target_group, scales = "free_x") +
   theme_minimal(base_size = 12) +
   scale_fill_brewer(palette = "Paired") +
   scale_linetype_manual(name = "Benchmarks", values = "solid") +
   labs(
-    title = "Typical vs. Elite Daily Time Use",
-    subtitle = "Bridging the gap between average behavior and top-tier goals",
+    title = "Typical vs. Inspirational Daily Time Use",
+    subtitle = "Black ticks represent the 25th and 75th percentiles",
     x = NULL, 
-    y = "Daily Hours spent (on days activity occurred)",
-    caption = "Source: Analysis of ATUS Data | Targets defined as 85th percentile of peers"
+    y = "Daily Hours Spent\n(On days activity occurred)",
+    caption = "Source: Analysis of ATUS Data | Benchmarks defined as 85th percentile of peers"
   ) +
   theme(
     legend.position = "bottom",
     strip.text = element_text(face = "bold", size = 12),
     panel.grid.major.x = element_blank(),
-    axis.text.x = element_text(angle = 0, hjust = 0.5)
+    axis.title.y = element_text(margin = margin(r = 15)) 
   )
 ```
 
-:::{.callout-note title="Stay-at-Home Dads: The 'Deep Connection' Badge"}
-The data shows a massive opportunity here. The typical dad's direct, focused engagement with his children is relatively low (just under 1 hour). Yet, our App Target (85th Pct) is over 4 hours. This huge discrepancy allows us to create an elite milestone that gamifies deep parental engagement. We will launch a "Quality Time" badge for anyone who can bridge this 3+ hour gap.
-:::
 
-:::{.callout-tip title="College Undergrads: The 'Sleep Hygeine' Streak"}
-This is our biggest potential win for user health. The data reveals a massive "Sleep Gap"—nearly 4 hours daily between the typical student and our top performers. Our app must prioritize sleep gamification. We will introduce a "Healthy Body, Healthy Mind" streak that rewards consistent, 85th-percentile sleep habits, particularly during stressful midterm and final exam weeks.
-:::
+Across all three segment, the data is clear: There is a significant performance gap between typical daily habits and the inspirational goals of our top-tier users. **Be a Better You** is designed to bridge these gaps. Whether is is turning a passive supervision into active parenting for dads, trading late night strees for restorative sleep for students, or intergrating movement into the hectic work schedule of young professionals, our app is there to assists.
 
-:::{.callout-warning title="Young Professionals: Breaking the 'Exercise Wall'"}
-For our "Hustle" segment, the typical exercise time is low—closer to the zero mark than we would like to see. To keep them motivated, we will not lead with the 1.5-hour "App Target" immediately. Instead, our UI will offer "Rookie of the Year" milestones that celebrate even 20-30 minutes of daily activity as being "Better than Average" among their peers. We will reserve the full 85th-percentile benchmark for a final "Iron Peak" challenge.
+By leveraging these benchmarks, we aren't just tracking time, we are empowering our users to reclaim it! Our app is commited to helping every user reach their **inspirational potential**.
+
 
  <br> 
  
-## Extra credit
+### Extra credit {.tabset .tabset-pills .unnumbered}
+
+### Data Relationship Diagram 
+```{r}
+#| label: fig-data-relationship-diagram
+#| fig-cap: "Data Relationship Diagram: ATUS Analysis Tables"
+#| echo: false
+
+library(DiagrammeR)
+
+# Using \n for new lines instead of \l to avoid the 'bad escape' error
+grViz("
+digraph ERD {
+  graph [layout = dot, rankdir = LR, fontsize = 11]
+  
+  node [shape = box, fontname = 'Arial', style = filled, fillcolor = '#FDFDFD']
+
+  # 1. RESPONDENTS (Full Column List from your glimpse)
+  resp [label = 'Table: resp (Respondents)\n- participant_id [PK] <chr>\n- survey_weight <dbl>\n- survey_year <dbl>\n- diary_date <date>\n- children_count <dbl>\n- employment_status <chr>\n- hh_size <dbl>\n- college_student <lgl>']
+  
+  # 2. ACTIVITIES (Full Column List from your glimpse)
+  act [label = 'Table: act (Activities)\n- participant_id [FK] <chr>\n- activity_n_of_day <dbl>\n- time_spent_min <dbl>\n- location_desc <chr>\n- level1_code <chr>\n- level2_code <chr>\n- level3_code <chr>']
+  
+  # 3. ROSTER (Full Column List from your glimpse)
+  rost [label = 'Table: rost (Roster)\n- participant_id [FK] <chr>\n- line_no [Key Filter: 1] <dbl>\n- sex <chr>\n- age <dbl>\n- relation_to_resp <dbl>']
+
+  # 4. RELATIONSHIPS
+  resp -> act [label = ' 1:N (One-to-Many)']
+  resp -> rost [label = ' 1:1 (Filter: line_no=1)', style = dashed]
+}
+")
+```
+
+### Ring Visualizations
+
 ```{r}
 #| label: fig-productivity-rings
 #| message: false
