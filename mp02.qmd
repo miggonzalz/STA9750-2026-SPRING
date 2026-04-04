@@ -299,50 +299,69 @@ marital_summary <- resp |>
 ```
 **A:** `r marital_summary |> filter(Status == "Married, spouse present") |> pull("Count")` are married with spouse present.
 
-### Employment Staus {.unnumbered}
+### Employment Status {.unnumbered}
 **What is the respondent’s employment status (employed, unemployed, retired, etc.)?** 
 ```{r}
 # Employment Status Counts - ATUS Respondents
 #| echo: false
-# 1. Summarize using 'n' to avoid function name conflicts
-employment_summary <- resp |> 
-  count(employment_status, name = "n") |> 
-  # 2. Perform math and formatting using 'n'
+#| message: false
+
+# 1. Create the summary table
+employment_summary <- resp |>  
+  count(employment_status, name = "n") |>  
   mutate(
     Count = scales::comma(n),
     Pct = scales::percent(n / sum(n), accuracy = 0.1)
-  ) |> 
-  # 3. Rename for the final table display
+  )
+
+# 2. Calculate totals for inline text (using the raw 'n' column)
+total_emp <- employment_summary |> 
+  filter(employment_status == "Employed - at work") |> 
+  pull(n) |> 
+  sum()
+
+total_not_emp <- employment_summary |> 
+  filter(employment_status != "Employed - at work") |> 
+  pull(n) |> 
+  sum()
+
+# 3. Final formatting for the table display
+employment_table <- employment_summary |> 
   rename(Status = employment_status) |> 
-  # 4. Select only the columns for your report
   select(Status, Count, Pct)
 
 #employment_summary
 ```
 
-**A**: Employment Summary: `r employment_summary |> filter(Status == "Employed - at work") |> pull("Count")` employed, `r employment_summary |> filter(Status != "Employed - at work") |> pull("Count") |> dplyr::first()` not employed.
+**A**: Employment Summary: **`r scales::comma(total_emp)`** employed, while **`r scales::comma(total_not_emp)`** are not currently at work (including those unemployed, retired, or otherwise not in the labor force).
 
 ### Location {.unnumbered}
 **Location of Activities**
 ```{r}
+#| echo: false
+#| message: false
+
+# 1. Summarize and take the Top 5
 location_summary <- act |> 
-  # Count occurrences of the physical locations
   count(location_desc, name = "count") |> 
-  # Sort by the most frequent locations
   arrange(desc(count)) |> 
-  # Take the top 10
-  slice_head(n = 10) |> 
-  # Formatting for your report
+  slice_head(n = 5) |> 
   mutate(
-    Count = scales::comma(count),
+    Count_Fmt = scales::comma(count),
     `Activity Location` = location_desc
-  ) |> 
-  select(`Activity Location`, Count)
+  )
+
+# 2. Extract the top location and its count for the summary sentence
+top_loc_name  <- location_summary$`Activity Location`[1]
+top_loc_count <- location_summary$Count_Fmt[1]
+
+# 3. Create a comma-separated list of the Top 5 names for the prose
+top_5_list <- paste(location_summary$`Activity Location`, collapse = ", ")
 
 #location_summary
 ```
 
-**A:** Top activity location is `r location_summary[["Activity Location"]][1]` with `r location_summary$Count[1]` occurrences.
+**A:** The top activity location is **`r top_loc_name`** with **`r top_loc_count`** occurrences. The five most frequent locations recorded in the data are: `r top_5_list`.
 
 ### College/Universities {.unnumbered}
 **Is the respondent enrolled in a college or university (not high school)?**
@@ -418,16 +437,28 @@ sports_count <- act |>
 ### Retired {.unnumbered} 
 **Approximately what percent of Americans are retired?:**
 ```{r}
-retired_data <- resp |> 
+#| echo: false
+#| message: false
+
+# 1. Join and calculate
+retired_result <- resp |> 
   left_join(rost |> filter(relation_to_resp == 1) |> select(participant_id, age), 
-            by = "participant_id") |>  # self only
-  mutate(retired = employment_status == "Not in Labor Force" & age >= 65) |> 
-  summarise(pct = weighted.mean(retired, survey_weight, na.rm = TRUE) * 100) |> 
-  pull(pct) |> round(1)
+            by = "participant_id") |> 
+  # Use stringr to be case-insensitive to avoid the 0% error
+  mutate(
+    is_retired = (stringr::str_to_lower(employment_status) == "not in labor force" & age >= 65)
+  ) |> 
+  summarise(
+    pct = weighted.mean(is_retired, survey_weight, na.rm = TRUE) * 100
+  ) |> 
+  pull(pct)
+
+# 2. Final rounding for the prose
+retired_pct_fmt <- round(retired_result, 1)
 
 ```
 
-**A:** Approximately `r retired_data`% of Americans are retired.
+**A:** Approximately **`r retired_pct_fmt`%** of Americans are retired.
 
 ### Sleep per night {.unnumbered}
 **On average, how many hours do Americans sleep per night?**
@@ -962,6 +993,7 @@ final_market_table |>
 
 ## Final Insights and Deliverable
 
+**Product Strategy: Leveraging Social Comparison** 
 Our time-tracking app moves beyond simple scheduling by leveraging Social Comparison Theory. By providing users with "Peer Benchmarks," we transform abstract time data into actionable, competitive, and rewarding goals.
 
 
@@ -982,12 +1014,13 @@ The visualization below reveals clear, impactful "gaps to greatness" across all 
 
 
 ```{r}
-#| label: fig-market-research-with-legend
-#| fig-cap: "Daily Time Benchmarks: Typical vs. Target Performance"
+#| label: fig-market-research-refined
+#| fig-cap: "Daily Time Benchmarks: Typical vs. Elite Performance"
 
-# 1. GENERATE THE DATA (This ensures the object exists when the plot runs)
+# 1. GENERATE THE DATA
 market_plot_data <- resp |>
   left_join(rost |> filter(line_no == 1) |> select(participant_id, age, sex), by = "participant_id") |>
+  # Define our three specific tribes
   mutate(target_group = case_when(
     sex == "M" & children_count > 0 & employment_status == "Not in Labor Force" ~ "Stay-at-Home Dads",
     age >= 18 & age <= 24 & college_student == TRUE ~ "College Undergrads",
@@ -996,6 +1029,7 @@ market_plot_data <- resp |>
   )) |>
   filter(!is.na(target_group)) |>
   inner_join(act, by = "participant_id") |>
+  # Group activities by logical themes
   mutate(activity_name = case_when(
     str_starts(level1_code, "01") ~ "Sleeping",
     str_starts(level2_code, "0301") ~ "Childcare",
@@ -1004,6 +1038,8 @@ market_plot_data <- resp |>
     TRUE ~ "Other"
   )) |>
   filter(activity_name != "Other") |>
+  # IMPORTANT: Filter for "Doers" so the 'Typical' isn't just 0
+  filter(time_spent_min > 0) |> 
   group_by(target_group, activity_name) |>
   summarise(
     typical = quantile(time_spent_min / 60, 0.50, na.rm = TRUE),
@@ -1013,28 +1049,28 @@ market_plot_data <- resp |>
 
 # 2. CREATE THE PLOT
 ggplot(market_plot_data, aes(x = activity_name, y = typical, fill = activity_name)) +
-  geom_col(alpha = 0.7, width = 0.6) +
-  geom_errorbar(aes(ymin = target, ymax = target, linetype = "App Target (85th Pct)"), 
-                color = "red", linewidth = 1) +
+  # The Bar represents the 'starting line' (Average person)
+  geom_col(alpha = 0.8, width = 0.7, show.legend = FALSE) +
+  # The Segment represents the 'Elite' goal
+  geom_errorbar(aes(ymin = target, ymax = target, linetype = "Elite Target (85th Pct)"), 
+                color = "#D73027", linewidth = 1.2) +
   facet_wrap(~target_group, scales = "free_x") +
-  theme_minimal() +
-  scale_fill_brewer(palette = "Set1") +
-  scale_linetype_manual(name = "Benchmarks", values = "dashed") +
+  theme_minimal(base_size = 12) +
+  scale_fill_brewer(palette = "Paired") +
+  scale_linetype_manual(name = "Benchmarks", values = "solid") +
   labs(
-    title = "Typical vs. Target Daily Time Use",
-    subtitle = "Comparing median behavior against top-tier performance goals",
+    title = "Typical vs. Elite Daily Time Use",
+    subtitle = "Bridging the gap between average behavior and top-tier goals",
     x = NULL, 
-    y = "Daily Hours",
-    fill = "Activity Type"
+    y = "Daily Hours spent (on days activity occurred)",
+    caption = "Source: Analysis of ATUS Data | Targets defined as 85th percentile of peers"
   ) +
   theme(
-    legend.box = "vertical", 
     legend.position = "bottom",
-    strip.text = element_text(face = "bold", size = 11),
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  ) +
-  guides(fill = guide_legend(nrow = 1, order = 1), 
-         linetype = guide_legend(order = 2))
+    strip.text = element_text(face = "bold", size = 12),
+    panel.grid.major.x = element_blank(),
+    axis.text.x = element_text(angle = 0, hjust = 0.5)
+  )
 ```
 
 :::{.callout-note title="Stay-at-Home Dads: The 'Deep Connection' Badge"}
