@@ -166,8 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#data-acquisition" id="toc-data-acquisition" class="nav-link" data-scroll-target="#data-acquisition">Data Acquisition</a></li>
   <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
   <li><a href="#states-with-the-highest-net-population-growth" id="toc-states-with-the-highest-net-population-growth" class="nav-link" data-scroll-target="#states-with-the-highest-net-population-growth">States with the highest net population growth</a></li>
@@ -180,7 +179,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#destination-states-and-migration-patterns" id="toc-destination-states-and-migration-patterns" class="nav-link" data-scroll-target="#destination-states-and-migration-patterns">Destination States and Migration Patterns</a></li>
   <li><a href="#the-states-largest-metro-area" id="toc-the-states-largest-metro-area" class="nav-link" data-scroll-target="#the-states-largest-metro-area">The State’s Largest Metro Area</a></li>
   <li><a href="#the-metro-network" id="toc-the-metro-network" class="nav-link" data-scroll-target="#the-metro-network">The Metro Network</a></li>
-  </ul></li>
   <li><a href="#code-for-final-write-up" id="toc-code-for-final-write-up" class="nav-link" data-scroll-target="#code-for-final-write-up">Code for final write up</a></li>
   <li><a href="#final-wite-up" id="toc-final-wite-up" class="nav-link" data-scroll-target="#final-wite-up">Final Wite up</a></li>
   </ul>
@@ -214,10 +212,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
 <p>Every decade the U.S. Census Bureau redraws the political map through congressional reapportionment, shifting House seats among the states based on how populations change. Most of the discussion focuses on births, deaths and international migration, but internal migration the movement of people across state lines quietly shapes these outcomes just as much.</p>
 <p>In this mini project I use American Community Survey (ACS) 1 year data to estimate where Americans are moving within the country. From those migration flows I build a simple demographic model that projects state level populations over the next ten years and explores how those changes might translate into gains or losses of congressional seats. The aim is to connect the everyday decisions of people moving from one state to another to the bigger picture of how political power shifts across the U.S.</p>
+</section>
 <section id="data-acquisition" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="data-acquisition">Data Acquisition</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
@@ -613,23 +612,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="fglxbomdjc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fglxbomdjc table {
+<div id="ciiuuufrnt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ciiuuufrnt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fglxbomdjc thead, #fglxbomdjc tbody, #fglxbomdjc tfoot, #fglxbomdjc tr, #fglxbomdjc td, #fglxbomdjc th {
+#ciiuuufrnt thead, #ciiuuufrnt tbody, #ciiuuufrnt tfoot, #ciiuuufrnt tr, #ciiuuufrnt td, #ciiuuufrnt th {
   border-style: none;
 }
 
-#fglxbomdjc p {
+#ciiuuufrnt p {
   margin: 0;
   padding: 0;
 }
 
-#fglxbomdjc .gt_table {
+#ciiuuufrnt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -655,12 +654,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_caption {
+#ciiuuufrnt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fglxbomdjc .gt_title {
+#ciiuuufrnt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -672,7 +671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#fglxbomdjc .gt_subtitle {
+#ciiuuufrnt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -684,7 +683,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#fglxbomdjc .gt_heading {
+#ciiuuufrnt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -696,13 +695,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_bottom_border {
+#ciiuuufrnt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_col_headings {
+#ciiuuufrnt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -717,7 +716,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_col_heading {
+#ciiuuufrnt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -737,7 +736,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#fglxbomdjc .gt_column_spanner_outer {
+#ciiuuufrnt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -749,15 +748,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#fglxbomdjc .gt_column_spanner_outer:first-child {
+#ciiuuufrnt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fglxbomdjc .gt_column_spanner_outer:last-child {
+#ciiuuufrnt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fglxbomdjc .gt_column_spanner {
+#ciiuuufrnt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -769,11 +768,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#fglxbomdjc .gt_spanner_row {
+#ciiuuufrnt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fglxbomdjc .gt_group_heading {
+#ciiuuufrnt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -799,7 +798,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#fglxbomdjc .gt_empty_group_heading {
+#ciiuuufrnt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -814,15 +813,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#fglxbomdjc .gt_from_md > :first-child {
+#ciiuuufrnt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fglxbomdjc .gt_from_md > :last-child {
+#ciiuuufrnt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fglxbomdjc .gt_row {
+#ciiuuufrnt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -841,7 +840,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#fglxbomdjc .gt_stub {
+#ciiuuufrnt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -854,7 +853,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#fglxbomdjc .gt_stub_row_group {
+#ciiuuufrnt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -868,15 +867,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#fglxbomdjc .gt_row_group_first td {
+#ciiuuufrnt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fglxbomdjc .gt_row_group_first th {
+#ciiuuufrnt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fglxbomdjc .gt_summary_row {
+#ciiuuufrnt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -886,16 +885,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#fglxbomdjc .gt_first_summary_row {
+#ciiuuufrnt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_first_summary_row.thick {
+#ciiuuufrnt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fglxbomdjc .gt_last_summary_row {
+#ciiuuufrnt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -905,7 +904,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_grand_summary_row {
+#ciiuuufrnt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -915,7 +914,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#fglxbomdjc .gt_first_grand_summary_row {
+#ciiuuufrnt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -925,7 +924,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_last_grand_summary_row_top {
+#ciiuuufrnt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -935,11 +934,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_striped {
+#ciiuuufrnt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fglxbomdjc .gt_table_body {
+#ciiuuufrnt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -948,7 +947,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_footnotes {
+#ciiuuufrnt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -962,7 +961,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_footnote {
+#ciiuuufrnt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -971,7 +970,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#fglxbomdjc .gt_sourcenotes {
+#ciiuuufrnt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -985,7 +984,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#fglxbomdjc .gt_sourcenote {
+#ciiuuufrnt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -993,72 +992,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#fglxbomdjc .gt_left {
+#ciiuuufrnt .gt_left {
   text-align: left;
 }
 
-#fglxbomdjc .gt_center {
+#ciiuuufrnt .gt_center {
   text-align: center;
 }
 
-#fglxbomdjc .gt_right {
+#ciiuuufrnt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fglxbomdjc .gt_font_normal {
+#ciiuuufrnt .gt_font_normal {
   font-weight: normal;
 }
 
-#fglxbomdjc .gt_font_bold {
+#ciiuuufrnt .gt_font_bold {
   font-weight: bold;
 }
 
-#fglxbomdjc .gt_font_italic {
+#ciiuuufrnt .gt_font_italic {
   font-style: italic;
 }
 
-#fglxbomdjc .gt_super {
+#ciiuuufrnt .gt_super {
   font-size: 65%;
 }
 
-#fglxbomdjc .gt_footnote_marks {
+#ciiuuufrnt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fglxbomdjc .gt_asterisk {
+#ciiuuufrnt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fglxbomdjc .gt_indent_1 {
+#ciiuuufrnt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fglxbomdjc .gt_indent_2 {
+#ciiuuufrnt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fglxbomdjc .gt_indent_3 {
+#ciiuuufrnt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fglxbomdjc .gt_indent_4 {
+#ciiuuufrnt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fglxbomdjc .gt_indent_5 {
+#ciiuuufrnt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fglxbomdjc .katex-display {
+#ciiuuufrnt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fglxbomdjc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ciiuuufrnt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1185,23 +1184,23 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
 </figcaption>
 <div aria-describedby="tbl-state-growth-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="rneatlrkmm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rneatlrkmm table {
+<div id="gtrvduwzky" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gtrvduwzky table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rneatlrkmm thead, #rneatlrkmm tbody, #rneatlrkmm tfoot, #rneatlrkmm tr, #rneatlrkmm td, #rneatlrkmm th {
+#gtrvduwzky thead, #gtrvduwzky tbody, #gtrvduwzky tfoot, #gtrvduwzky tr, #gtrvduwzky td, #gtrvduwzky th {
   border-style: none;
 }
 
-#rneatlrkmm p {
+#gtrvduwzky p {
   margin: 0;
   padding: 0;
 }
 
-#rneatlrkmm .gt_table {
+#gtrvduwzky .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1227,12 +1226,12 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-left-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_caption {
+#gtrvduwzky .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rneatlrkmm .gt_title {
+#gtrvduwzky .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1244,7 +1243,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-bottom-width: 0;
 }
 
-#rneatlrkmm .gt_subtitle {
+#gtrvduwzky .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1256,7 +1255,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-top-width: 0;
 }
 
-#rneatlrkmm .gt_heading {
+#gtrvduwzky .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1268,13 +1267,13 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-right-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_bottom_border {
+#gtrvduwzky .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_col_headings {
+#gtrvduwzky .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1289,7 +1288,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-right-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_col_heading {
+#gtrvduwzky .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1309,7 +1308,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   overflow-x: hidden;
 }
 
-#rneatlrkmm .gt_column_spanner_outer {
+#gtrvduwzky .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1321,15 +1320,15 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   padding-right: 4px;
 }
 
-#rneatlrkmm .gt_column_spanner_outer:first-child {
+#gtrvduwzky .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rneatlrkmm .gt_column_spanner_outer:last-child {
+#gtrvduwzky .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rneatlrkmm .gt_column_spanner {
+#gtrvduwzky .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1341,11 +1340,11 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   width: 100%;
 }
 
-#rneatlrkmm .gt_spanner_row {
+#gtrvduwzky .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rneatlrkmm .gt_group_heading {
+#gtrvduwzky .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1371,7 +1370,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   text-align: left;
 }
 
-#rneatlrkmm .gt_empty_group_heading {
+#gtrvduwzky .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1386,15 +1385,15 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   vertical-align: middle;
 }
 
-#rneatlrkmm .gt_from_md > :first-child {
+#gtrvduwzky .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rneatlrkmm .gt_from_md > :last-child {
+#gtrvduwzky .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rneatlrkmm .gt_row {
+#gtrvduwzky .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -1413,7 +1412,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   overflow-x: hidden;
 }
 
-#rneatlrkmm .gt_stub {
+#gtrvduwzky .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1426,7 +1425,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   padding-right: 5px;
 }
 
-#rneatlrkmm .gt_stub_row_group {
+#gtrvduwzky .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1440,15 +1439,15 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   vertical-align: top;
 }
 
-#rneatlrkmm .gt_row_group_first td {
+#gtrvduwzky .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rneatlrkmm .gt_row_group_first th {
+#gtrvduwzky .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rneatlrkmm .gt_summary_row {
+#gtrvduwzky .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1458,16 +1457,16 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   padding-right: 5px;
 }
 
-#rneatlrkmm .gt_first_summary_row {
+#gtrvduwzky .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_first_summary_row.thick {
+#gtrvduwzky .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rneatlrkmm .gt_last_summary_row {
+#gtrvduwzky .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1477,7 +1476,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-bottom-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_grand_summary_row {
+#gtrvduwzky .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1487,7 +1486,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   padding-right: 5px;
 }
 
-#rneatlrkmm .gt_first_grand_summary_row {
+#gtrvduwzky .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1497,7 +1496,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-top-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_last_grand_summary_row_top {
+#gtrvduwzky .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1507,11 +1506,11 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-bottom-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_striped {
+#gtrvduwzky .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rneatlrkmm .gt_table_body {
+#gtrvduwzky .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1520,7 +1519,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-bottom-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_footnotes {
+#gtrvduwzky .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1534,7 +1533,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-right-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_footnote {
+#gtrvduwzky .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1543,7 +1542,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   padding-right: 5px;
 }
 
-#rneatlrkmm .gt_sourcenotes {
+#gtrvduwzky .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1557,7 +1556,7 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   border-right-color: #D3D3D3;
 }
 
-#rneatlrkmm .gt_sourcenote {
+#gtrvduwzky .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1565,72 +1564,72 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
   padding-right: 5px;
 }
 
-#rneatlrkmm .gt_left {
+#gtrvduwzky .gt_left {
   text-align: left;
 }
 
-#rneatlrkmm .gt_center {
+#gtrvduwzky .gt_center {
   text-align: center;
 }
 
-#rneatlrkmm .gt_right {
+#gtrvduwzky .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rneatlrkmm .gt_font_normal {
+#gtrvduwzky .gt_font_normal {
   font-weight: normal;
 }
 
-#rneatlrkmm .gt_font_bold {
+#gtrvduwzky .gt_font_bold {
   font-weight: bold;
 }
 
-#rneatlrkmm .gt_font_italic {
+#gtrvduwzky .gt_font_italic {
   font-style: italic;
 }
 
-#rneatlrkmm .gt_super {
+#gtrvduwzky .gt_super {
   font-size: 65%;
 }
 
-#rneatlrkmm .gt_footnote_marks {
+#gtrvduwzky .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rneatlrkmm .gt_asterisk {
+#gtrvduwzky .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rneatlrkmm .gt_indent_1 {
+#gtrvduwzky .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rneatlrkmm .gt_indent_2 {
+#gtrvduwzky .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rneatlrkmm .gt_indent_3 {
+#gtrvduwzky .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rneatlrkmm .gt_indent_4 {
+#gtrvduwzky .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rneatlrkmm .gt_indent_5 {
+#gtrvduwzky .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rneatlrkmm .katex-display {
+#gtrvduwzky .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rneatlrkmm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gtrvduwzky div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1753,13 +1752,13 @@ Table&nbsp;1: Top 10 States by Net Population Growth Rate (2015-2024)
 <div aria-describedby="fig-ny-sankey-better-format-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div style="width:100%; margin-bottom:28px;">
 <div style="text-align:center; margin-bottom:6px; font-weight:700; font-size:16px; color:black;">Into New York</div>
-<div id="htmlwidget-a2f95af960f3dc8912a5" style="width:100%;height:332px;" class="sankeyNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a2f95af960f3dc8912a5">{"x":{"links":{"source":[0,1,2,3,4],"target":[5,5,5,5,5],"value":[156335,454409,610294,8332044,9278464]},"nodes":{"name":["DELAWARE","ALABAMA","COLORADO","ARKANSAS","ALASKA","NEW YORK"],"group":["DELAWARE","ALABAMA","COLORADO","ARKANSAS","ALASKA","NEW YORK"]},"options":{"NodeID":"name","NodeGroup":"group","LinkGroup":null,"colourScale":"d3.scaleOrdinal().domain([\"DELAWARE\",\"ALABAMA\",\"COLORADO\",\"ARKANSAS\",\"ALASKA\",\"NEW YORK\",\"WEST VIRGINIA\",\"NEW JERSEY\",\"VERMONT\",\"WISCONSIN\"]).range([\"#111111\",\"#4E79A7\",\"#F28E2B\",\"#59A14F\",\"#E15759\",\"#111111\",\"#EDC948\",\"#B07AA1\",\"#FF9DA7\",\"#9C755F\"])","fontSize":12,"fontFamily":null,"nodeWidth":36,"nodePadding":24,"units":"","margin":{"top":15,"right":140,"bottom":15,"left":20},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  d3.select(el).selectAll(\".link\")\n    .style(\"stroke-opacity\", 0.45)\n    .style(\"stroke\", \"#9a9a9a\");\n\n  d3.select(el).selectAll(\".node rect\")\n    .style(\"stroke\", \"#4f4f4f\")\n    .style(\"stroke-width\", \"0.6px\");\n\n  d3.select(el).selectAll(\".node text\")\n    .style(\"font-size\", \"11.5px\")\n    .style(\"font-family\", \"Arial, sans-serif\")\n    .style(\"fill\", \"black\");\n}\n","data":null}]}}</script>
+<div id="htmlwidget-d980bd67b95af76ccfbc" style="width:100%;height:332px;" class="sankeyNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d980bd67b95af76ccfbc">{"x":{"links":{"source":[0,1,2,3,4],"target":[5,5,5,5,5],"value":[156335,454409,610294,8332044,9278464]},"nodes":{"name":["DELAWARE","ALABAMA","COLORADO","ARKANSAS","ALASKA","NEW YORK"],"group":["DELAWARE","ALABAMA","COLORADO","ARKANSAS","ALASKA","NEW YORK"]},"options":{"NodeID":"name","NodeGroup":"group","LinkGroup":null,"colourScale":"d3.scaleOrdinal().domain([\"DELAWARE\",\"ALABAMA\",\"COLORADO\",\"ARKANSAS\",\"ALASKA\",\"NEW YORK\",\"WEST VIRGINIA\",\"NEW JERSEY\",\"VERMONT\",\"WISCONSIN\"]).range([\"#111111\",\"#4E79A7\",\"#F28E2B\",\"#59A14F\",\"#E15759\",\"#111111\",\"#EDC948\",\"#B07AA1\",\"#FF9DA7\",\"#9C755F\"])","fontSize":12,"fontFamily":null,"nodeWidth":36,"nodePadding":24,"units":"","margin":{"top":15,"right":140,"bottom":15,"left":20},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  d3.select(el).selectAll(\".link\")\n    .style(\"stroke-opacity\", 0.45)\n    .style(\"stroke\", \"#9a9a9a\");\n\n  d3.select(el).selectAll(\".node rect\")\n    .style(\"stroke\", \"#4f4f4f\")\n    .style(\"stroke-width\", \"0.6px\");\n\n  d3.select(el).selectAll(\".node text\")\n    .style(\"font-size\", \"11.5px\")\n    .style(\"font-family\", \"Arial, sans-serif\")\n    .style(\"fill\", \"black\");\n}\n","data":null}]}}</script>
 </div>
 <div style="width:100%;">
 <div style="text-align:center; margin-bottom:6px; font-weight:700; font-size:16px; color:black;">Out of New York</div>
-<div id="htmlwidget-3e47240250a8100b8f1a" style="width:100%;height:332px;" class="sankeyNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3e47240250a8100b8f1a">{"x":{"links":{"source":[0,0,0,0,0],"target":[1,2,3,4,5],"value":[3680,4441,5273,6548,8094]},"nodes":{"name":["NEW YORK","WEST VIRGINIA","NEW JERSEY","VERMONT","WISCONSIN","COLORADO"],"group":["NEW YORK","WEST VIRGINIA","NEW JERSEY","VERMONT","WISCONSIN","COLORADO"]},"options":{"NodeID":"name","NodeGroup":"group","LinkGroup":null,"colourScale":"d3.scaleOrdinal().domain([\"DELAWARE\",\"ALABAMA\",\"COLORADO\",\"ARKANSAS\",\"ALASKA\",\"NEW YORK\",\"WEST VIRGINIA\",\"NEW JERSEY\",\"VERMONT\",\"WISCONSIN\"]).range([\"#111111\",\"#4E79A7\",\"#F28E2B\",\"#59A14F\",\"#E15759\",\"#111111\",\"#EDC948\",\"#B07AA1\",\"#FF9DA7\",\"#9C755F\"])","fontSize":12,"fontFamily":null,"nodeWidth":36,"nodePadding":28,"units":"","margin":{"top":15,"right":140,"bottom":15,"left":20},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  d3.select(el).selectAll(\".link\")\n    .style(\"stroke-opacity\", 0.45)\n    .style(\"stroke\", \"#9a9a9a\");\n\n  d3.select(el).selectAll(\".node rect\")\n    .style(\"stroke\", \"#4f4f4f\")\n    .style(\"stroke-width\", \"0.6px\");\n\n  d3.select(el).selectAll(\".node text\")\n    .style(\"font-size\", \"11.5px\")\n    .style(\"font-family\", \"Arial, sans-serif\")\n    .style(\"fill\", \"black\");\n}\n","data":null}]}}</script>
+<div id="htmlwidget-b38c42c15be8300656c2" style="width:100%;height:332px;" class="sankeyNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b38c42c15be8300656c2">{"x":{"links":{"source":[0,0,0,0,0],"target":[1,2,3,4,5],"value":[3680,4441,5273,6548,8094]},"nodes":{"name":["NEW YORK","WEST VIRGINIA","NEW JERSEY","VERMONT","WISCONSIN","COLORADO"],"group":["NEW YORK","WEST VIRGINIA","NEW JERSEY","VERMONT","WISCONSIN","COLORADO"]},"options":{"NodeID":"name","NodeGroup":"group","LinkGroup":null,"colourScale":"d3.scaleOrdinal().domain([\"DELAWARE\",\"ALABAMA\",\"COLORADO\",\"ARKANSAS\",\"ALASKA\",\"NEW YORK\",\"WEST VIRGINIA\",\"NEW JERSEY\",\"VERMONT\",\"WISCONSIN\"]).range([\"#111111\",\"#4E79A7\",\"#F28E2B\",\"#59A14F\",\"#E15759\",\"#111111\",\"#EDC948\",\"#B07AA1\",\"#FF9DA7\",\"#9C755F\"])","fontSize":12,"fontFamily":null,"nodeWidth":36,"nodePadding":28,"units":"","margin":{"top":15,"right":140,"bottom":15,"left":20},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  d3.select(el).selectAll(\".link\")\n    .style(\"stroke-opacity\", 0.45)\n    .style(\"stroke\", \"#9a9a9a\");\n\n  d3.select(el).selectAll(\".node rect\")\n    .style(\"stroke\", \"#4f4f4f\")\n    .style(\"stroke-width\", \"0.6px\");\n\n  d3.select(el).selectAll(\".node text\")\n    .style(\"font-size\", \"11.5px\")\n    .style(\"font-family\", \"Arial, sans-serif\")\n    .style(\"fill\", \"black\");\n}\n","data":null}]}}</script>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ny-sankey-better-format-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1779,13 +1778,13 @@ Figure&nbsp;1: New York Migration Flows (2023-2024)
 <div aria-describedby="fig-nyc-metro-sankey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div style="width:100%; margin-bottom:30px;">
 <div style="text-align:center; margin-bottom:8px; font-weight:700; font-size:18px; color:black;">Into New York metro</div>
-<div id="htmlwidget-4e8897fa5474dbea3ea8" style="width:100%;height:361px;" class="sankeyNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4e8897fa5474dbea3ea8">{"x":{"links":{"source":[0,1,2,3,4],"target":[5,5,5,5,5],"value":[9492,9761,10019,11162,19600]},"nodes":{"name":["Poughkeepsie-Newburgh-MiddleTown, NY","Los Angeles","Boston","Washington","Philadelphia","New York metro"],"group":["Poughkeepsie-Newburgh-MiddleTown, NY","Los Angeles","Boston","Washington","Philadelphia","New York metro"]},"options":{"NodeID":"name","NodeGroup":"group","LinkGroup":null,"colourScale":"d3.scaleOrdinal().domain([\"Poughkeepsie-Newburgh-MiddleTown, NY\",\"Los Angeles\",\"Boston\",\"Washington\",\"Philadelphia\",\"New York metro\"]).range([\"#666666\",\"#4E79A7\",\"#F28E2B\",\"#59A14F\",\"#E15759\",\"#666666\"])","fontSize":12,"fontFamily":null,"nodeWidth":40,"nodePadding":28,"units":"","margin":{"top":10,"right":180,"bottom":10,"left":20},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  d3.select(el).selectAll(\".link\")\n    .style(\"stroke-opacity\", 0.45)\n    .style(\"stroke\", \"#9a9a9a\");\n\n  d3.select(el).selectAll(\".node rect\")\n    .style(\"stroke\", \"#4f4f4f\")\n    .style(\"stroke-width\", \"0.6px\");\n\n  d3.select(el).selectAll(\".node text\")\n    .style(\"font-size\", \"12px\")\n    .style(\"font-family\", \"Arial, sans-serif\")\n    .style(\"fill\", \"black\");\n}\n","data":null}]}}</script>
+<div id="htmlwidget-ad42030c051cfb5a57ab" style="width:100%;height:361px;" class="sankeyNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ad42030c051cfb5a57ab">{"x":{"links":{"source":[0,1,2,3,4],"target":[5,5,5,5,5],"value":[9492,9761,10019,11162,19600]},"nodes":{"name":["Poughkeepsie-Newburgh-MiddleTown, NY","Los Angeles","Boston","Washington","Philadelphia","New York metro"],"group":["Poughkeepsie-Newburgh-MiddleTown, NY","Los Angeles","Boston","Washington","Philadelphia","New York metro"]},"options":{"NodeID":"name","NodeGroup":"group","LinkGroup":null,"colourScale":"d3.scaleOrdinal().domain([\"Poughkeepsie-Newburgh-MiddleTown, NY\",\"Los Angeles\",\"Boston\",\"Washington\",\"Philadelphia\",\"New York metro\"]).range([\"#666666\",\"#4E79A7\",\"#F28E2B\",\"#59A14F\",\"#E15759\",\"#666666\"])","fontSize":12,"fontFamily":null,"nodeWidth":40,"nodePadding":28,"units":"","margin":{"top":10,"right":180,"bottom":10,"left":20},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  d3.select(el).selectAll(\".link\")\n    .style(\"stroke-opacity\", 0.45)\n    .style(\"stroke\", \"#9a9a9a\");\n\n  d3.select(el).selectAll(\".node rect\")\n    .style(\"stroke\", \"#4f4f4f\")\n    .style(\"stroke-width\", \"0.6px\");\n\n  d3.select(el).selectAll(\".node text\")\n    .style(\"font-size\", \"12px\")\n    .style(\"font-family\", \"Arial, sans-serif\")\n    .style(\"fill\", \"black\");\n}\n","data":null}]}}</script>
 </div>
 <div style="width:100%;">
 <div style="text-align:center; margin-bottom:8px; font-weight:700; font-size:18px; color:black;">Out of New York metro</div>
-<div id="htmlwidget-fd6085cadc7d2d73bfb4" style="width:100%;height:361px;" class="sankeyNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fd6085cadc7d2d73bfb4">{"x":{"links":{"source":[0,0,0,0,0],"target":[1,2,3,4,5],"value":[9492,9761,10019,11162,19600]},"nodes":{"name":["New York metro","Poughkeepsie-Newburgh-MiddleTown, NY","Los Angeles","Boston","Washington","Philadelphia"],"group":["New York metro","Poughkeepsie-Newburgh-MiddleTown, NY","Los Angeles","Boston","Washington","Philadelphia"]},"options":{"NodeID":"name","NodeGroup":"group","LinkGroup":null,"colourScale":"d3.scaleOrdinal().domain([\"Poughkeepsie-Newburgh-MiddleTown, NY\",\"Los Angeles\",\"Boston\",\"Washington\",\"Philadelphia\",\"New York metro\"]).range([\"#666666\",\"#4E79A7\",\"#F28E2B\",\"#59A14F\",\"#E15759\",\"#666666\"])","fontSize":12,"fontFamily":null,"nodeWidth":40,"nodePadding":28,"units":"","margin":{"top":10,"right":180,"bottom":10,"left":20},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  d3.select(el).selectAll(\".link\")\n    .style(\"stroke-opacity\", 0.45)\n    .style(\"stroke\", \"#9a9a9a\");\n\n  d3.select(el).selectAll(\".node rect\")\n    .style(\"stroke\", \"#4f4f4f\")\n    .style(\"stroke-width\", \"0.6px\");\n\n  d3.select(el).selectAll(\".node text\")\n    .style(\"font-size\", \"12px\")\n    .style(\"font-family\", \"Arial, sans-serif\")\n    .style(\"fill\", \"black\");\n}\n","data":null}]}}</script>
+<div id="htmlwidget-939f062c69c9c8682bfb" style="width:100%;height:361px;" class="sankeyNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-939f062c69c9c8682bfb">{"x":{"links":{"source":[0,0,0,0,0],"target":[1,2,3,4,5],"value":[9492,9761,10019,11162,19600]},"nodes":{"name":["New York metro","Poughkeepsie-Newburgh-MiddleTown, NY","Los Angeles","Boston","Washington","Philadelphia"],"group":["New York metro","Poughkeepsie-Newburgh-MiddleTown, NY","Los Angeles","Boston","Washington","Philadelphia"]},"options":{"NodeID":"name","NodeGroup":"group","LinkGroup":null,"colourScale":"d3.scaleOrdinal().domain([\"Poughkeepsie-Newburgh-MiddleTown, NY\",\"Los Angeles\",\"Boston\",\"Washington\",\"Philadelphia\",\"New York metro\"]).range([\"#666666\",\"#4E79A7\",\"#F28E2B\",\"#59A14F\",\"#E15759\",\"#666666\"])","fontSize":12,"fontFamily":null,"nodeWidth":40,"nodePadding":28,"units":"","margin":{"top":10,"right":180,"bottom":10,"left":20},"iterations":32,"sinksRight":true}},"evals":[],"jsHooks":{"render":[{"code":"\nfunction(el, x) {\n  d3.select(el).selectAll(\".link\")\n    .style(\"stroke-opacity\", 0.45)\n    .style(\"stroke\", \"#9a9a9a\");\n\n  d3.select(el).selectAll(\".node rect\")\n    .style(\"stroke\", \"#4f4f4f\")\n    .style(\"stroke-width\", \"0.6px\");\n\n  d3.select(el).selectAll(\".node text\")\n    .style(\"font-size\", \"12px\")\n    .style(\"font-family\", \"Arial, sans-serif\")\n    .style(\"fill\", \"black\");\n}\n","data":null}]}}</script>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nyc-metro-sankey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1882,23 +1881,23 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
 <p><strong>Q8.Which state had the highest amount of migration into your state? Of the people who moved out of your state, what was the most popular destination state?</strong></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="czzatjsfhe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#czzatjsfhe table {
+<div id="zahzxmptmc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zahzxmptmc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#czzatjsfhe thead, #czzatjsfhe tbody, #czzatjsfhe tfoot, #czzatjsfhe tr, #czzatjsfhe td, #czzatjsfhe th {
+#zahzxmptmc thead, #zahzxmptmc tbody, #zahzxmptmc tfoot, #zahzxmptmc tr, #zahzxmptmc td, #zahzxmptmc th {
   border-style: none;
 }
 
-#czzatjsfhe p {
+#zahzxmptmc p {
   margin: 0;
   padding: 0;
 }
 
-#czzatjsfhe .gt_table {
+#zahzxmptmc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1924,12 +1923,12 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-left-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_caption {
+#zahzxmptmc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#czzatjsfhe .gt_title {
+#zahzxmptmc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1941,7 +1940,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-bottom-width: 0;
 }
 
-#czzatjsfhe .gt_subtitle {
+#zahzxmptmc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1953,7 +1952,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-top-width: 0;
 }
 
-#czzatjsfhe .gt_heading {
+#zahzxmptmc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1965,13 +1964,13 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-right-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_bottom_border {
+#zahzxmptmc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_col_headings {
+#zahzxmptmc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1986,7 +1985,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-right-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_col_heading {
+#zahzxmptmc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2006,7 +2005,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   overflow-x: hidden;
 }
 
-#czzatjsfhe .gt_column_spanner_outer {
+#zahzxmptmc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2018,15 +2017,15 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 4px;
 }
 
-#czzatjsfhe .gt_column_spanner_outer:first-child {
+#zahzxmptmc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#czzatjsfhe .gt_column_spanner_outer:last-child {
+#zahzxmptmc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#czzatjsfhe .gt_column_spanner {
+#zahzxmptmc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2038,11 +2037,11 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   width: 100%;
 }
 
-#czzatjsfhe .gt_spanner_row {
+#zahzxmptmc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#czzatjsfhe .gt_group_heading {
+#zahzxmptmc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2068,7 +2067,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   text-align: left;
 }
 
-#czzatjsfhe .gt_empty_group_heading {
+#zahzxmptmc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2083,15 +2082,15 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   vertical-align: middle;
 }
 
-#czzatjsfhe .gt_from_md > :first-child {
+#zahzxmptmc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#czzatjsfhe .gt_from_md > :last-child {
+#zahzxmptmc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#czzatjsfhe .gt_row {
+#zahzxmptmc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2110,7 +2109,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   overflow-x: hidden;
 }
 
-#czzatjsfhe .gt_stub {
+#zahzxmptmc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2123,7 +2122,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 5px;
 }
 
-#czzatjsfhe .gt_stub_row_group {
+#zahzxmptmc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2137,15 +2136,15 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   vertical-align: top;
 }
 
-#czzatjsfhe .gt_row_group_first td {
+#zahzxmptmc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#czzatjsfhe .gt_row_group_first th {
+#zahzxmptmc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#czzatjsfhe .gt_summary_row {
+#zahzxmptmc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2155,16 +2154,16 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 5px;
 }
 
-#czzatjsfhe .gt_first_summary_row {
+#zahzxmptmc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_first_summary_row.thick {
+#zahzxmptmc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#czzatjsfhe .gt_last_summary_row {
+#zahzxmptmc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2174,7 +2173,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-bottom-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_grand_summary_row {
+#zahzxmptmc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2184,7 +2183,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 5px;
 }
 
-#czzatjsfhe .gt_first_grand_summary_row {
+#zahzxmptmc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2194,7 +2193,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-top-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_last_grand_summary_row_top {
+#zahzxmptmc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2204,11 +2203,11 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-bottom-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_striped {
+#zahzxmptmc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#czzatjsfhe .gt_table_body {
+#zahzxmptmc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2217,7 +2216,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-bottom-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_footnotes {
+#zahzxmptmc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2231,7 +2230,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-right-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_footnote {
+#zahzxmptmc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2240,7 +2239,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 5px;
 }
 
-#czzatjsfhe .gt_sourcenotes {
+#zahzxmptmc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2254,7 +2253,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-right-color: #D3D3D3;
 }
 
-#czzatjsfhe .gt_sourcenote {
+#zahzxmptmc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2262,72 +2261,72 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 5px;
 }
 
-#czzatjsfhe .gt_left {
+#zahzxmptmc .gt_left {
   text-align: left;
 }
 
-#czzatjsfhe .gt_center {
+#zahzxmptmc .gt_center {
   text-align: center;
 }
 
-#czzatjsfhe .gt_right {
+#zahzxmptmc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#czzatjsfhe .gt_font_normal {
+#zahzxmptmc .gt_font_normal {
   font-weight: normal;
 }
 
-#czzatjsfhe .gt_font_bold {
+#zahzxmptmc .gt_font_bold {
   font-weight: bold;
 }
 
-#czzatjsfhe .gt_font_italic {
+#zahzxmptmc .gt_font_italic {
   font-style: italic;
 }
 
-#czzatjsfhe .gt_super {
+#zahzxmptmc .gt_super {
   font-size: 65%;
 }
 
-#czzatjsfhe .gt_footnote_marks {
+#zahzxmptmc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#czzatjsfhe .gt_asterisk {
+#zahzxmptmc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#czzatjsfhe .gt_indent_1 {
+#zahzxmptmc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#czzatjsfhe .gt_indent_2 {
+#zahzxmptmc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#czzatjsfhe .gt_indent_3 {
+#zahzxmptmc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#czzatjsfhe .gt_indent_4 {
+#zahzxmptmc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#czzatjsfhe .gt_indent_5 {
+#zahzxmptmc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#czzatjsfhe .katex-display {
+#zahzxmptmc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#czzatjsfhe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zahzxmptmc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2416,23 +2415,23 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
 <p><strong>Q10.Are there any metro areas that have a particularly high connection to your state’s largest metro? (E.g., NYCers were over 15% of people moving into the Miami Metro area.)</strong></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="cqiqlpoixu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cqiqlpoixu table {
+<div id="biqgwcncdm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#biqgwcncdm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cqiqlpoixu thead, #cqiqlpoixu tbody, #cqiqlpoixu tfoot, #cqiqlpoixu tr, #cqiqlpoixu td, #cqiqlpoixu th {
+#biqgwcncdm thead, #biqgwcncdm tbody, #biqgwcncdm tfoot, #biqgwcncdm tr, #biqgwcncdm td, #biqgwcncdm th {
   border-style: none;
 }
 
-#cqiqlpoixu p {
+#biqgwcncdm p {
   margin: 0;
   padding: 0;
 }
 
-#cqiqlpoixu .gt_table {
+#biqgwcncdm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2458,12 +2457,12 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-left-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_caption {
+#biqgwcncdm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cqiqlpoixu .gt_title {
+#biqgwcncdm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2475,7 +2474,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-bottom-width: 0;
 }
 
-#cqiqlpoixu .gt_subtitle {
+#biqgwcncdm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2487,7 +2486,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-top-width: 0;
 }
 
-#cqiqlpoixu .gt_heading {
+#biqgwcncdm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2499,13 +2498,13 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-right-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_bottom_border {
+#biqgwcncdm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_col_headings {
+#biqgwcncdm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2520,7 +2519,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-right-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_col_heading {
+#biqgwcncdm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2540,7 +2539,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   overflow-x: hidden;
 }
 
-#cqiqlpoixu .gt_column_spanner_outer {
+#biqgwcncdm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2552,15 +2551,15 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 4px;
 }
 
-#cqiqlpoixu .gt_column_spanner_outer:first-child {
+#biqgwcncdm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cqiqlpoixu .gt_column_spanner_outer:last-child {
+#biqgwcncdm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cqiqlpoixu .gt_column_spanner {
+#biqgwcncdm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2572,11 +2571,11 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   width: 100%;
 }
 
-#cqiqlpoixu .gt_spanner_row {
+#biqgwcncdm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cqiqlpoixu .gt_group_heading {
+#biqgwcncdm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2602,7 +2601,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   text-align: left;
 }
 
-#cqiqlpoixu .gt_empty_group_heading {
+#biqgwcncdm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2617,15 +2616,15 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   vertical-align: middle;
 }
 
-#cqiqlpoixu .gt_from_md > :first-child {
+#biqgwcncdm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cqiqlpoixu .gt_from_md > :last-child {
+#biqgwcncdm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cqiqlpoixu .gt_row {
+#biqgwcncdm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2644,7 +2643,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   overflow-x: hidden;
 }
 
-#cqiqlpoixu .gt_stub {
+#biqgwcncdm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2657,7 +2656,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 5px;
 }
 
-#cqiqlpoixu .gt_stub_row_group {
+#biqgwcncdm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2671,15 +2670,15 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   vertical-align: top;
 }
 
-#cqiqlpoixu .gt_row_group_first td {
+#biqgwcncdm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cqiqlpoixu .gt_row_group_first th {
+#biqgwcncdm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cqiqlpoixu .gt_summary_row {
+#biqgwcncdm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2689,16 +2688,16 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 5px;
 }
 
-#cqiqlpoixu .gt_first_summary_row {
+#biqgwcncdm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_first_summary_row.thick {
+#biqgwcncdm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cqiqlpoixu .gt_last_summary_row {
+#biqgwcncdm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2708,7 +2707,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-bottom-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_grand_summary_row {
+#biqgwcncdm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2718,7 +2717,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 5px;
 }
 
-#cqiqlpoixu .gt_first_grand_summary_row {
+#biqgwcncdm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2728,7 +2727,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-top-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_last_grand_summary_row_top {
+#biqgwcncdm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2738,11 +2737,11 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-bottom-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_striped {
+#biqgwcncdm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cqiqlpoixu .gt_table_body {
+#biqgwcncdm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2751,7 +2750,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-bottom-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_footnotes {
+#biqgwcncdm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2765,7 +2764,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-right-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_footnote {
+#biqgwcncdm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2774,7 +2773,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 5px;
 }
 
-#cqiqlpoixu .gt_sourcenotes {
+#biqgwcncdm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2788,7 +2787,7 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   border-right-color: #D3D3D3;
 }
 
-#cqiqlpoixu .gt_sourcenote {
+#biqgwcncdm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2796,72 +2795,72 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
   padding-right: 5px;
 }
 
-#cqiqlpoixu .gt_left {
+#biqgwcncdm .gt_left {
   text-align: left;
 }
 
-#cqiqlpoixu .gt_center {
+#biqgwcncdm .gt_center {
   text-align: center;
 }
 
-#cqiqlpoixu .gt_right {
+#biqgwcncdm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cqiqlpoixu .gt_font_normal {
+#biqgwcncdm .gt_font_normal {
   font-weight: normal;
 }
 
-#cqiqlpoixu .gt_font_bold {
+#biqgwcncdm .gt_font_bold {
   font-weight: bold;
 }
 
-#cqiqlpoixu .gt_font_italic {
+#biqgwcncdm .gt_font_italic {
   font-style: italic;
 }
 
-#cqiqlpoixu .gt_super {
+#biqgwcncdm .gt_super {
   font-size: 65%;
 }
 
-#cqiqlpoixu .gt_footnote_marks {
+#biqgwcncdm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cqiqlpoixu .gt_asterisk {
+#biqgwcncdm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cqiqlpoixu .gt_indent_1 {
+#biqgwcncdm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cqiqlpoixu .gt_indent_2 {
+#biqgwcncdm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cqiqlpoixu .gt_indent_3 {
+#biqgwcncdm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cqiqlpoixu .gt_indent_4 {
+#biqgwcncdm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cqiqlpoixu .gt_indent_5 {
+#biqgwcncdm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cqiqlpoixu .katex-display {
+#biqgwcncdm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cqiqlpoixu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#biqgwcncdm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2916,7 +2915,6 @@ Figure&nbsp;6: States Where Net Migration Drives Largest Share of Population Gro
 </div>
 </div>
 <p><strong>A</strong> Among metro areas with the strongest ties to New York City, Trenton-Princeton, NJ had the highest share of movers from the NYC metro, followed by Poughkeepsie-Newburgh-Middletown, Bridgeport-Stamford-Norwalk, East Stroudsburg, and Kingston. This suggests that New York City’s strongest migration connections are mostly with nearby metro areas in the Northeast.</p>
-</section>
 </section>
 <section id="code-for-final-write-up" class="level2">
 <h2 class="anchored" data-anchor-id="code-for-final-write-up">Code for final write up</h2>
@@ -3208,23 +3206,23 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
 <span id="cb55-42"><a href="#cb55-42" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="ukiafkntum" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ukiafkntum table {
+<div id="fxltgmjjii" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fxltgmjjii table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ukiafkntum thead, #ukiafkntum tbody, #ukiafkntum tfoot, #ukiafkntum tr, #ukiafkntum td, #ukiafkntum th {
+#fxltgmjjii thead, #fxltgmjjii tbody, #fxltgmjjii tfoot, #fxltgmjjii tr, #fxltgmjjii td, #fxltgmjjii th {
   border-style: none;
 }
 
-#ukiafkntum p {
+#fxltgmjjii p {
   margin: 0;
   padding: 0;
 }
 
-#ukiafkntum .gt_table {
+#fxltgmjjii .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3250,12 +3248,12 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-left-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_caption {
+#fxltgmjjii .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ukiafkntum .gt_title {
+#fxltgmjjii .gt_title {
   color: #333333;
   font-size: 22px;
   font-weight: initial;
@@ -3267,7 +3265,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-bottom-width: 0;
 }
 
-#ukiafkntum .gt_subtitle {
+#fxltgmjjii .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3279,7 +3277,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-top-width: 0;
 }
 
-#ukiafkntum .gt_heading {
+#fxltgmjjii .gt_heading {
   background-color: #BFBFBF;
   text-align: center;
   border-bottom-color: #BFBFBF;
@@ -3291,13 +3289,13 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_bottom_border {
+#fxltgmjjii .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_col_headings {
+#fxltgmjjii .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #A6A6A6;
@@ -3312,7 +3310,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_col_heading {
+#fxltgmjjii .gt_col_heading {
   color: #333333;
   background-color: #BFBFBF;
   font-size: 16px;
@@ -3332,7 +3330,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   overflow-x: hidden;
 }
 
-#ukiafkntum .gt_column_spanner_outer {
+#fxltgmjjii .gt_column_spanner_outer {
   color: #333333;
   background-color: #BFBFBF;
   font-size: 16px;
@@ -3344,15 +3342,15 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   padding-right: 4px;
 }
 
-#ukiafkntum .gt_column_spanner_outer:first-child {
+#fxltgmjjii .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ukiafkntum .gt_column_spanner_outer:last-child {
+#fxltgmjjii .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ukiafkntum .gt_column_spanner {
+#fxltgmjjii .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #A6A6A6;
@@ -3364,11 +3362,11 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   width: 100%;
 }
 
-#ukiafkntum .gt_spanner_row {
+#fxltgmjjii .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ukiafkntum .gt_group_heading {
+#fxltgmjjii .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3394,7 +3392,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   text-align: left;
 }
 
-#ukiafkntum .gt_empty_group_heading {
+#fxltgmjjii .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #BFBFBF;
@@ -3409,15 +3407,15 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   vertical-align: middle;
 }
 
-#ukiafkntum .gt_from_md > :first-child {
+#fxltgmjjii .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ukiafkntum .gt_from_md > :last-child {
+#fxltgmjjii .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ukiafkntum .gt_row {
+#fxltgmjjii .gt_row {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 5px;
@@ -3436,7 +3434,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   overflow-x: hidden;
 }
 
-#ukiafkntum .gt_stub {
+#fxltgmjjii .gt_stub {
   color: #333333;
   background-color: #BFBFBF;
   font-size: 100%;
@@ -3449,7 +3447,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   padding-right: 5px;
 }
 
-#ukiafkntum .gt_stub_row_group {
+#fxltgmjjii .gt_stub_row_group {
   color: #333333;
   background-color: #BFBFBF;
   font-size: 100%;
@@ -3463,15 +3461,15 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   vertical-align: top;
 }
 
-#ukiafkntum .gt_row_group_first td {
+#fxltgmjjii .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ukiafkntum .gt_row_group_first th {
+#fxltgmjjii .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ukiafkntum .gt_summary_row {
+#fxltgmjjii .gt_summary_row {
   color: #333333;
   background-color: #BFBFBF;
   text-transform: inherit;
@@ -3481,16 +3479,16 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   padding-right: 5px;
 }
 
-#ukiafkntum .gt_first_summary_row {
+#fxltgmjjii .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_first_summary_row.thick {
+#fxltgmjjii .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ukiafkntum .gt_last_summary_row {
+#fxltgmjjii .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3500,7 +3498,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_grand_summary_row {
+#fxltgmjjii .gt_grand_summary_row {
   color: #333333;
   background-color: #BFBFBF;
   text-transform: inherit;
@@ -3510,7 +3508,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   padding-right: 5px;
 }
 
-#ukiafkntum .gt_first_grand_summary_row {
+#fxltgmjjii .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3520,7 +3518,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-top-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_last_grand_summary_row_top {
+#fxltgmjjii .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3530,11 +3528,11 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_striped {
+#fxltgmjjii .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ukiafkntum .gt_table_body {
+#fxltgmjjii .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3543,7 +3541,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_footnotes {
+#fxltgmjjii .gt_footnotes {
   color: #333333;
   background-color: #BFBFBF;
   border-bottom-style: none;
@@ -3557,7 +3555,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_footnote {
+#fxltgmjjii .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3566,7 +3564,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   padding-right: 5px;
 }
 
-#ukiafkntum .gt_sourcenotes {
+#fxltgmjjii .gt_sourcenotes {
   color: #333333;
   background-color: #BFBFBF;
   border-bottom-style: none;
@@ -3580,7 +3578,7 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ukiafkntum .gt_sourcenote {
+#fxltgmjjii .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3588,72 +3586,72 @@ Year 2030 - Total pop: 352,386,697 </code></pre>
   padding-right: 5px;
 }
 
-#ukiafkntum .gt_left {
+#fxltgmjjii .gt_left {
   text-align: left;
 }
 
-#ukiafkntum .gt_center {
+#fxltgmjjii .gt_center {
   text-align: center;
 }
 
-#ukiafkntum .gt_right {
+#fxltgmjjii .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ukiafkntum .gt_font_normal {
+#fxltgmjjii .gt_font_normal {
   font-weight: normal;
 }
 
-#ukiafkntum .gt_font_bold {
+#fxltgmjjii .gt_font_bold {
   font-weight: bold;
 }
 
-#ukiafkntum .gt_font_italic {
+#fxltgmjjii .gt_font_italic {
   font-style: italic;
 }
 
-#ukiafkntum .gt_super {
+#fxltgmjjii .gt_super {
   font-size: 65%;
 }
 
-#ukiafkntum .gt_footnote_marks {
+#fxltgmjjii .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ukiafkntum .gt_asterisk {
+#fxltgmjjii .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ukiafkntum .gt_indent_1 {
+#fxltgmjjii .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ukiafkntum .gt_indent_2 {
+#fxltgmjjii .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ukiafkntum .gt_indent_3 {
+#fxltgmjjii .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ukiafkntum .gt_indent_4 {
+#fxltgmjjii .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ukiafkntum .gt_indent_5 {
+#fxltgmjjii .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ukiafkntum .katex-display {
+#fxltgmjjii .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ukiafkntum div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fxltgmjjii div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

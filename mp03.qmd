@@ -8,7 +8,7 @@ format:
         code-fold: true
 ---
 
-## Introduction
+### Introduction
 
 Every decade the U.S. Census Bureau redraws the political map through congressional reapportionment, shifting House seats among the states based on how populations change. Most of the discussion focuses on births, deaths and international migration, but internal migration the movement of people across state lines quietly shapes these outcomes just as much.
 
