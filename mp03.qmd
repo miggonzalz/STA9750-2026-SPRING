@@ -636,29 +636,37 @@ htmltools::tagList(
 ```{r}
 #| label: fig-nyc-metro-sankey
 #| fig-cap: "New York Metro Migration Flows (2016-2020 ACS). Note: Excludes international migration flows to focus on U.S. metro-to-metro patterns."
-#| fig-subcap:
-#|   - "Top 5 metro areas moving into New York metro"
-#|   - "Top 5 metro areas receiving movers from New York metro"
-#| layout-ncol: 2
-#| fig-width: 14
-#| fig-height: 7
-#| out-width: "100%"
 #| echo: false
 #| warning: false
 #| message: false
+#| out-width: "100%"
 
 library(tidyverse)
 library(networkD3)
 library(htmlwidgets)
 library(htmltools)
 
-# Use your metro_flows data
 data <- metro_flows
 
-# Find exact NYC metro name
+# Find NYC metro name
 ny_metro_name <- data$metro_current[
   str_detect(data$metro_current, regex("New York|NYC", ignore_case = TRUE))
 ][1]
+
+# Shorten long metro labels so the Sankey itself gets more width
+short_metro <- function(x) {
+  x %>%
+    str_replace(",?\\s+Metro Area$", "") %>%
+    str_replace("New York-Newark-Jersey City, NY-NJ-PA", "New York") %>%
+    str_replace("Los Angeles-Long Beach-Anaheim, CA", "Los Angeles") %>%
+    str_replace("Philadelphia-Camden-Wilmington, PA-NJ-DE-MD", "Philadelphia") %>%
+    str_replace("Washington-Arlington-Alexandria, DC-VA-MD-WV", "Washington") %>%
+    str_replace("Boston-Cambridge-Newton, MA-NH", "Boston") %>%
+    str_replace("Poughkeepsie-Newburgh-Middletown, NY", "Poughkeepsie") %>%
+    str_replace("Bridgeport-Stamford-Norwalk, CT", "Bridgeport") %>%
+    str_replace("Miami-Fort Lauderdale-Pompano Beach, FL", "Miami") %>%
+    str_replace("Outside Metro Area within U.S. or Puerto Rico", "Outside metro")
+}
 
 # ----------------------------
 # 1) Top inbound metro areas
@@ -677,13 +685,14 @@ ny_in <- data %>%
   group_by(metro_1y) %>%
   summarise(value = sum(moved_in, na.rm = TRUE), .groups = "drop") %>%
   slice_max(value, n = 5, with_ties = FALSE) %>%
-  arrange(value) %>%
-  mutate(to = "New York metro") %>%
-  select(from = metro_1y, to, value)
+  arrange(desc(value)) %>%
+  mutate(from = short_metro(metro_1y),
+         to = "New York metro") %>%
+  select(from, to, value)
 
 nodes_in <- tibble(
-  name = c(ny_in$from, "New York metro"),
-  group = c(ny_in$from, "New York metro")
+  name = unique(c(ny_in$from, ny_in$to)),
+  group = unique(c(ny_in$from, ny_in$to))
 )
 
 links_in <- ny_in %>%
@@ -710,13 +719,14 @@ ny_out <- data %>%
   group_by(metro_current) %>%
   summarise(value = sum(moved_out, na.rm = TRUE), .groups = "drop") %>%
   slice_max(value, n = 5, with_ties = FALSE) %>%
-  arrange(value) %>%
-  mutate(from = "New York metro") %>%
-  select(from, to = metro_current, value)
+  arrange(desc(value)) %>%
+  mutate(from = "New York metro",
+         to = short_metro(metro_current)) %>%
+  select(from, to, value)
 
 nodes_out <- tibble(
-  name = c("New York metro", ny_out$to),
-  group = c("New York metro", ny_out$to)
+  name = unique(c(ny_out$from, ny_out$to)),
+  group = unique(c(ny_out$from, ny_out$to))
 )
 
 links_out <- ny_out %>%
@@ -727,12 +737,12 @@ links_out <- ny_out %>%
   )
 
 # ----------------------------
-# 3) Dynamic color scale for metros
+# 3) Dynamic color scale
 # ----------------------------
 all_metros <- unique(c(nodes_in$name, nodes_out$name))
 
 palette_vals <- c(
-  "#666666",  # New York metro (light gray)
+  "#666666",  # New York metro
   "#4E79A7",
   "#F28E2B",
   "#59A14F",
@@ -755,7 +765,7 @@ colour_scale <- paste0(
 )
 
 # ----------------------------
-# 4) Build sankeys WITH BETTER SPACING
+# 4) Build Sankeys
 # ----------------------------
 p_in <- sankeyNetwork(
   Links = as.data.frame(links_in),
@@ -766,12 +776,12 @@ p_in <- sankeyNetwork(
   NodeID = "name",
   NodeGroup = "group",
   colourScale = colour_scale,
-  fontSize = 11,
-  nodeWidth = 36,
-  nodePadding = 25,
-  width = 500,
-  height = 540,
-  margin = list(top = 15, right = 200, bottom = 15, left = 20),
+  fontSize = 15,
+  nodeWidth = 45,
+  nodePadding = 28,
+  width = "100%",
+  height = 520,
+  margin = list(top = 10, right = 20, bottom = 10, left = 20),
   sinksRight = TRUE
 )
 
@@ -784,17 +794,17 @@ p_out <- sankeyNetwork(
   NodeID = "name",
   NodeGroup = "group",
   colourScale = colour_scale,
-  fontSize = 11,
-  nodeWidth = 36,
+  fontSize = 15,
+  nodeWidth = 45,
   nodePadding = 28,
-  width = 420,
-  height = 500,
-  margin = list(top = 15, right = 140, bottom = 15, left = 20),
+  width = "100%",
+  height = 520,
+  margin = list(top = 10, right = 20, bottom = 10, left = 20),
   sinksRight = TRUE
 )
 
 # ----------------------------
-# 5) Styling + titles + centering
+# 5) Styling
 # ----------------------------
 style_sankey <- '
 function(el, x) {
@@ -807,33 +817,40 @@ function(el, x) {
     .style("stroke-width", "0.6px");
 
   d3.select(el).selectAll(".node text")
-    .style("font-size", "11px")
+    .style("font-size", "13px")
     .style("font-family", "Arial, sans-serif")
     .style("fill", "black");
 }
 '
 
 p_in <- p_in %>%
-  onRender(style_sankey) %>%
-  prependContent(
-    tags$div(
-      style = "text-align:center; margin-bottom:6px; font-weight:700; font-size:16px; color:black;",
-      "Into New York metro"
-    )
-  )
+  onRender(style_sankey)
 
 p_out <- p_out %>%
-  onRender(style_sankey) %>%
-  prependContent(
+  onRender(style_sankey)
+
+# ----------------------------
+# 6) Full-width stacked output
+# ----------------------------
+browsable(
+  tagList(
     tags$div(
-      style = "text-align:center; margin-bottom:6px; font-weight:700; font-size:16px; color:black;",
-      "Out of New York metro"
+      style = "width:100%; margin-bottom:30px;",
+      tags$div(
+        style = "text-align:center; margin-bottom:8px; font-weight:700; font-size:18px;",
+        "Into New York metro"
+      ),
+      p_in
+    ),
+    tags$div(
+      style = "width:100%;",
+      tags$div(
+        style = "text-align:center; margin-bottom:8px; font-weight:700; font-size:18px;",
+        "Out of New York metro"
+      ),
+      p_out
     )
   )
-
-htmltools::tagList(
-  tags$div(style = "display:flex; justify-content:center; width:100%;", p_in),
-  tags$div(style = "display:flex; justify-content:center; width:100%;", p_out)
 )
 ```
 
