@@ -1501,7 +1501,7 @@ final_apportionment <- initial_states %>%
 
 ny_final <- final_apportionment %>% filter(state == "NEW YORK")
 
-cat("\n🎯 FINAL GOVERNOR'S BRIEFING - PROFESSOR'S EXACT MODEL\n")
+cat("\n🎯 FINAL GOVERNOR'S BRIEFING - Projection MODEL\n")
 cat("════════════════════════════════════════════════════════════\n")
 cat("NEW YORK STATE 2032 PROJECTION\n")
 cat("Population (2030):", comma(ny_final$population), "\n")
@@ -1515,7 +1515,7 @@ final_apportionment %>%
     population = comma(population),
     pop_per_district = comma(pop_per_district)
   ) %>%
-  print(n = Inf)
+ # print(n = Inf)
 
 ```
 To reach our goal of increasing internal migration and strengthening New York’s political influence, the campaign should focus on the metro areas that already have the strongest connection to the New York City metro. These include Trenton-Princeton, Poughkeepsie-Newburgh-Middletown, Bridgeport-Stamford-Norwalk, East Stroudsburg, and Kingston. Most of these places are in the Northeast and already have ties to New York through commuting, family networks, or past migration, which makes them promising targets. People in these metros are also more likely to already know New York well, so the campaign can build on that familiarity and focus on jobs, housing, and opportunity.
