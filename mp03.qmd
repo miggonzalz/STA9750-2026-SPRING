@@ -14,9 +14,9 @@ Every decade the U.S. Census Bureau redraws the political map through congressio
 
 In this mini project I use American Community Survey (ACS) 1 year data to estimate where Americans are moving within the country. From those migration flows I build a simple demographic model that projects state level populations over the next ten years and explores how those changes might translate into gains or losses of congressional seats. The aim is to connect the everyday decisions of people moving from one state to another to the bigger picture of how political power shifts across the U.S.
 
-### Data Acquisition {.tabset .tabset-pills .unnumbered}
-
-### State Population and Birth Information {.unnumbered}
+### Data Acquisition {-}
+::: {.panel-tabset .nav-pills}
+### State Population and Birth Information
 ```{r}
 library(tidyverse)
 library(tidycensus)
@@ -61,7 +61,7 @@ state_pop_df <- map_dfr(YEARS, get_state_pop_year)
 This table represents the baseline state population tables which contains the total population estimates for each state and U.S territories.Due to the non-release of the 2020 1-year ACS report, the baseline population tables **excludes 2020** and instead uses the ACS-1 estimates for 2015-2019 and 2021-2024.
 
 
-### 2024 migration data aquisition {.unnumbered}
+### 2024 migration data aquisition 
 ```{r}
 library(tidyverse)
 library(readxl)
@@ -148,7 +148,7 @@ mig_2024 <- state_to_state_migration_2024()
 ```
 I stored the 2024 state-to-state migration flows in mig_2024, with columns state_current, state_1y, population, year_current = 2024, and year_1y = 2023. Each row represents the number of people who moved or remained between two states from 2023 to 2024.
 
-### 2023 migration data aquisition {.unnumbered}
+### 2023 migration data aquisition 
 
 ```{r task3, cache=TRUE}
 library(tidyverse)
@@ -207,7 +207,7 @@ cat("Stayers:", sum(migration_2023$state_current == migration_2023$state_1y), "\
 
 I stored the 2023 state-to-state migration flows in mig_2023, with columns state_current, state_1y, population, year_current = 2023, and year_1y = 2022. Each row represents the number of people who moved or remained between two states from 2022 to 2023.
 
-### Combining 2023 and 2024 data {.unnumbered}
+### Combining 2023 and 2024 data 
 ```{r}
 # Task 4: Combine your 2023 + 2024 functions
 state_to_state_migration <- function() {
@@ -235,7 +235,7 @@ cat("Expected: ~5,000 rows x 5 columns\n")
 ```
 
 
-### Metro-to-Metro Migration Flows {.unnumbered}
+### Metro-to-Metro Migration Flows
 
 ```{r task5}
 library(tidyverse)
@@ -354,7 +354,7 @@ metro_flows %>%
   )
 ```
 
-
+::: 
 
 
 
@@ -448,13 +448,10 @@ The states with the highest population growth rates over the past decade were Id
 ```{r}
 #| label: fig-ny-sankey-better-format
 #| fig-cap: "New York Migration Flows (2023-2024)"
-#| fig-subcap:
-#|   - "Top 5 states moving into New York"
-#|   - "Top 5 states leaving New York"
-#| layout-ncol: 2
 #| echo: false
 #| warning: false
 #| message: false
+#| out-width: "100%"
 
 library(tidyverse)
 library(networkD3)
@@ -463,17 +460,14 @@ library(htmltools)
 
 migration_data <- state_to_state_migration()
 
-# ----------------------------
-# 1) Inbound flows
-# ----------------------------
 ny_in <- migration_data %>%
   filter(state_current == "NEW YORK", state_1y != "NEW YORK") %>%
   group_by(state_1y) %>%
   summarise(value = sum(population, na.rm = TRUE), .groups = "drop") %>%
   slice_max(value, n = 5, with_ties = FALSE) %>%
   arrange(value) %>%
-  mutate(to = "NEW YORK") %>%
-  select(from = state_1y, to, value)
+  mutate(from = state_1y, to = "NEW YORK") %>%
+  select(from, to, value)
 
 nodes_in <- tibble(
   name = c(ny_in$from, "NEW YORK"),
@@ -487,17 +481,14 @@ links_in <- ny_in %>%
     value = value
   )
 
-# ----------------------------
-# 2) Outbound flows
-# ----------------------------
 ny_out <- migration_data %>%
   filter(state_1y == "NEW YORK", state_current != "NEW YORK") %>%
   group_by(state_current) %>%
   summarise(value = sum(population, na.rm = TRUE), .groups = "drop") %>%
   slice_max(value, n = 5, with_ties = FALSE) %>%
   arrange(value) %>%
-  mutate(from = "NEW YORK") %>%
-  select(from, to = state_current, value)
+  mutate(from = "NEW YORK", to = state_current) %>%
+  select(from, to, value)
 
 nodes_out <- tibble(
   name = c("NEW YORK", ny_out$to),
@@ -511,23 +502,12 @@ links_out <- ny_out %>%
     value = value
   )
 
-# ----------------------------
-# 3) Dynamic color scale
-# ----------------------------
 all_states <- unique(c(nodes_in$name, nodes_out$name))
 
 palette_vals <- c(
-  "#111111",  # NEW YORK
-  "#4E79A7",
-  "#F28E2B",
-  "#59A14F",
-  "#E15759",
-  "#76B7B2",
-  "#EDC948",
-  "#B07AA1",
-  "#FF9DA7",
-  "#9C755F",
-  "#BAB0AC"
+  "#111111",
+  "#4E79A7", "#F28E2B", "#59A14F", "#E15759", "#76B7B2",
+  "#EDC948", "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC"
 )
 
 state_colors <- setNames(rep_len(palette_vals, length(all_states)), all_states)
@@ -539,48 +519,6 @@ colour_scale <- paste0(
   '.range([', paste(sprintf('"%s"', unname(state_colors)), collapse = ","), '])'
 )
 
-# ----------------------------
-# 4) Build sankeys
-# ----------------------------
-p_in <- sankeyNetwork(
-  Links = as.data.frame(links_in),
-  Nodes = as.data.frame(nodes_in),
-  Source = "source",
-  Target = "target",
-  Value = "value",
-  NodeID = "name",
-  NodeGroup = "group",
-  colourScale = colour_scale,
-  fontSize = 12,
-  nodeWidth = 36,
-  nodePadding = 24,
-  width = 500,
-  height = 520,
-  margin = list(top = 15, right = 130, bottom = 15, left = 20),
-  sinksRight = TRUE
-)
-
-p_out <- sankeyNetwork(
-  Links = as.data.frame(links_out),
-  Nodes = as.data.frame(nodes_out),
-  Source = "source",
-  Target = "target",
-  Value = "value",
-  NodeID = "name",
-  NodeGroup = "group",
-  colourScale = colour_scale,
-  fontSize = 12,
-  nodeWidth = 36,
-  nodePadding = 28,
-  width = 500,
-  height = 520,
-  margin = list(top = 15, right = 130, bottom = 15, left = 20),
-  sinksRight = TRUE
-)
-
-# ----------------------------
-# 5) Styling
-# ----------------------------
 style_sankey <- '
 function(el, x) {
   d3.select(el).selectAll(".link")
@@ -598,8 +536,23 @@ function(el, x) {
 }
 '
 
-p_in <- p_in %>%
-  onRender(style_sankey) %>%
+p_in <- sankeyNetwork(
+  Links = as.data.frame(links_in),
+  Nodes = as.data.frame(nodes_in),
+  Source = "source",
+  Target = "target",
+  Value = "value",
+  NodeID = "name",
+  NodeGroup = "group",
+  colourScale = colour_scale,
+  fontSize = 12,
+  nodeWidth = 36,
+  nodePadding = 24,
+  width = 900,
+  height = 460,
+  margin = list(top = 15, right = 140, bottom = 15, left = 20),
+  sinksRight = TRUE
+) %>% onRender(style_sankey) %>%
   prependContent(
     tags$div(
       style = "text-align:center; margin-bottom:6px; font-weight:700; font-size:16px; color:black;",
@@ -607,8 +560,23 @@ p_in <- p_in %>%
     )
   )
 
-p_out <- p_out %>%
-  onRender(style_sankey) %>%
+p_out <- sankeyNetwork(
+  Links = as.data.frame(links_out),
+  Nodes = as.data.frame(nodes_out),
+  Source = "source",
+  Target = "target",
+  Value = "value",
+  NodeID = "name",
+  NodeGroup = "group",
+  colourScale = colour_scale,
+  fontSize = 12,
+  nodeWidth = 36,
+  nodePadding = 28,
+  width = 900,
+  height = 460,
+  margin = list(top = 15, right = 140, bottom = 15, left = 20),
+  sinksRight = TRUE
+) %>% onRender(style_sankey) %>%
   prependContent(
     tags$div(
       style = "text-align:center; margin-bottom:6px; font-weight:700; font-size:16px; color:black;",
@@ -616,23 +584,19 @@ p_out <- p_out %>%
     )
   )
 
-htmltools::tagList(
-  tags$div(
-    style = "display:flex; justify-content:center; width:100%;",
-    p_in
-  ),
-  tags$div(
-    style = "display:flex; justify-content:center; width:100%;",
-    p_out
+browsable(
+  tagList(
+    tags$div(style = "width:100%; margin-bottom:28px;", p_in),
+    tags$div(style = "width:100%;", p_out)
   )
 )
 ```
-
 **A** If I met someone who moved to New York State in the last year, they would have likely moved from Delaware. Alabama, Colorado, Arkansas, and Alaska. Conversely, if one of my friends were to move out of the NY state, they would likely move to West Virginia, New Jersey, Vermont, Wisconsin, or Colorado. 
 
 
 ### Migration into and out of New York City {.unnumbered}
 **Q3.If you meet someone who moved to New York City in the last year, what are the most likely metro areas they moved from? If one of your friends announces they are moving out of the city, where are they most likely to move?**
+
 ```{r}
 #| label: fig-nyc-metro-sankey
 #| fig-cap: "New York Metro Migration Flows (2016-2020 ACS). Note: Excludes international migration flows to focus on U.S. metro-to-metro patterns."
@@ -648,12 +612,10 @@ library(htmltools)
 
 data <- metro_flows
 
-# Find NYC metro name
 ny_metro_name <- data$metro_current[
   str_detect(data$metro_current, regex("New York|NYC", ignore_case = TRUE))
-][1]
+][11]
 
-# Shorten long metro labels so the Sankey itself gets more width
 short_metro <- function(x) {
   x %>%
     str_replace(",?\\s+Metro Area$", "") %>%
@@ -668,9 +630,6 @@ short_metro <- function(x) {
     str_replace("Outside Metro Area within U.S. or Puerto Rico", "Outside metro")
 }
 
-# ----------------------------
-# 1) Top inbound metro areas
-# ----------------------------
 ny_in <- data %>%
   filter(
     metro_current == ny_metro_name,
@@ -685,9 +644,8 @@ ny_in <- data %>%
   group_by(metro_1y) %>%
   summarise(value = sum(moved_in, na.rm = TRUE), .groups = "drop") %>%
   slice_max(value, n = 5, with_ties = FALSE) %>%
-  arrange(desc(value)) %>%
-  mutate(from = short_metro(metro_1y),
-         to = "New York metro") %>%
+  arrange(value) %>%
+  mutate(from = short_metro(metro_1y), to = "New York metro") %>%
   select(from, to, value)
 
 nodes_in <- tibble(
@@ -702,9 +660,6 @@ links_in <- ny_in %>%
     value = value
   )
 
-# ----------------------------
-# 2) Top outbound metro areas
-# ----------------------------
 ny_out <- data %>%
   filter(
     metro_1y == ny_metro_name,
@@ -719,9 +674,8 @@ ny_out <- data %>%
   group_by(metro_current) %>%
   summarise(value = sum(moved_out, na.rm = TRUE), .groups = "drop") %>%
   slice_max(value, n = 5, with_ties = FALSE) %>%
-  arrange(desc(value)) %>%
-  mutate(from = "New York metro",
-         to = short_metro(metro_current)) %>%
+  arrange(value) %>%
+  mutate(from = "New York metro", to = short_metro(metro_current)) %>%
   select(from, to, value)
 
 nodes_out <- tibble(
@@ -736,23 +690,12 @@ links_out <- ny_out %>%
     value = value
   )
 
-# ----------------------------
-# 3) Dynamic color scale
-# ----------------------------
 all_metros <- unique(c(nodes_in$name, nodes_out$name))
 
 palette_vals <- c(
-  "#666666",  # New York metro
-  "#4E79A7",
-  "#F28E2B",
-  "#59A14F",
-  "#E15759",
-  "#76B7B2",
-  "#EDC948",
-  "#B07AA1",
-  "#FF9DA7",
-  "#9C755F",
-  "#BAB0AC"
+  "#666666",
+  "#4E79A7", "#F28E2B", "#59A14F", "#E15759", "#76B7B2",
+  "#EDC948", "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC"
 )
 
 metro_colors <- setNames(rep_len(palette_vals, length(all_metros)), all_metros)
@@ -764,48 +707,6 @@ colour_scale <- paste0(
   '.range([', paste(sprintf('"%s"', unname(metro_colors)), collapse = ","), '])'
 )
 
-# ----------------------------
-# 4) Build Sankeys
-# ----------------------------
-p_in <- sankeyNetwork(
-  Links = as.data.frame(links_in),
-  Nodes = as.data.frame(nodes_in),
-  Source = "source",
-  Target = "target",
-  Value = "value",
-  NodeID = "name",
-  NodeGroup = "group",
-  colourScale = colour_scale,
-  fontSize = 15,
-  nodeWidth = 45,
-  nodePadding = 28,
-  width = "100%",
-  height = 520,
-  margin = list(top = 10, right = 20, bottom = 10, left = 20),
-  sinksRight = TRUE
-)
-
-p_out <- sankeyNetwork(
-  Links = as.data.frame(links_out),
-  Nodes = as.data.frame(nodes_out),
-  Source = "source",
-  Target = "target",
-  Value = "value",
-  NodeID = "name",
-  NodeGroup = "group",
-  colourScale = colour_scale,
-  fontSize = 15,
-  nodeWidth = 45,
-  nodePadding = 28,
-  width = "100%",
-  height = 520,
-  margin = list(top = 10, right = 20, bottom = 10, left = 20),
-  sinksRight = TRUE
-)
-
-# ----------------------------
-# 5) Styling
-# ----------------------------
 style_sankey <- '
 function(el, x) {
   d3.select(el).selectAll(".link")
@@ -817,39 +718,64 @@ function(el, x) {
     .style("stroke-width", "0.6px");
 
   d3.select(el).selectAll(".node text")
-    .style("font-size", "13px")
+    .style("font-size", "12px")
     .style("font-family", "Arial, sans-serif")
     .style("fill", "black");
 }
 '
 
-p_in <- p_in %>%
-  onRender(style_sankey)
+p_in <- sankeyNetwork(
+  Links = as.data.frame(links_in),
+  Nodes = as.data.frame(nodes_in),
+  Source = "source",
+  Target = "target",
+  Value = "value",
+  NodeID = "name",
+  NodeGroup = "group",
+  colourScale = colour_scale,
+  fontSize = 12,
+  nodeWidth = 40,
+  nodePadding = 28,
+  width = 900,
+  height = 500,
+  margin = list(top = 10, right = 180, bottom = 10, left = 20),
+  sinksRight = TRUE
+) %>% onRender(style_sankey) %>%
+  prependContent(
+    tags$div(
+      style = "text-align:center; margin-bottom:8px; font-weight:700; font-size:18px; color:black;",
+      "Into New York metro"
+    )
+  )
 
-p_out <- p_out %>%
-  onRender(style_sankey)
+p_out <- sankeyNetwork(
+  Links = as.data.frame(links_out),
+  Nodes = as.data.frame(nodes_out),
+  Source = "source",
+  Target = "target",
+  Value = "value",
+  NodeID = "name",
+  NodeGroup = "group",
+  colourScale = colour_scale,
+  fontSize = 12,
+  nodeWidth = 40,
+  nodePadding = 28,
+  width = 900,
+  height = 500,
+  margin = list(top = 10, right = 180, bottom = 10, left = 20),
+  sinksRight = TRUE
+) %>% onRender(style_sankey) %>%
+  prependContent(
+    tags$div(
+      style = "text-align:center; margin-bottom:8px; font-weight:700; font-size:18px; color:black;",
+      "Out of New York metro"
+    )
+  )
 
-# ----------------------------
-# 6) Full-width stacked output
-# ----------------------------
 browsable(
   tagList(
-    tags$div(
-      style = "width:100%; margin-bottom:30px;",
-      tags$div(
-        style = "text-align:center; margin-bottom:8px; font-weight:700; font-size:18px;",
-        "Into New York metro"
-      ),
-      p_in
-    ),
-    tags$div(
-      style = "width:100%;",
-      tags$div(
-        style = "text-align:center; margin-bottom:8px; font-weight:700; font-size:18px;",
-        "Out of New York metro"
-      ),
-      p_out
-    )
+    tags$div(style = "width:100%; margin-bottom:30px;", p_in),
+    tags$div(style = "width:100%;", p_out)
   )
 )
 ```
@@ -1592,6 +1518,11 @@ final_apportionment %>%
   print(n = Inf)
 
 ```
+To reach our goal of increasing internal migration and strengthening New York’s political influence, the campaign should focus on the metro areas that already have the strongest connection to the New York City metro. These include Trenton-Princeton, Poughkeepsie-Newburgh-Middletown, Bridgeport-Stamford-Norwalk, East Stroudsburg, and Kingston. Most of these places are in the Northeast and already have ties to New York through commuting, family networks, or past migration, which makes them promising targets. People in these metros are also more likely to already know New York well, so the campaign can build on that familiarity and focus on jobs, housing, and opportunity.
+
+A good slogan for the campaign would be something practical and local, like “Come Back to New York” or “New York Still Has Room for You.” The point is to keep the message simple and focused on nearby metro areas with the strongest migration links, especially Philadelphia and the other Northeast metros that already send people to New York or receive people from New York. In other words, the campaign should target places where New York already has a relationship, because that gives the state the best chance of increasing in-migration in a realistic way.
+
+Based on the metro areas we are targeting and the strength of the existing migration links, we would hope to generate a modest but meaningful increase in net in-migration, on the order of roughly 10Kto 25K additional residents over several years. That would not change New York overnight, but it could still matter at the margin for population growth and congressional apportionment.
 
 
 
@@ -1601,8 +1532,10 @@ final_apportionment %>%
 #| message: false
 #| fig-width: 8
 #| fig-height: 5
+#| dpi: 96
 
 library(gganimate)
+library(gifski)
 
 ny_proj <- projections %>%
   filter(state == "NEW YORK") %>%
@@ -1616,7 +1549,7 @@ p_ny_anim <- ggplot(ny_proj, aes(x = year, y = pop_millions, group = 1)) +
   geom_line(color = "#1f78b4", linewidth = 1.2) +
   geom_point(color = "#1f78b4", size = 3) +
   scale_x_continuous(breaks = 2024:2030, limits = c(2024, 2030)) +
-  scale_y_continuous(labels = label_number(accuracy = 0.1, suffix = "M")) +
+  scale_y_continuous(labels = scales::label_number(accuracy = 0.1, suffix = "M")) +
   labs(
     title = "Projected New York Population",
     x = "Year",
@@ -1631,19 +1564,16 @@ p_ny_anim <- ggplot(ny_proj, aes(x = year, y = pop_millions, group = 1)) +
 
 animate(
   p_ny_anim,
+  nframes = 80,
+  fps = 10,
   width = 800,
   height = 500,
-  fps = 20,
-  duration = 6,
+  units = "px",
+  res = 96,
   renderer = gifski_renderer()
 )
 ```
 
-To reach our goal of increasing internal migration and strengthening New York’s political influence, the campaign should focus on the metro areas that already have the strongest connection to the New York City metro. These include Trenton-Princeton, Poughkeepsie-Newburgh-Middletown, Bridgeport-Stamford-Norwalk, East Stroudsburg, and Kingston. Most of these places are in the Northeast and already have ties to New York through commuting, family networks, or past migration, which makes them promising targets. People in these metros are also more likely to already know New York well, so the campaign can build on that familiarity and focus on jobs, housing, and opportunity.
-
-A good slogan for the campaign would be something practical and local, like “Come Back to New York” or “New York Still Has Room for You.” The point is to keep the message simple and focused on nearby metro areas with the strongest migration links, especially Philadelphia and the other Northeast metros that already send people to New York or receive people from New York. In other words, the campaign should target places where New York already has a relationship, because that gives the state the best chance of increasing in-migration in a realistic way.
-
-Based on the metro areas we are targeting and the strength of the existing migration links, we would hope to generate a modest but meaningful increase in net in-migration, on the order of roughly 10Kto 25K additional residents over several years. That would not change New York overnight, but it could still matter at the margin for population growth and congressional apportionment.
 
 ::: {.callout-note title="AI Usage Statement" collapse="true"}
 
