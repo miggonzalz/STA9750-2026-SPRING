@@ -16,7 +16,7 @@ In this mini project I use American Community Survey (ACS) 1 year data to estima
 
 ### Data Acquisition {.tabset .tabset-pills .unnumbered}
 
-### State Population and Birth Information 
+### State Population and Birth Information {.unnumbered}
 ```{r}
 library(tidyverse)
 library(tidycensus)
@@ -148,15 +148,6 @@ mig_2024 <- state_to_state_migration_2024()
 ```
 I stored the 2024 state-to-state migration flows in mig_2024, with columns state_current, state_1y, population, year_current = 2024, and year_1y = 2023. Each row represents the number of people who moved or remained between two states from 2023 to 2024.
 
-```{r}
-#
-
-#head(mig_2024)
-#nrow(mig_2024)
-```
-
-
-
 ### 2023 migration data aquisition {.unnumbered}
 
 ```{r task3, cache=TRUE}
@@ -215,8 +206,6 @@ cat("Stayers:", sum(migration_2023$state_current == migration_2023$state_1y), "\
 ```
 
 I stored the 2023 state-to-state migration flows in mig_2023, with columns state_current, state_1y, population, year_current = 2023, and year_1y = 2022. Each row represents the number of people who moved or remained between two states from 2022 to 2023.
-
-
 
 ### Combining 2023 and 2024 data {.unnumbered}
 ```{r}
@@ -368,7 +357,9 @@ metro_flows %>%
 
 
 
+
 ### Exploratory Data Analysis {.tabset .tabset-pills .unnumbered}
+
 
 ### States with the highest net population growth {.unnumbered}
 **Q1.Which states have had the highest net population growth rates over the past decade?**
@@ -637,9 +628,7 @@ htmltools::tagList(
 )
 ```
 
-**A**
-
-If I met someone who moved to New York State in the last year, they would have likely moved from Delaware. Alabama, Colorado, Arkansas, and Alaska. Conversely, if one of my friends were to move out of the NY state, they would likely move to West Virginia, New Jersey, Vermont, Wisconsin, or Colorado. 
+**A** If I met someone who moved to New York State in the last year, they would have likely moved from Delaware. Alabama, Colorado, Arkansas, and Alaska. Conversely, if one of my friends were to move out of the NY state, they would likely move to West Virginia, New Jersey, Vermont, Wisconsin, or Colorado. 
 
 
 ### Migration into and out of New York City {.unnumbered}
@@ -847,9 +836,8 @@ htmltools::tagList(
   tags$div(style = "display:flex; justify-content:center; width:100%;", p_out)
 )
 ```
-**A**
 
-If you meet someone who moved to New York City in the last year, they most likely came from the Philadelphia-Camden-Wilmington metro, followed by Boston-Cambridge-Newton, Washington-Arlington-Alexandria, Los Angeles-Long Beach-Anaheim, and Poughkeepsie-Newburgh-Middletown.
+**A**If you meet someone who moved to New York City in the last year, they most likely came from the Philadelphia-Camden-Wilmington metro, followed by Boston-Cambridge-Newton, Washington-Arlington-Alexandria, Los Angeles-Long Beach-Anaheim, and Poughkeepsie-Newburgh-Middletown.
 
 If someone is moving out of New York City, they are most likely heading to Philadelphia-Camden-Wilmington, then Boston-Cambridge-Newton, Washington-Arlington-Alexandria, Los Angeles-Long Beach-Anaheim, or Poughkeepsie-Newburgh-Middletown.
 
@@ -973,8 +961,8 @@ p3 <- ggplot(net_migration, aes(y = state_current, x = net, fill = direction)) +
 p1 + p2 + p3 + plot_layout(guides = "collect") & 
   theme(legend.position = "bottom")
 ```
-**A**
-The states with the highest in-migration were Colorado, Vermont, Hawaii, North Dakota, and South Carolina. The highest out-migration was in Alaska, Arkansas, Colorado, Alabama, and Delaware, while the biggest net migration gains were in Vermont, Colorado, and Hawaii.
+
+**A**The states with the highest in-migration were Colorado, Vermont, Hawaii, North Dakota, and South Carolina. The highest out-migration was in Alaska, Arkansas, Colorado, Alabama, and Delaware, while the biggest net migration gains were in Vermont, Colorado, and Hawaii.
 
 
 ### Migration patters at the metro level {.unnumbered}
@@ -1114,10 +1102,8 @@ p3 <- ggplot(net_migration, aes(y = metro_label, x = net)) +
 
 p1 + p2 + p3
 ```
-**A**
 
-
-The metro areas with the highest in-migration were Los Angeles-Long Beach-Anaheim, Dallas-Fort Worth-Arlington, New York-Newark-Jersey City, Washington-Arlington-Alexandria, and Phoenix-Mesa-Chandler. The metro areas with the highest net migration were Dallas-Fort Worth-Arlington, Woodlands-Sugar Land, Minneapolis-St. Paul-Bloomington, Atlanta-Sandy Springs-Alpharetta, and Phoenix-Mesa-Chandler.
+**A**The metro areas with the highest in-migration were Los Angeles-Long Beach-Anaheim, Dallas-Fort Worth-Arlington, New York-Newark-Jersey City, Washington-Arlington-Alexandria, and Phoenix-Mesa-Chandler. The metro areas with the highest net migration were Dallas-Fort Worth-Arlington, Woodlands-Sugar Land, Minneapolis-St. Paul-Bloomington, Atlanta-Sandy Springs-Alpharetta, and Phoenix-Mesa-Chandler.
 
 
 ### States with lowest in-migration {.unnumbered}
@@ -1204,8 +1190,8 @@ ggplot(q6_plot_data, aes(x = same_state_share, y = state_current)) +
     axis.ticks.y = element_blank()
   )
 ```
-**A**
-The states with the highest share of residents who lived there last year were Alabama, Puerto Rico, Alaska, Washington, and Oklahoma. In other words, these states had the lowest proportional in-migration, with Alabama at about 99.0% and Puerto Rico and Alaska both at 98.5%.
+
+**A** The states with the highest share of residents who lived there last year were Alabama, Puerto Rico, Alaska, Washington, and Oklahoma. In other words, these states had the lowest proportional in-migration, with Alabama at about 99.0% and Puerto Rico and Alaska both at 98.5%.
 
 
 ### Migration’s Share of the Growth {.unnumbered}
@@ -1294,8 +1280,8 @@ ggplot(q7_plot_data, aes(x = migration_growth_share, y = state_current)) +
     axis.ticks.y = element_blank()
   )
 ```
-**A**
-The state with the highest fraction of population growth coming from net internal migration was Vermont, at about 95.0%. After Vermont, the highest shares were Hawaii, Idaho, Colorado, and Iowa.
+
+**A** The state with the highest fraction of population growth coming from net internal migration was Vermont, at about 95.0%. After Vermont, the highest shares were Hawaii, Idaho, Colorado, and Iowa.
 
 ### Destination States and Migration Patterns {.unnumbered}
 **Q8.Which state had the highest amount of migration into your state? Of the people who moved out of your state, what was the most popular destination state?**
@@ -1363,8 +1349,6 @@ After excluding international migration, the Philadelphia-Camden-Wilmington metr
 cat("The largest metropolitan area in New York State is the New York City metropolitan area, also called the New York-Newark-Jersey City metro area.")
 ```
 
-
-**A**
 
 ### The Metro Network {.unnumbered}
 **Q10.Are there any metro areas that have a particularly high connection to your state’s largest metro? (E.g., NYCers were over 15% of people moving into the Miami Metro area.)**
@@ -1442,162 +1426,151 @@ Among metro areas with the strongest ties to New York City, Trenton-Princeton, N
 ## Final Insights and Deliverable
 
 ```{r}
-
 library(tidyverse)
 library(scales)
 
-# STEP 1-3: Fit 2023→2024 model ONLY (since we only have these flows)
-# 2024 data: where people live NOW (state_current), where they were 2023 (state_1y)
+valid_states <- c(state.name, "District of Columbia", "Puerto Rico") %>%
+  toupper()
 
-# National populations
-pop_2023_t1 <- migration_combined %>%
-  filter(year_current == 2024) %>%  # 2024 survey asking "where were you 2023?"
-  group_by(state_1y) %>%
-  summarise(pop_t1 = sum(population, na.rm = TRUE), .groups = "drop") %>%
-  filter(str_length(state_1y) <= 20, pop_t1 > 0)  # Clean state names
-
-pop_2024_t2 <- migration_combined %>%
+migration_2024 <- migration_combined %>%
   filter(year_current == 2024) %>%
-  group_by(state_current) %>%
-  summarise(pop_t2 = sum(population, na.rm = TRUE), .groups = "drop") %>%
-  filter(str_length(state_current) <= 20, pop_t2 > 0)
+  mutate(
+    state_current = toupper(str_trim(state_current)),
+    state_1y = toupper(str_trim(state_1y))
+  ) %>%
+  filter(
+    state_current %in% valid_states,
+    state_1y %in% valid_states,
+    !is.na(population),
+    population > 0
+  )
 
-# STEP 1: National growth rate r = (P_t2 - P_t1)/P_t1
-national_t1 <- sum(pop_2023_t1$pop_t1)
-national_t2 <- sum(pop_2024_t2$pop_t2)
+pop_2023_t1 <- migration_2024 %>%
+  group_by(state_1y) %>%
+  summarise(pop_t1 = sum(population, na.rm = TRUE), .groups = "drop")
+
+pop_2024_t2 <- migration_2024 %>%
+  group_by(state_current) %>%
+  summarise(pop_t2 = sum(population, na.rm = TRUE), .groups = "drop")
+
+national_t1 <- sum(pop_2023_t1$pop_t1, na.rm = TRUE)
+national_t2 <- sum(pop_2024_t2$pop_t2, na.rm = TRUE)
 r_2024 <- (national_t2 - national_t1) / national_t1
 
-cat("National 2023 (t1):", scales::comma(national_t1), "\n")
-cat("National 2024 (t2):", scales::comma(national_t2), "\n")
+cat("National 2023 (t1):", comma(national_t1), "\n")
+cat("National 2024 (t2):", comma(national_t2), "\n")
 cat("r_2024 =", percent(r_2024, accuracy = 0.1), "\n")
 
-# STEP 2: Migration matrix M_ij = flow_ij / pop_t1_j for ALL state pairs
-flows_2024 <- migration_combined %>%
-  filter(year_current == 2024) %>%
+flows_2024 <- migration_2024 %>%
   group_by(state_current, state_1y) %>%
-  summarise(flow = sum(population, na.rm = TRUE), .groups = "drop") %>%
-  filter(str_length(state_current) <= 20, str_length(state_1y) <= 20)
+  summarise(flow = sum(population, na.rm = TRUE), .groups = "drop")
 
 M_2024 <- flows_2024 %>%
-  left_join(pop_2023_t1, by = c("state_1y" = "state_1y")) %>%
-  filter(!is.na(pop_t1)) %>%
+  left_join(pop_2023_t1, by = "state_1y") %>%
   mutate(M_ij_2024 = flow / pop_t1) %>%
   select(state_i = state_current, state_j = state_1y, M_ij_2024)
 
+pop_start <- pop_2024_t2 %>%
+  rename(state = state_current, population = pop_t2) %>%
+  arrange(state)
+
 cat("M_2024 pairs:", nrow(M_2024), "\n")
-
-# STEP 4: Since only 1 year available, use r_2024 and M_2024 directly
-r_avg <- r_2024
-M_avg <- M_2024
-
-# Starting populations for projections (2024)
-pop_start <- pop_2024_t2 %>% 
-  rename(state = state_current, population = pop_t2)
-
 cat("Starting states:", nrow(pop_start), "\n")
-cat("READY: r =", percent(r_avg, accuracy = 0.1), "\n")
 ```
 
 
 ```{r}
-# STEP 5: 6-Year Migration-Only Projections (2025-2030)
-# Professor's formula: P_it = P_it-1 + sum(M_ij * P_jt-1) - P_it-1
+states <- sort(unique(pop_start$state))
 
-states <- unique(pop_start$state)
-n_years <- 6
+M_mat <- M_2024 %>%
+  tidyr::complete(state_i = states, state_j = states, fill = list(M_ij_2024 = 0)) %>%
+  arrange(state_i, state_j) %>%
+  pivot_wider(names_from = state_j, values_from = M_ij_2024) %>%
+  arrange(state_i)
 
-# Initialize projection matrix (53 states × 6 years = 318 populations)
+M_mat_num <- M_mat %>%
+  select(-state_i) %>%
+  as.matrix()
+
+current_pop <- pop_start$population
+names(current_pop) <- pop_start$state
+
 projections <- tibble(
-  year = rep(2025:2030, each = length(states)),
-  state = rep(states, n_years)
-) %>%
-  left_join(pop_start, by = "state") %>%
-  arrange(state, year)
-
-# Current populations for iteration
-current_pop <- setNames(pop_start$population, pop_start$state)
+  year = 2024,
+  state = states,
+  population = current_pop[states]
+)
 
 cat("Starting projection loop...\n")
 
-for(year_idx in 1:n_years) {
-  next_pop <- numeric(length(states))
+for (yr in 2025:2030) {
+  next_pop <- as.numeric(M_mat_num %*% current_pop)
   names(next_pop) <- states
   
-  for(i in seq_along(states)) {
-    state_i <- states[i]
-    
-    # Migration inflow: sum(M_ij * P_jt-1 for all origin states j)
-    migration_in <- 0
-    
-    # For each possible origin state j
-    for(j in states) {
-      m_ij <- M_2024 %>%
-        filter(state_i == state_i, state_j == j) %>%
-        pull(M_ij_2024) %>%
-        first(default = 0)
-      
-      migration_in <- migration_in + m_ij * current_pop[j]
-    }
-    
-    # Since r = 0: P_it = P_it-1 + net_migration
-    next_pop[i] <- current_pop[state_i] + migration_in - current_pop[state_i]
-  }
+  projections <- bind_rows(
+    projections,
+    tibble(year = yr, state = states, population = next_pop)
+  )
   
-  # Store results for this year
-  year_projections <- projections %>% filter(year == 2024 + year_idx)
-  projections$population[projections$year == 2024 + year_idx] <- next_pop[year_projections$state]
-  
-  # Update for next iteration
   current_pop <- next_pop
-  
-  cat("Year", 2024 + year_idx, "- Total pop:", scales::comma(sum(next_pop)), "\n")
+  cat("Year", yr, "- Total pop:", comma(sum(next_pop, na.rm = TRUE)), "\n")
 }
 
-# Final 2030 populations
 pop_2030_professor <- projections %>%
   filter(year == 2030) %>%
   mutate(population = round(population)) %>%
   arrange(desc(population))
 
-cat("\n✅  MODEL COMPLETE:\n")
-cat("- 318 populations projected (53 states × 6 years)\n")
-cat("- 155 M_ij parameters used\n")
-cat("- Total calculations:", nrow(M_2024) * 6 * length(states), "\n")
-
+cat("\n✅ MODEL COMPLETE:\n")
+cat("-", nrow(projections), "projected populations\n")
+cat("-", nrow(M_2024), "M_ij parameters used\n")
 ```
 
 ```{r}
-# Apply Huntington-Hill method to professor's 2030 projections
 N_DISTRICTS <- 435
 MAX_SEATS <- 100
 
-final_apportionment <- pop_2030_professor %>%
+pop_2030_clean <- pop_2030_professor %>%
+  filter(state %in% valid_states, population > 0)
+
+initial_states <- pop_2030_clean %>%
+  mutate(n_districts = 1L)
+
+remaining_seats <- N_DISTRICTS - nrow(initial_states)
+
+priority_values <- pop_2030_clean %>%
   expand_grid(seats = 1:MAX_SEATS) %>%
+  mutate(priority = population / sqrt(seats * (seats + 1)))
+
+extra_seats <- priority_values %>%
+  slice_max(priority, n = remaining_seats, with_ties = FALSE) %>%
+  count(state, name = "extra_seats")
+
+final_apportionment <- initial_states %>%
+  left_join(extra_seats, by = "state") %>%
   mutate(
-    priority = population / sqrt(seats * (seats + 1)),
-    seats = as.integer(seats)
+    extra_seats = replace_na(extra_seats, 0L),
+    n_districts = n_districts + extra_seats,
+    pop_per_district = round(population / n_districts)
   ) %>%
-  slice_max(priority, n = N_DISTRICTS, with_ties = FALSE) %>%
-  count(state, name = "n_districts") %>%
-  left_join(pop_2030_professor, by = "state") %>%
-  mutate(pop_per_district = round(population / n_districts)) %>%
+  select(state, population, n_districts, pop_per_district) %>%
   arrange(desc(n_districts), desc(population))
 
-# GOVERNOR'S BRIEFING
 ny_final <- final_apportionment %>% filter(state == "NEW YORK")
 
 cat("\n🎯 FINAL GOVERNOR'S BRIEFING - PROFESSOR'S EXACT MODEL\n")
 cat("════════════════════════════════════════════════════════════\n")
 cat("NEW YORK STATE 2032 PROJECTION\n")
-cat("Population (2030):", scales::comma(ny_final$population), "\n")
+cat("Population (2030):", comma(ny_final$population), "\n")
 cat("Congressional Seats:", ny_final$n_districts, "\n")
-cat("Population per Seat:", scales::comma(ny_final$pop_per_district), "\n")
+cat("Population per Seat:", comma(ny_final$pop_per_district), "\n")
 cat("\nTop 5 States:\n")
+
 final_apportionment %>%
   slice_head(n = 5) %>%
   mutate(
-    population = scales::comma(population),
-    pop_per_district = scales::comma(pop_per_district)
+    population = comma(population),
+    pop_per_district = comma(pop_per_district)
   ) %>%
   print(n = Inf)
 
@@ -1605,9 +1578,55 @@ final_apportionment %>%
 
 
 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 8
+#| fig-height: 5
 
-Code related to the final deliverable of the assignment goes here. 
+library(gganimate)
 
+ny_proj <- projections %>%
+  filter(state == "NEW YORK") %>%
+  arrange(year) %>%
+  mutate(
+    year = as.numeric(year),
+    pop_millions = population / 1e6
+  )
+
+p_ny_anim <- ggplot(ny_proj, aes(x = year, y = pop_millions, group = 1)) +
+  geom_line(color = "#1f78b4", linewidth = 1.2) +
+  geom_point(color = "#1f78b4", size = 3) +
+  scale_x_continuous(breaks = 2024:2030, limits = c(2024, 2030)) +
+  scale_y_continuous(labels = label_number(accuracy = 0.1, suffix = "M")) +
+  labs(
+    title = "Projected New York Population",
+    x = "Year",
+    y = "Population in Millions"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  ) +
+  transition_reveal(year) +
+  ease_aes("linear")
+
+animate(
+  p_ny_anim,
+  width = 800,
+  height = 500,
+  fps = 20,
+  duration = 6,
+  renderer = gifski_renderer()
+)
+```
+
+To reach our goal of increasing internal migration and strengthening New York’s political influence, the campaign should focus on the metro areas that already have the strongest connection to the New York City metro. These include Trenton-Princeton, Poughkeepsie-Newburgh-Middletown, Bridgeport-Stamford-Norwalk, East Stroudsburg, and Kingston. Most of these places are in the Northeast and already have ties to New York through commuting, family networks, or past migration, which makes them promising targets. People in these metros are also more likely to already know New York well, so the campaign can build on that familiarity and focus on jobs, housing, and opportunity.
+
+A good slogan for the campaign would be something practical and local, like “Come Back to New York” or “New York Still Has Room for You.” The point is to keep the message simple and focused on nearby metro areas with the strongest migration links, especially Philadelphia and the other Northeast metros that already send people to New York or receive people from New York. In other words, the campaign should target places where New York already has a relationship, because that gives the state the best chance of increasing in-migration in a realistic way.
+
+Based on the metro areas we are targeting and the strength of the existing migration links, we would hope to generate a modest but meaningful increase in net in-migration, on the order of roughly 10Kto 25K additional residents over several years. That would not change New York overnight, but it could still matter at the margin for population growth and congressional apportionment.
 
 ::: {.callout-note title="AI Usage Statement" collapse="true"}
 
