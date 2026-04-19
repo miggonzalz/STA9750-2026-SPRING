@@ -1366,7 +1366,7 @@ Among metro areas with the strongest ties to New York City, Trenton-Princeton, N
 
 
 
-## Final Insights and Deliverable
+## Code for final write up
 
 ```{r}
 library(tidyverse)
@@ -1470,6 +1470,12 @@ cat("-", nrow(M_2024), "M_ij parameters used\n")
 ```
 
 ```{r}
+eval = TRUE
+
+library(dplyr)
+library(gt)
+library(scales)
+
 N_DISTRICTS <- 435
 MAX_SEATS <- 100
 
@@ -1507,17 +1513,52 @@ cat("NEW YORK STATE 2032 PROJECTION\n")
 cat("Population (2030):", comma(ny_final$population), "\n")
 cat("Congressional Seats:", ny_final$n_districts, "\n")
 cat("Population per Seat:", comma(ny_final$pop_per_district), "\n")
-cat("\nTop 5 States:\n")
 
-final_apportionment %>%
+top5_clean <- final_apportionment %>%
   slice_head(n = 5) %>%
-  mutate(
-    population = comma(population),
-    pop_per_district = comma(pop_per_district)
-  ) %>%
- # print(n = Inf)
+  transmute(
+    State = state,
+    Seats = n_districts,
+    Population = ifelse(
+      population >= 1e6,
+      paste0(round(population / 1e6, 1), "MM"),
+      comma(population)
+    ),
+    `Pop per Seat` = ifelse(
+      pop_per_district >= 1e3,
+      paste0(round(pop_per_district / 1e3), "K"),
+      comma(pop_per_district)
+    )
+  )
 
+top5_clean %>%
+  gt() %>%
+  tab_header(
+    title = md("**Projected 2032 Congressional Apportionment: Top 5 States**")
+  ) %>%
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) %>%
+  tab_options(
+    table.background.color = "#bfbfbf",
+    heading.background.color = "#bfbfbf",
+    column_labels.background.color = "#bfbfbf",
+    table.font.size = px(16),
+    heading.title.font.size = px(22),
+    heading.align = "center",
+    column_labels.font.weight = "normal",
+    column_labels.font.size = px(16),
+    data_row.padding = px(10),
+    table.border.top.color = "black",
+    table.border.bottom.color = "black",
+    table_body.hlines.color = "#a6a6a6",
+    column_labels.border.top.color = "#a6a6a6",
+    column_labels.border.bottom.color = "#a6a6a6"
+  )
 ```
+
+## Final Wite up
 To reach our goal of increasing internal migration and strengthening New York’s political influence, the campaign should focus on the metro areas that already have the strongest connection to the New York City metro. These include Trenton-Princeton, Poughkeepsie-Newburgh-Middletown, Bridgeport-Stamford-Norwalk, East Stroudsburg, and Kingston. Most of these places are in the Northeast and already have ties to New York through commuting, family networks, or past migration, which makes them promising targets. People in these metros are also more likely to already know New York well, so the campaign can build on that familiarity and focus on jobs, housing, and opportunity.
 
 A good slogan for the campaign would be something practical and local, like “Come Back to New York” or “New York Still Has Room for You.” The point is to keep the message simple and focused on nearby metro areas with the strongest migration links, especially Philadelphia and the other Northeast metros that already send people to New York or receive people from New York. In other words, the campaign should target places where New York already has a relationship, because that gives the state the best chance of increasing in-migration in a realistic way.
