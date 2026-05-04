@@ -18,6 +18,10 @@ website:
         href: mp02.qmd
       - text: "MP03"        
         href: mp03.qmd
+      - text: "MP04"        
+        href: mp04.qmd     
+      - text: "Individual Report"        
+        href: individual_report.qmd
 execute:
   warning: false
   message: false

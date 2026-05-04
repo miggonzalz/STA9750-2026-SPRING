@@ -1,0 +1,872 @@
+
+---
+title: "Mini-Project 04 - Going for the Gold"
+author: "miggonzalz"
+editor:
+    mode: source
+format:
+    html:
+        code-fold: true
+---
+
+## Introduction
+
+In this mini-project, I combine web scraping, data cleaning, data transformation, and geospatial visualization to study Olympic sports data. Using Olympedia as my primary source, I build a tidy dataset of Olympic editions, disciplines, and medal results, then map medal totals to reveal global patterns in Olympic success.
+
+### Data Acquisition and Preparation {-}
+::: {.panel-tabset .nav-pills}
+
+### Loading Packages and Caching
+```{r}
+# This chunk loads the required packages and defines helper functions for caching Olympedia pages and converting Roman numerals to integers.
+library(tidyverse)
+library(rvest)
+library(xml2)
+library(stringr)
+library(fs)
+library(purrr)
+
+slow_download <- purrr::slowly(
+  download.file,
+  purrr::rate_delay(pause = 5)
+)
+
+read_olympedia <- function(url, ...){
+  if(stringr::str_starts(url, "/")) {
+    url <- stringr::str_remove(url, "^/")
+  }
+
+  cache_dir <- fs::path("data", "mp04", "olympedia_cache")
+  if(!fs::dir_exists(cache_dir)) fs::dir_create(cache_dir, recurse = TRUE)
+
+  cache_path <- fs::path(
+    cache_dir,
+    url |> as.character() |> stringr::str_replace_all("/", "_")
+  )
+
+  if(!fs::file_exists(cache_path)){
+    src_url <- paste0("https://www.olympedia.org/", url)
+    slow_download(src_url, cache_path, mode = "wb")
+  }
+
+  rvest::read_html(cache_path)
+}
+
+roman_to_integer <- function(x) {
+  suppressWarnings(as.integer(as.roman(x)))
+}
+```
+
+### Scraping Olympic Editions
+```{r}
+# This chunk scrapes the main Olympedia editions page and builds a tidy table of Olympic editions with year, city, season, and edition ID.
+read_editions <- function() {
+  pg <- read_olympedia("editions")
+
+  tables <- pg |> html_elements("table")
+
+  parse_editions_table <- function(tbl, season_label) {
+    rows <- tbl |> html_elements("tr")
+
+    map_dfr(rows, function(row) {
+      tds <- row |> html_elements("td")
+      if(length(tds) < 8) return(NULL)
+
+      edition_link <- row |> html_element("a[href^='/editions/']")
+      edition_url <- if(length(edition_link) == 0) NA_character_ else html_attr(edition_link, "href")
+      edition_id  <- str_extract(edition_url, "\\d+$") |> as.integer()
+
+      olympiad_roman <- tds[[1]] |> html_text2() |> str_trim()
+      year_txt <- tds[[2]] |> html_text2() |> str_trim()
+      city <- tds[[3]] |> html_text2() |> str_trim()
+      note <- tds[[8]] |> html_text2() |> str_squish()
+
+      year <- suppressWarnings(as.integer(year_txt))
+
+      flag_img <- tds[[4]] |> html_element("img")
+      flag_src <- if(length(flag_img) == 0) NA_character_ else html_attr(flag_img, "src")
+      host_country_code <- str_extract(flag_src, "(?<=/)[A-Z]{3}(?=\\.png$)")
+
+      if(is.na(edition_id) || is.na(year) || olympiad_roman == "") return(NULL)
+
+      tibble(
+        season = season_label,
+        year = year,
+        city = city,
+        olympiad_roman = olympiad_roman,
+        olympiad_id = roman_to_integer(olympiad_roman),
+        edition_id = edition_id,
+        edition_url = edition_url,
+        host_country_code = host_country_code,
+        note = note
+      )
+    })
+  }
+
+  bind_rows(
+    parse_editions_table(tables[[1]], "Summer"),
+    parse_editions_table(tables[[2]], "Winter")
+  ) |>
+    distinct(edition_id, .keep_all = TRUE) |>
+    filter(!str_detect(str_to_lower(note), "not held")) |>
+    select(-note) |>
+    arrange(year, season)
+}
+
+```
+
+### Adding Official Games Names
+```{r}
+# This chunk visits each edition page and adds the official Games name to the editions table.
+editions <- read_editions()
+glimpse(editions)
+print(editions, n = 15)
+```
+
+### Scraping Medal Disciplines
+```{r}
+#This chunk extracts the medal disciplines listed on each Olympic edition page and records their codes and links.
+read_edition_meta <- function(edition_url) {
+  pg <- read_olympedia(edition_url)
+  games_name <- pg |> html_element("h1") |> html_text2() |> str_squish()
+  tibble(games_name = games_name)
+}
+
+editions <- editions |>
+  mutate(meta = map(edition_url, read_edition_meta)) |>
+  unnest(meta)
+
+glimpse(editions)
+
+```
+
+### Building the Edition-Discipline Table
+```{r}
+#This chunk joins the edition-level data to the list of disciplines available for each edition.
+
+
+read_edition_disciplines <- function(edition_url) {
+  pg <- read_olympedia(edition_url)
+
+  sport_table <- pg |>
+    html_element(xpath = "//h2[normalize-space()='Medal Disciplines']/following-sibling::table[1]")
+
+  if(length(sport_table) == 0) {
+    return(tibble(
+      discipline = character(),
+      discipline_url = character(),
+      discipline_code = character()
+    ))
+  }
+
+  links <- sport_table |> html_elements("a")
+
+  tibble(
+    discipline = html_text2(links) |> str_squish(),
+    discipline_url = html_attr(links, "href")
+  ) |>
+    filter(str_detect(discipline_url, "/sports/")) |>
+    mutate(
+      discipline_code = str_extract(discipline_url, "(?<=/sports/)[A-Z0-9]+")
+    ) |>
+    distinct()
+}
+
+# TEST one summer + one winter first
+read_edition_disciplines("/editions/1")    # 1896 Summer
+read_edition_disciplines("/editions/29")   # 1924 Winter
+
+```
+
+### Scraping Medal Tables
+```{r}
+# This chunk scrapes the medal table from each discipline page and converts the results into a tidy country-level medal table.
+edition_disciplines <- editions |>
+  mutate(disciplines = map(edition_url, read_edition_disciplines)) |>
+  unnest(disciplines)
+
+glimpse(edition_disciplines)
+```
+
+
+### Creating the Master Medal Dataset
+```{r}
+# This chunk combines all of the discipline medal tables into one master Olympedia medal dataset.
+read_discipline_medal_table <- function(discipline_url) {
+  pg <- read_olympedia(discipline_url)
+
+  medal_table_node <- pg |>
+    html_element(xpath = "//h2[normalize-space()='Medal table']/following-sibling::table[1]")
+
+  if(length(medal_table_node) == 0) {
+    return(tibble(
+      competitor = character(),
+      country_code = character(),
+      gold = integer(),
+      silver = integer(),
+      bronze = integer(),
+      total = integer()
+    ))
+  }
+
+  medal_tbl <- medal_table_node |> html_table(fill = TRUE)
+
+  # At least 6 columns: competitor, 3‑letter code, then Gold, Silver, Bronze, Total
+  if(ncol(medal_tbl) < 6) {
+    return(tibble(
+      competitor = character(),
+      country_code = character(),
+      gold = integer(),
+      silver = integer(),
+      bronze = integer(),
+      total = integer()
+    ))
+  }
+
+  tibble(
+    competitor = as.character(medal_tbl[[1]]),
+    country_code = as.character(medal_tbl[[2]]),
+    gold = suppressWarnings(as.integer(medal_tbl[[3]])),
+    silver = suppressWarnings(as.integer(medal_tbl[[4]])),
+    bronze = suppressWarnings(as.integer(medal_tbl[[5]])),
+    total = suppressWarnings(as.integer(medal_tbl[[6]]))
+  ) |>
+    filter(!is.na(country_code), country_code != "")
+}
+
+# TEST on 1924 Winter Athletics (if exists) or 1924 Winter Figure Skating
+read_discipline_medal_table("/editions/29/sports/FSK")   # 1924 Winter Figure Skating
+
+# Build full medal dataset
+olympedia_medals <- edition_disciplines |>
+  mutate(results = map(discipline_url, read_discipline_medal_table)) |>
+  unnest(results) |>
+  transmute(
+    season,
+    year,
+    olympiad_roman,
+    olympiad_id,
+    edition_id,
+    games_name,
+    edition_url,
+    city,
+    host_country_code,
+    discipline,
+    discipline_code,
+    discipline_url,
+    competitor,
+    country_code,
+    gold,
+    silver,
+    bronze,
+    total
+  )
+
+glimpse(olympedia_medals)
+```
+
+### Saving Cleaned Files
+```{r}
+# This chunk writes the cleaned editions, disciplines, and medal results to CSV files for later use.
+dir.create("data/mp04", recursive = TRUE, showWarnings = FALSE)
+
+write_csv(editions, "data/mp04/olympedia_editions.csv")
+write_csv(edition_disciplines, "data/mp04/olympedia_disciplines.csv")
+write_csv(olympedia_medals, "data/mp04/olympedia_medal_results.csv")
+```
+
+I used the provided read_olympedia caching setup plus the functions read_editions, read_edition_disciplines, and read_discipline_medal_table to scrape all 59 modern Olympic editions and their medal disciplines and medal tables. I then joined these into a single tidy table olympedia_medals with 8,450 rows, where each row corresponds to one country’s medal performance in a specific sport at a specific Olympic edition. Columns include season, year, edition_id, country_code, discipline, gold, silver, bronze, and total.
+
+### Selected Country Medals
+```{r}
+# This chunk summarizes total medals for the selected countries and displays them in a formatted table.
+library(gt)
+
+country_totals <- olympedia_medals |>
+  filter(country_code %in% c("USA", "COL", "CHN", "BRA", "GER")) |>
+  group_by(country_code, competitor) |>
+  summarise(
+    gold = sum(gold, na.rm = TRUE),
+    silver = sum(silver, na.rm = TRUE),
+    bronze = sum(bronze, na.rm = TRUE),
+    total = sum(total, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  arrange(desc(total))
+
+country_totals |> gt()
+```
+
+### Recode Country codes for mapping
+```{r}
+# This chunk recodes Olympedia country codes so they match the codes used in the spatial country dataset.
+medals_country <- olympedia_medals |>
+  group_by(country_code, competitor) |>
+  summarise(
+    gold = sum(gold, na.rm = TRUE),
+    silver = sum(silver, na.rm = TRUE),
+    bronze = sum(bronze, na.rm = TRUE),
+    total = sum(total, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+medals_country_std <- medals_country |>
+  mutate(
+    country_code_std = recode(
+      country_code,
+      "GRE" = "GRC",
+      "URS" = "RUS",
+      .default = country_code
+    )
+  )
+```
+
+### Preparing Map Data
+```{r}
+# This chunk collapses duplicate country rows so each country appears only once in the mapped output.
+library(necountries)
+library(sf)
+
+world <- countries()
+
+medals_map <- world |>
+  left_join(medals_country_std, by = c("iso3" = "country_code_std"))
+
+medals_map_clean <- medals_map |>
+  group_by(iso3, country) |>
+  summarise(
+    total = sum(total, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+```
+
+### Olympic Medal Choropleth
+```{r}
+# This chunk creates a choropleth map showing Olympic medal totals by country.
+library(ggplot2)
+
+ggplot(medals_map_clean) +
+  geom_sf(aes(fill = total), color = "white", linewidth = 0.1) +
+  scale_fill_viridis_c(option = "C", na.value = "grey90") +
+  labs(
+    title = "Olympic Medal Totals by Country",
+    fill = "Total medals"
+  ) +
+  theme_minimal()
+
+```
+The map shows that Olympic medal totals are concentrated in a small number of countries, with the United States, Russia, Great Britain, and China standing out clearly. It also highlights how much smaller the totals are for countries like Colombia and Brazil, making the global medal gap easy to see at a glance.
+:::
+
+### Exploratory Analysis {-}
+::: {.panel-tabset .nav-pills}
+
+### U.S. Baseline Performance
+```{r}
+#| label: eda-setup
+#| echo: true
+#| warning: false
+#| message: false
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(gt)
+library(scales)
+library(infer)
+```
+
+```{r}
+#| label: us-summer-gold
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk prepares U.S. Summer Olympic gold medal totals by edition.
+usa_summer_gold <- olympedia_medals |>
+  filter(country_code == "USA", season == "Summer", year >= 1960) |>
+  group_by(year, season) |>
+  summarise(value = sum(gold, na.rm = TRUE), .groups = "drop")
+```
+
+```{r}
+#| label: us-summer-silver
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk prepares U.S. Summer Olympic silver medal totals by edition.
+usa_summer_silver <- olympedia_medals |>
+  filter(country_code == "USA", season == "Summer", year >= 1960) |>
+  group_by(year, season) |>
+  summarise(value = sum(silver, na.rm = TRUE), .groups = "drop")
+```
+
+```{r}
+#| label: us-summer-bronze
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk prepares U.S. Summer Olympic bronze medal totals by edition.
+usa_summer_bronze <- olympedia_medals |>
+  filter(country_code == "USA", season == "Summer", year >= 1960) |>
+  group_by(year, season) |>
+  summarise(value = sum(bronze, na.rm = TRUE), .groups = "drop")
+```
+
+```{r}
+#| label: us-summer-total
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk prepares U.S. Summer Olympic total medal counts by edition.
+usa_summer_total <- olympedia_medals |>
+  filter(country_code == "USA", season == "Summer", year >= 1960) |>
+  group_by(year, season) |>
+  summarise(value = sum(total, na.rm = TRUE), .groups = "drop")
+```
+
+### Host-Country Effect
+```{r}
+#| label: host-medal-prep
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk computes host-country medal totals for each Olympic edition.
+host_editions <- olympedia_medals |>
+  distinct(year, season, host_country_code)
+
+host_totals <- olympedia_medals |>
+  group_by(year, season, country_code) |>
+  summarise(
+    gold = sum(gold, na.rm = TRUE),
+    silver = sum(silver, na.rm = TRUE),
+    bronze = sum(bronze, na.rm = TRUE),
+    total = sum(total, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  inner_join(host_editions, by = c("year", "season")) |>
+  filter(country_code == host_country_code)
+```
+
+```{r}
+#| label: host-medal-lags
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk adds the prior same-season host result for each medal type.
+host_lagged <- host_totals |>
+  arrange(season, year) |>
+  group_by(season) |>
+  mutate(
+    prev_gold = lag(gold),
+    prev_silver = lag(silver),
+    prev_bronze = lag(bronze),
+    prev_total = lag(total)
+  ) |>
+  ungroup()
+```
+
+```{r}
+#| label: host-percent-change-data
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk computes percent change for each medal type, excluding cases where the prior value is zero or missing.
+host_change <- host_lagged |>
+  mutate(
+    pct_gold = if_else(!is.na(prev_gold) & prev_gold > 0, 100 * (gold - prev_gold) / prev_gold, NA_real_),
+    pct_silver = if_else(!is.na(prev_silver) & prev_silver > 0, 100 * (silver - prev_silver) / prev_silver, NA_real_),
+    pct_bronze = if_else(!is.na(prev_bronze) & prev_bronze > 0, 100 * (bronze - prev_bronze) / prev_bronze, NA_real_),
+    pct_total = if_else(!is.na(prev_total) & prev_total > 0, 100 * (total - prev_total) / prev_total, NA_real_)
+  ) |>
+  select(year, season, country_code, pct_gold, pct_silver, pct_bronze, pct_total)
+```
+
+### New Sport Effect
+```{r}
+#| label: new-sport-prep
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk identifies the first Olympic year for each discipline and links it to host editions.
+sport_first_year <- olympedia_medals |>
+  group_by(discipline_code, discipline, season) |>
+  summarise(first_year = min(year, na.rm = TRUE), .groups = "drop")
+
+new_sport_host <- olympedia_medals |>
+  distinct(year, season, host_country_code) |>
+  inner_join(sport_first_year, by = "season") |>
+  filter(year == first_year) |>
+  left_join(
+    olympedia_medals |>
+      group_by(year, season, country_code, discipline_code, discipline) |>
+      summarise(
+        gold = sum(gold, na.rm = TRUE),
+        silver = sum(silver, na.rm = TRUE),
+        bronze = sum(bronze, na.rm = TRUE),
+        total = sum(total, na.rm = TRUE),
+        .groups = "drop"
+      ),
+    by = c("year", "season", "host_country_code" = "country_code", "discipline_code", "discipline")
+  ) |>
+  mutate(
+    win_gold = !is.na(gold) & gold > 0,
+    win_silver = !is.na(silver) & silver > 0,
+    win_bronze = !is.na(bronze) & bronze > 0,
+    win_total = !is.na(total) & total > 0
+  )
+```
+
+::: 
+
+#### Confidence Interval Analysis {-}
+
+::: {.panel-tabset .nav-pills}
+
+### U.S. baseline CIs
+```{r}
+#| label: us-summer-gold-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk bootstraps a confidence interval for the mean number of U.S. gold medals at Summer Olympics.
+usa_summer_gold_ci <- usa_summer_gold |>
+  specify(response = value) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_confidence_interval(level = 0.95)
+
+usa_summer_gold_ci
+```
+
+```{r}
+#| label: us-summer-silver-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk bootstraps a confidence interval for the mean number of U.S. silver medals at Summer Olympics.
+usa_summer_silver_ci <- usa_summer_silver |>
+  specify(response = value) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_confidence_interval(level = 0.95)
+
+usa_summer_silver_ci
+```
+
+```{r}
+#| label: us-summer-bronze-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk bootstraps a confidence interval for the mean number of U.S. bronze medals at Summer Olympics.
+usa_summer_bronze_ci <- usa_summer_bronze |>
+  specify(response = value) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_confidence_interval(level = 0.95)
+
+usa_summer_bronze_ci
+```
+
+```{r}
+#| label: us-summer-total-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk bootstraps a confidence interval for the mean number of U.S. total medals at Summer Olympics.
+usa_summer_total_ci <- usa_summer_total |>
+  specify(response = value) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_confidence_interval(level = 0.95)
+
+usa_summer_total_ci
+```
+
+### Host effect CIs
+```{r}
+#| label: host-gold-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk builds a confidence interval for the mean percent increase in host gold medals.
+host_gold_ci <- host_change |>
+  drop_na(pct_gold) |>
+  specify(response = pct_gold) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_confidence_interval(level = 0.95)
+
+host_gold_ci
+```
+
+```{r}
+#| label: host-silver-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk builds a confidence interval for the mean percent increase in host silver medals.
+host_silver_ci <- host_change |>
+  drop_na(pct_silver) |>
+  specify(response = pct_silver) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_confidence_interval(level = 0.95)
+
+host_silver_ci
+```
+
+
+```{r}
+#| label: host-bronze-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk builds a confidence interval for the mean percent increase in host bronze medals.
+host_bronze_ci <- host_change |>
+  drop_na(pct_bronze) |>
+  specify(response = pct_bronze) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_confidence_interval(level = 0.95)
+
+host_bronze_ci
+```
+
+```{r}
+#| label: host-total-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk builds a confidence interval for the mean percent increase in host total medals.
+host_total_ci <- host_change |>
+  drop_na(pct_total) |>
+  specify(response = pct_total) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_confidence_interval(level = 0.95)
+
+host_total_ci
+```
+
+### new sport effect CIs 
+```{r}
+#| label: new-sport-gold-prob-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+new_sport_gold_ci <- new_sport_host |>
+  mutate(win_gold = factor(win_gold, levels = c(FALSE, TRUE))) |>
+  specify(response = win_gold, success = "TRUE") |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "prop") |>
+  get_ci(level = 0.95)
+
+new_sport_gold_ci
+```
+
+```{r}
+#| label: new-sport-silver-prob-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk builds a confidence interval for the probability that the host wins silver in a new sport.
+new_sport_silver_ci <- new_sport_host |>
+  mutate(win_silver = factor(win_silver, levels = c(FALSE, TRUE))) |>
+  specify(response = win_silver, success = "TRUE") |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "prop") |>
+  get_ci(level = 0.95)
+
+new_sport_silver_ci
+```
+
+```{r}
+#| label: new-sport-bronze-prob-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk builds a confidence interval for the probability that the host wins bronze in a new sport.
+new_sport_bronze_ci <- new_sport_host |>
+  mutate(win_bronze = factor(win_bronze, levels = c(FALSE, TRUE))) |>
+  specify(response = win_bronze, success = "TRUE") |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "prop") |>
+  get_ci(level = 0.95)
+
+new_sport_bronze_ci
+```
+
+```{r}
+#| label: new-sport-total-prob-ci
+#| echo: true
+#| warning: false
+#| message: false
+
+# This chunk builds a confidence interval for the probability that the host wins any medal in a new sport.
+new_sport_total_ci <- new_sport_host |>
+  mutate(win_total = factor(win_total, levels = c(FALSE, TRUE))) |>
+  specify(response = win_total, success = "TRUE") |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "prop") |>
+  get_ci(level = 0.95)
+
+new_sport_total_ci
+```
+
+:::
+
+```{r}
+#| label: forecast-usa-2028-medals
+#| echo: false
+#| warning: false
+#| message: false
+
+set.seed(2028)
+
+# Extract CI bounds from your existing objects
+gold_bounds   <- usa_summer_gold_ci
+silver_bounds  <- usa_summer_silver_ci
+bronze_bounds  <- usa_summer_bronze_ci
+total_bounds   <- usa_summer_total_ci
+
+host_gold_bounds   <- host_gold_ci
+host_silver_bounds  <- host_silver_ci
+host_bronze_bounds  <- host_bronze_ci
+host_total_bounds   <- host_total_ci
+
+new_gold_bounds   <- new_sport_gold_ci
+new_silver_bounds  <- new_sport_silver_ci
+new_bronze_bounds  <- new_sport_bronze_ci
+new_total_bounds   <- new_sport_total_ci
+
+# Helper to convert CI to normal approximation
+ci_to_sd <- function(ci_df) {
+  ci_mean <- (ci_df$lower_ci + ci_df$upper_ci) / 2
+  ci_sd <- (ci_df$upper_ci - ci_mean) / qnorm(0.975)
+  list(mean = ci_mean, sd = ci_sd)
+}
+
+gold_pars   <- ci_to_sd(gold_bounds)
+silver_pars <- ci_to_sd(silver_bounds)
+bronze_pars <- ci_to_sd(bronze_bounds)
+total_pars   <- ci_to_sd(total_bounds)
+
+host_gold_pars   <- ci_to_sd(host_gold_bounds)
+host_silver_pars  <- ci_to_sd(host_silver_bounds)
+host_bronze_pars  <- ci_to_sd(host_bronze_bounds)
+host_total_pars   <- ci_to_sd(host_total_bounds)
+
+new_gold_pars   <- ci_to_sd(new_gold_bounds)
+new_silver_pars  <- ci_to_sd(new_silver_bounds)
+new_bronze_pars  <- ci_to_sd(new_bronze_bounds)
+new_total_pars   <- ci_to_sd(new_total_bounds)
+
+n_sims <- 100000
+
+# Simulate baseline medal counts from the CI distributions
+usa_gold_sim   <- rnorm(n_sims, mean = gold_pars$mean, sd = gold_pars$sd)
+usa_silver_sim <- rnorm(n_sims, mean = silver_pars$mean, sd = silver_pars$sd)
+usa_bronze_sim <- rnorm(n_sims, mean = bronze_pars$mean, sd = bronze_pars$sd)
+usa_total_sim   <- rnorm(n_sims, mean = total_pars$mean, sd = total_pars$sd)
+
+# Simulate host effect multipliers from percent-change CIs
+host_gold_sim   <- rnorm(n_sims, mean = host_gold_pars$mean, sd = host_gold_pars$sd)
+host_silver_sim <- rnorm(n_sims, mean = host_silver_pars$mean, sd = host_silver_pars$sd)
+host_bronze_sim <- rnorm(n_sims, mean = host_bronze_pars$mean, sd = host_bronze_pars$sd)
+host_total_sim   <- rnorm(n_sims, mean = host_total_pars$mean, sd = host_total_pars$sd)
+
+# Simulate new sport probabilities
+new_gold_sim   <- rnorm(n_sims, mean = new_gold_pars$mean, sd = new_gold_pars$sd)
+new_silver_sim <- rnorm(n_sims, mean = new_silver_pars$mean, sd = new_silver_pars$sd)
+new_bronze_sim <- rnorm(n_sims, mean = new_bronze_pars$mean, sd = new_bronze_pars$sd)
+new_total_sim   <- rnorm(n_sims, mean = new_total_pars$mean, sd = new_total_pars$sd)
+
+# Forecast equation using 22 additional medal events
+usa_2028_gold <- usa_gold_sim * (1 + host_gold_sim / 100) + 22 * new_gold_sim
+usa_2028_silver <- usa_silver_sim * (1 + host_silver_sim / 100) + 22 * new_silver_sim
+usa_2028_bronze <- usa_bronze_sim * (1 + host_bronze_sim / 100) + 22 * new_bronze_sim
+usa_2028_total <- usa_total_sim * (1 + host_total_sim / 100) + 22 * new_total_sim
+
+# Intervals
+usa_2028_gold_ci <- quantile(usa_2028_gold, c(0.025, 0.975), na.rm = TRUE)
+usa_2028_silver_ci <- quantile(usa_2028_silver, c(0.025, 0.975), na.rm = TRUE)
+usa_2028_bronze_ci <- quantile(usa_2028_bronze, c(0.025, 0.975), na.rm = TRUE)
+usa_2028_total_ci <- quantile(usa_2028_total, c(0.025, 0.975), na.rm = TRUE)
+
+usa_2028_gold_ci
+usa_2028_silver_ci
+usa_2028_bronze_ci
+usa_2028_total_ci
+
+```
+
+```{r}
+forecast_table |>
+  gt() |>
+  fmt_number(columns = c(lower_95, upper_95), decimals = 0) |>
+  cols_align(
+    align = "center",
+    columns = c(lower_95, upper_95)
+  ) |>
+  cols_label(
+    medal_type = "Medal Type",
+    lower_95 = "Lower 95% Bound",
+    upper_95 = "Upper 95% Bound"
+  ) |>
+  tab_header(
+    title = "Forecasted Team USA Medal Counts for LA 2028"
+  ) |>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(
+      rows = medal_type == "Total"
+    )
+  ) |>
+  tab_source_note(
+    source_note = "Source: Monte Carlo simulation based on confidence intervals from Olympedia medal data."
+  ) |>
+  tab_footnote(
+    footnote = "Forecasts derived from bootstrap confidence intervals and Olympedia medal data",
+    locations = cells_title(groups = "title")
+  )
+```
+
+
+## Final Insights and Deliverable
+
+Code related to the final deliverable of the assignment goes here. 
+
+::: {.callout-note title="AI Usage Statement" collapse="true"}
+
+Perplexity was used to help write the code in this project, but all non-code text was generated without the use of any Generative AI tools. Additionally, Perplexity was used to provide additional background information on the topic and to brainstorm ideas for the final open-ended prompt.
+
+:::
+
+------------------------------------------------------------------------
+
+This work ©2025 by miggonzalz was initially prepared as a Mini-Project for
+STA 9750 at Baruch College. More details about this course can be found at
+[the course site](https://michael-weylandt.com/STA9750) and instructions for
+this assignment can be found at 
+[MP #04](https://michael-weylandt.com/STA9750/mini/mini04.html)

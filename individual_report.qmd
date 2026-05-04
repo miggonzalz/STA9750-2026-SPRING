@@ -1,0 +1,475 @@
+---
+title: "Factory Farming and Methane Emissions - Individual Report"
+author: "miggonzalz"
+editor:
+    mode: source
+format:
+  html:
+    code-fold: true
+    toc: true            
+    number-sections: true #
+---
+
+How has the balance between methane from enteric fermentation and manure
+management changed over time in U.S. livestock production, and what does that
+suggest about industrial livestock systems?
+
+# Faostat
+```{r} 
+#| label: api-pull
+
+library(FAOSTAT)  # or your old helpers, as needed
+library(dplyr)
+library(readr)
+library(tidyr)
+
+# Where you want to save the CSV
+file_destination <- file.path("data", "group_project", "faostat", "methane_us_1990plus.csv")
+
+# 1) Check if the CSV already exists
+if (file.exists(file_destination)) {
+  message("CSV already exists: skipping API pull.")
+  df <- read_csv(file_destination, show_col_types = FALSE)
+
+} else {
+  message("CSV not found: running API pull...")
+
+  # Run your FAOSTAT pull; example with read_fao (adjust codes as needed)
+  methane_us_1990plus <- read_fao(
+    area_codes = "840",          # USA
+    element_codes = c("72441", "72254", "72256"),
+    item_codes = "F1757",
+    year_codes = as.character(1990:2024),
+    dataset = "GLE"
+  ) %>%
+    as_tibble()
+
+  # Write to disk so next time it will be skipped
+  write_csv(methane_us_1990plus, file_destination)
+
+  df <- methane_us_1990plus
+}
+
+# 2) Basic sanity check
+message(paste("Loaded", nrow(df), "rows from", file_destination))
+
+```
+This part of the project starts with the raw FAOSTAT methane data. I pulled the U.S. data, kept the years from 1990 to 2020, and saved it locally so I would not have to rerun the download every time. That made the workflow easier to manage and kept everything in one place.
+
+```{r}
+#| label: wrangle
+
+usa_summary <- df %>%
+  mutate(
+    Area.Code = as.integer(Area.Code),
+    Element.Code = as.integer(Element.Code),
+    Item.Code = as.integer(Item.Code),
+    Year = as.integer(Year),
+    Value = as.numeric(Value)
+  ) %>%
+  filter(
+    Area.Code == 231,
+    Item.Code == 1755,
+    Element.Code %in% c(72441, 72254, 72256)
+  ) %>%
+  group_by(Year, Element) %>%
+  summarise(
+    Value = sum(Value, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  pivot_wider(names_from = Element, values_from = Value) %>%
+  rename(
+    digestion_methane = `Enteric fermentation (Emissions CH4)`,
+    waste_methane = `Manure management (Emissions CH4)`,
+    total_methane = `Livestock total (Emissions CH4)`
+  )
+
+names(usa_summary)
+```
+
+After that, I cleaned the dataset by making sure the year and emissions columns were stored in the right format. I then filtered the data down to the methane sources that mattered for the analysis: enteric fermentation, manure management, and total livestock methane. Since the original file was set up in a way that was better for data storage than for analysis, I reshaped it so each year had its own row with separate columns for each source.
+
+The result was a table that was ready for analysis. From there, it became much easier to compare the two methane sources and look at how they changed over time.
+
+```{r}
+#| label: source-trend-animated
+
+knitr::opts_chunk$set(dev = "png")
+options(bitmapType = "cairo")
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(scales)
+library(gganimate)
+
+plot_df <- usa_summary %>%
+  filter(Year <= 2020) %>%
+  select(Year, digestion_methane, waste_methane) %>%
+  pivot_longer(
+    -Year,
+    names_to = "source",
+    values_to = "methane"
+  ) %>%
+  mutate(
+    source = recode(
+      source,
+      digestion_methane = "Digestion",
+      waste_methane = "Livestock waste"
+    )
+  )
+
+p_source <- ggplot(plot_df, aes(x = Year, y = methane, color = source, group = source)) +
+  geom_line(linewidth = 1.3) +
+  scale_color_manual(
+    values = c(
+      "Digestion" = "#E76F51",
+      "Livestock waste" = "#17BEBB"
+    )
+  ) +
+  scale_y_continuous(
+    labels = label_comma()
+  ) +
+  labs(
+    title = "U.S. livestock methane by source, 1990–2020",
+    subtitle = "Digestion remains the larger source, while livestock waste rises more steadily and gains a larger share over time.",
+    x = "Year",
+    y = "Methane emissions (kt CH4)",
+    color = "Source",
+    caption = "Source: FAOSTAT livestock methane data; author's calculations."
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 15),
+    plot.subtitle = element_text(size = 10.5),
+    axis.title = element_text(face = "bold"),
+    legend.position = "right",
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    plot.caption = element_text(size = 9, hjust = 0)
+  ) +
+  transition_reveal(Year)
+
+animate(
+  p_source,
+  fps = 2,
+  duration = 10,
+  end_pause = 12,
+  width = 800,
+  height = 500,
+  units = "px",
+  res = 96
+)
+
+
+anim_save("livestock_methane_sources.gif")
+```
+This chart compares methane from enteric fermentation and livestock waste across the study period. The main pattern is pretty clear: enteric fermentation stayed higher the whole time, but manure management increased more steadily. That means the mix of emissions changed, even though the overall story did not shift dramatically at first glance.
+
+The reason this chart matters is that it shows both sources together. If you only looked at totals, you might miss the fact that one source was becoming more important while the other stayed more stable. Here, the manure line rises slowly but consistently, which helps explain why it became a larger part of the overall methane picture.
+
+The animated version makes that trend easier to see because the change happens year by year. It gives the chart a sense of movement and helps show that the increase in manure methane was gradual rather than sudden.
+
+```{r}
+library(dplyr)
+library(gt)
+library(broom)
+library(tidyr)
+
+balance_df <- usa_summary %>%
+  filter(Year <= 2020) %>%
+  mutate(
+    total_two_source = digestion_methane + waste_methane,
+    manure_share = waste_methane / total_two_source,
+    enteric_share = digestion_methane / total_two_source
+  )
+
+model_share <- lm(manure_share ~ Year, data = balance_df)
+
+coef_df <- tidy(model_share) %>%
+  mutate(
+    term = recode(term,
+                  `(Intercept)` = "Intercept",
+                  Year = "Year"),
+    estimate = round(estimate, 4),
+    std.error = round(std.error, 4),
+    statistic = round(statistic, 2),
+    p.value = ifelse(p.value < 0.001, "< 0.001", round(p.value, 3))
+  ) %>%
+  select(term, estimate, std.error, statistic, p.value)
+
+fit_df <- data.frame(
+  term = c(
+    "Residual standard error",
+    "Multiple R-squared",
+    "Adjusted R-squared",
+    "F-statistic",
+    "Observations"
+  ),
+  value = c(
+    round(sigma(model_share), 4),
+    round(summary(model_share)$r.squared, 4),
+    round(summary(model_share)$adj.r.squared, 4),
+    round(summary(model_share)$fstatistic[1], 1),
+    nobs(model_share)
+  )
+)
+
+gt_coef <- coef_df %>%
+  gt(rowname_col = "term") %>%
+  tab_header(
+    title = "Regression Results: Manure Share Over Time",
+    subtitle = "Linear model of manure share on year, 1990–2020"
+  ) %>%
+  cols_label(
+    estimate = "Estimate",
+    std.error = "Std. Error",
+    statistic = "t value",
+    p.value = "p value"
+  ) %>%
+  fmt_number(columns = c(estimate, std.error), decimals = 4) %>%
+  fmt_number(columns = statistic, decimals = 2) %>%
+  tab_options(
+    table.font.size = px(13),
+    column_labels.font.weight = "bold",
+    row.striping.include_table_body = TRUE,
+    row.striping.background_color = "#FAFAFA",
+    table.width = pct(80)
+  )
+
+gt_fit <- fit_df %>%
+  gt(rowname_col = "term") %>%
+  tab_header(title = "Model Fit") %>%
+  cols_label(value = "Value") %>%
+  fmt_number(columns = value, decimals = 4) %>%
+  tab_options(
+    table.font.size = px(13),
+    column_labels.font.weight = "bold",
+    row.striping.include_table_body = TRUE,
+    row.striping.background_color = "#FAFAFA",
+    table.width = pct(50)
+  )
+
+gt_coef
+gt_fit
+
+```
+
+This section looks at the share of methane coming from manure management compared with the combined total from manure and enteric fermentation. Using a share instead of raw numbers helps show how the balance between the two sources changed over time. It answers a slightly different question: not just how much methane was produced, but where that methane was coming from.
+
+The regression shows a positive trend. In plain terms, manure management made up a larger share of the total as the years went by. The Year coefficient is positive and statistically significant, which lines up with the chart. The very high R-squared also tells us that the model fits the data well and captures the pattern clearly.
+
+The cleaned table helps make those results easier to read. Instead of looking through the full regression output, the table pulls out the key numbers and puts them into a format that is easier to follow. For someone reading the report, the main takeaway is simple: the manure share went up over time.
+
+```{r}
+#| label: balance-regression-animated
+
+knitr::opts_chunk$set(dev = "png")
+options(bitmapType = "cairo")
+library(ggplot2)
+library(scales)
+library(gganimate)
+
+p_balance <- ggplot(balance_df, aes(x = Year, y = manure_share)) +
+  geom_line(color = "#0F766E", linewidth = 1.2) +
+  geom_point(color = "#0F766E", size = 1.8) +
+  geom_smooth(
+    method = "lm",
+    se = TRUE,
+    color = "#A21CAF",
+    fill = "#A21CAF",
+    alpha = 0.10,
+    linewidth = 1
+  ) +
+  scale_y_continuous(
+    labels = percent_format(accuracy = 1)
+  ) +
+  labs(
+    title = "Share of U.S. livestock methane from manure management",
+    subtitle = "Manure management accounts for a growing share of methane from the two main livestock sources between 1990 and 2020.",
+    x = "Year",
+    y = "Manure share of digestion + livestock waste methane",
+    caption = paste(
+      "Note: Purple line shows a linear regression trend; shaded band shows the 95% confidence interval.",
+      "Source: FAOSTAT livestock methane data (1990–2020); author's calculations.",
+      sep = "\n"
+    )
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 15),
+    plot.subtitle = element_text(size = 10.5),
+    axis.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    plot.caption = element_text(size = 9, hjust = 0)
+  ) +
+  transition_reveal(Year)
+
+animate(
+  p_balance,
+  fps = 2,
+  duration = 10,
+  end_pause = 12,
+  width = 800,
+  height = 500,
+  units = "px",
+  res = 96
+)
+anim_save("manure_share_trend.gif")
+
+```
+This chart shows the same idea in a more visual way. The upward line makes it easy to see that manure management’s share of methane from the two sources increased steadily over the years. The fitted regression line confirms that the pattern is not just random noise from year to year.
+
+What makes this chart useful is that it connects the statistical result to something visual and intuitive. You do not need to know much about regression to see the general direction. The line moves upward, so the share is rising. That is the main point the chart is trying to communicate.
+
+The confidence band around the trend line also matters because it shows that the estimate has some uncertainty. Even so, the overall direction is clear. Manure management has taken up a larger share over time, and the trend is consistent across the full period.
+
+
+```{r}
+#| label: forecast-methane
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+# Historical data only through 2020
+hist_df <- usa_summary %>%
+  filter(Year <= 2020) %>%
+  select(Year, digestion_methane, waste_methane)
+
+# Fit linear trends
+mod_dig <- lm(digestion_methane ~ Year, data = hist_df)
+mod_waste <- lm(waste_methane ~ Year, data = hist_df)
+
+# Forecast years
+forecast_years <- tibble(
+  Year = c(2025, 2030, 2050, 2070)
+)
+
+# Forecast values
+forecast_df <- forecast_years %>%
+  mutate(
+    digestion_forecast = predict(mod_dig, newdata = forecast_years),
+    waste_forecast = predict(mod_waste, newdata = forecast_years),
+    total_forecast = digestion_forecast + waste_forecast,
+    manure_share_forecast = waste_forecast / total_forecast,
+    enteric_share_forecast = digestion_forecast / total_forecast
+  )
+
+# Historical data in long format
+historical_long <- hist_df %>%
+  pivot_longer(
+    cols = c(digestion_methane, waste_methane),
+    names_to = "source",
+    values_to = "methane"
+  ) %>%
+  mutate(
+    source = recode(
+      source,
+      digestion_methane = "Digestion",
+      waste_methane = "Livestock waste"
+    ),
+    type = "Historical"
+  )
+
+# Forecast data in long format
+forecast_long <- forecast_df %>%
+  select(Year, digestion_forecast, waste_forecast) %>%
+  pivot_longer(
+    cols = c(digestion_forecast, waste_forecast),
+    names_to = "source",
+    values_to = "methane"
+  ) %>%
+  mutate(
+    source = recode(
+      source,
+      digestion_forecast = "Digestion",
+      waste_forecast = "Livestock waste"
+    ),
+    type = "Forecast"
+  )
+
+# Combined data for plotting
+plot_all <- bind_rows(historical_long, forecast_long)
+
+plot_all
+```
+
+
+```{r}
+#| label: forecast-plot-animated
+
+knitr::opts_chunk$set(dev = "png")
+options(bitmapType = "cairo")
+library(gganimate)
+
+p_forecast <- ggplot(
+  plot_all,
+  aes(x = Year, y = methane, color = source, group = interaction(source, type))
+) +
+  geom_line(aes(linetype = type), linewidth = 1.2) +
+  geom_point(
+    data = forecast_long,
+    size = 2
+  ) +
+  scale_color_manual(
+    values = c("Digestion" = "#E76F51", "Livestock waste" = "#17BEBB")
+  ) +
+  scale_linetype_manual(
+    values = c("Historical" = "solid", "Forecast" = "dashed")
+  ) +
+  labs(
+    title = "Historical and projected U.S. livestock methane",
+    subtitle = "Year: {frame_along}",
+    x = "Year",
+    y = "Methane emissions (kt CH4)",
+    color = "Source",
+    linetype = "Series",
+    caption = paste(
+      "Note: Forecast values are simple linear trend projections based on 1990–2020 data and should not be interpreted as exact predictions.",
+      "Source: FAOSTAT livestock methane data; author's calculations.",
+      sep = "\n"
+    )
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", size = 15),
+    plot.subtitle = element_text(size = 11),
+    axis.title = element_text(face = "bold"),
+    legend.position = "right",
+    panel.grid.minor = element_blank(),
+    plot.caption = element_text(size = 9, hjust = 0)
+  ) +
+  transition_reveal(Year)
+
+animate(
+  p_forecast,
+  fps = 2,
+  duration = 12,
+  end_pause = 12,
+  width = 800,
+  height = 500,
+  units = "px",
+  res = 96
+)
+
+anim_save("historical_forecast_methane.gif")
+```
+
+This section extends the historical trend into the future using a simple projection. The forecast is based on the same linear pattern seen in the earlier years, so it assumes that the trend continues in the same direction. It is not meant to be an exact prediction. Instead, it shows what might happen if nothing changes.
+
+I used separate trend lines for digestion methane and manure methane, then projected them forward to a few future years. That gave a simple picture of how the balance between the two sources might look later on. The main idea is that manure management could keep growing in importance, while digestion stays the larger source overall.
+
+This approach is useful because it keeps the forecast easy to understand. It does not try to overcomplicate the future. Instead, it takes the pattern already in the data and carries it forward in a straightforward way.
+
+
+## CONCLUSION
+Overall, the project shows a clear shift in the structure of U.S. livestock methane emissions. Enteric fermentation remained the larger source throughout the period, so digestion in animals is still the main contributor. Even so, manure management increased steadily, both in absolute terms and as a share of the total.
+
+That change matters because it affects how the emissions story should be read. At first, the data might look like one source simply dominates the whole time. But once the share and trend are examined more closely, it becomes clear that manure management has been gaining ground. The charts and regression together show that the balance between the two sources is changing, even if the total picture does not seem dramatic at first.
+
+The regression supports that reading. The positive Year coefficient shows that manure share increased over time, and the high R-squared means the trend is very consistent. In simple terms, the change is not just a few unusual years. It is a pattern that holds across the whole period.
+
+A reasonable way to interpret this is that livestock systems may be producing more methane from manure storage than they used to. That could be linked to more concentrated production systems and different manure handling practices. Enteric fermentation is still the bigger source, but manure management is becoming harder to ignore.
+
+The forecast points in the same direction. If the past pattern continues, manure management will likely keep growing as a share of livestock methane. That does not mean the future is fixed, but it does show where the trend is headed under current conditions. The main takeaway is that the emissions mix is shifting, and manure management is playing a larger role than it did before.

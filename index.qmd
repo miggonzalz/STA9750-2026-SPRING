@@ -37,6 +37,13 @@ _Product Team Summary: ATUS Time Use Insights_
 [**Who Goes There?**](./mp03.html)
 _Forecasting 2030 Populations, Seats, and State Strategies_
 
+[**Factory Farming and Methane Emissions: Enteric vs. Manure**](./individual_report.html) 
+_Individual Analysis: Measuring the Shift from Enteric Fermentation to Manure Management in U.S. Livestock_
+
+[**Factory Farming and Methane Emissions: Summary Report**]( )
+_Final Group Project: National Livestock Methane Trends and Industrial Systems_
+
+
  <br>
 
 ```{r}
