@@ -117,13 +117,13 @@ Factory farming is not a marginal contributor to the methane problem. It is a ce
 Future work on this issue should do more than list emissions totals. It should show how industrial livestock systems generate methane, explain why manure management has become more important over time, and evaluate whether current policy tools reduce emissions without reinforcing the same production model. Framed that way, methane from factory farming becomes not only an environmental statistic, but a clear indicator of how climate risk is embedded in the structure of modern animal agriculture.[3][4][8] 
 
 To learn more about each specific analysis:
-[**How does factory farming compare to other methane-producing industries?**]( )
+[**How does factory farming compare to other methane-producing industries?**](https://laurenrichbetch.github.io/STA9750-2026-SPRING/Individual_Report.html)
 
-[**How has livestock's share of U.S. methane emissions changed over time?**]( )
+[**How has livestock's share of U.S. methane emissions changed over time?**](https://laurenrichbetch.github.io/STA9750-2026-SPRING/Individual_Report.html)
 
-[**How has the balance between methane from enteric fermentation and manure management changed over time in U.S. livestock production, and what does that suggest about industrial livestock systems?**]( )
+[**How has the balance between methane from enteric fermentation and manure management changed over time in U.S. livestock production, and what does that suggest about industrial livestock systems?**](https://miggonzalz.github.io/STA9750-2026-SPRING/individual_report.html)
 
-[**What has influenced livestock's share of U.S. methane emissions changed over time?**]( )
+[**What has influenced livestock's share of U.S. methane emissions changed over time?**](https://anapau-tapia.github.io/STA9750-2026-SPRING/individual_report.html)
 
 
 ## References
