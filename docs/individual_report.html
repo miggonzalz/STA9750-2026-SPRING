@@ -199,15 +199,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">0.1</span> Introduction</a></li>
-  <li><a href="#data-gathering-and-enviornmental-set-up" id="toc-data-gathering-and-enviornmental-set-up" class="nav-link" data-scroll-target="#data-gathering-and-enviornmental-set-up"><span class="header-section-number">1</span> Data Gathering and Enviornmental Set up</a></li>
-  <li><a href="#faostat-methane-download" id="toc-faostat-methane-download" class="nav-link" data-scroll-target="#faostat-methane-download"><span class="header-section-number">2</span> Faostat Methane Download</a></li>
-  <li><a href="#deep-dive-to-methane-emissions" id="toc-deep-dive-to-methane-emissions" class="nav-link" data-scroll-target="#deep-dive-to-methane-emissions"><span class="header-section-number">3</span> Deep Dive to Methane Emissions</a></li>
-  <li><a href="#deep-dive-to-population-trends" id="toc-deep-dive-to-population-trends" class="nav-link" data-scroll-target="#deep-dive-to-population-trends"><span class="header-section-number">4</span> Deep Dive to Population trends</a></li>
-  <li><a href="#predictive-modeling-and-multi-decade-projections" id="toc-predictive-modeling-and-multi-decade-projections" class="nav-link" data-scroll-target="#predictive-modeling-and-multi-decade-projections"><span class="header-section-number">5</span> Predictive Modeling and Multi-Decade Projections</a>
-  <ul class="collapse">
-  <li><a href="#conclusion---final-thoughts" id="toc-conclusion---final-thoughts" class="nav-link" data-scroll-target="#conclusion---final-thoughts"><span class="header-section-number">5.1</span> CONCLUSION - FINAL Thoughts</a></li>
-  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#data-gathering-and-enviornmental-set-up" id="toc-data-gathering-and-enviornmental-set-up" class="nav-link" data-scroll-target="#data-gathering-and-enviornmental-set-up"><span class="header-section-number">2</span> Data Gathering and Enviornmental Set up</a></li>
+  <li><a href="#faostat-methane-download" id="toc-faostat-methane-download" class="nav-link" data-scroll-target="#faostat-methane-download"><span class="header-section-number">3</span> FAOSTAT Methane Download</a></li>
+  <li><a href="#faostat-population-download" id="toc-faostat-population-download" class="nav-link" data-scroll-target="#faostat-population-download"><span class="header-section-number">4</span> FAOSTAT Population Download</a></li>
+  <li><a href="#deep-dive-to-methane-emissions" id="toc-deep-dive-to-methane-emissions" class="nav-link" data-scroll-target="#deep-dive-to-methane-emissions"><span class="header-section-number">5</span> Deep Dive to Methane Emissions</a></li>
+  <li><a href="#deep-dive-to-population-trends" id="toc-deep-dive-to-population-trends" class="nav-link" data-scroll-target="#deep-dive-to-population-trends"><span class="header-section-number">6</span> Deep Dive to Population trends</a></li>
+  <li><a href="#unifiing-the-sources" id="toc-unifiing-the-sources" class="nav-link" data-scroll-target="#unifiing-the-sources"><span class="header-section-number">7</span> Unifiing the sources</a></li>
+  <li><a href="#predictive-modeling-and-multi-decade-projections" id="toc-predictive-modeling-and-multi-decade-projections" class="nav-link" data-scroll-target="#predictive-modeling-and-multi-decade-projections"><span class="header-section-number">8</span> Predictive Modeling and Multi-Decade Projections</a></li>
+  <li><a href="#conclusion---final-thoughts" id="toc-conclusion---final-thoughts" class="nav-link" data-scroll-target="#conclusion---final-thoughts"><span class="header-section-number">9</span> CONCLUSION - FINAL THOUGHTS</a></li>
   </ul>
 </nav>
     </div>
@@ -240,17 +240,17 @@ window.Quarto = {
 
 
 <p>How has the balance between methane from enteric fermentation and manure management changed over time in U.S. livestock production, and what does that suggest about industrial livestock systems?</p>
-<section id="introduction" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">0.1</span> Introduction</h2>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <p>This report looks at how methane emissions from U.S. livestock production changed between 1990 and 2020, and it uses those trends to project what things might look like all the way out to 2070. Methane is a really powerful greenhouse gas, trapping a lot more heat than carbon dioxide over a short period, so figuring out where it is coming from in agriculture is a big deal for climate change. A lot of times, people just look at the total amount of methane from farming, or they assume that emissions just go up naturally as the human population grows. This project shows that the real story is a bit more complicated than that.</p>
 <p>By taking historical emissions data and combining it with U.S. population records from FAOSTAT, we can split livestock methane into its two main sources: enteric fermentation (which is just animal digestion) and manure management (how waste is handled). When you look at the data this way, a really clear split emerges. Animal digestion emissions per person have actually stayed flat or gone down a bit over the last few decades, mostly because farming has become more efficient. On the other hand, manure emissions per person have gone up steadily. This means the increase isn’t just because there are more people eating food; it is because the way livestock waste is managed has structurally changed due to large-scale, industrial farming. The report wraps up by looking at future projections, showing that if we keep going down this path, the combination of a growing population and rising waste emissions will cause a pretty significant environmental challenge down the road.</p>
 </section>
-<section id="data-gathering-and-enviornmental-set-up" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Data Gathering and Enviornmental Set up</h1>
+<section id="data-gathering-and-enviornmental-set-up" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Data Gathering and Enviornmental Set up</h1>
 <p>Raw datasets from big international databases are usually set up for storage efficiency rather than quick analysis, so the files required some cleanup. For example, some column names had spaces instead of periods, column types were inconsistent, and the files used a “long” format where a single year had multiple rows stacked on top of each other for different variables.The goal here was to clean up the column headers, make sure numbers and years were formatted correctly, and isolate the exact rows we needed. A quick check of the raw population file showed that it didn’t just have one total population number per year. Instead, it broke the numbers down into subgroups like males, females, rural populations, and urban populations. If you don’t filter those out, R will add them all together and quadruple the true population during the merge. To fix this, I filtered the data strictly for “United States of America” and “Total Population - Both sexes”.Also, because FAOSTAT records population numbers in thousands, I multiplied that column by 1000 so it represents actual person counts. After filtering the methane data down to the key sources, enteric, manure, and the livestock total, I joined the two tables together using the Year column. Finally, I used the combined data to calculate a new metric: how many kilograms (<span class="math inline">\(kg\)</span>) of methane are produced per person each year for each source.</p>
 </section>
-<section id="faostat-methane-download" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Faostat Methane Download</h1>
+<section id="faostat-methane-download" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> FAOSTAT Methane Download</h1>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -290,7 +290,9 @@ window.Quarto = {
 </details>
 </div>
 <p>This part of the project starts with the raw FAOSTAT methane data. I pulled the U.S. data, kept the years from 1990 to 2020, and saved it locally so I would not have to rerun the download every time. That made the workflow easier to manage and kept everything in one place.</p>
-<p>#FAOSTAT Population</p>
+</section>
+<section id="faostat-population-download" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> FAOSTAT Population Download</h1>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -326,8 +328,8 @@ window.Quarto = {
 </div>
 <p>This section reads the local population dataset that we pulled from FAOSTAT. Since the raw file includes a bunch of extra rows that split the population by gender and whether people live in rural or urban areas, I filtered it down strictly to the overall total for both sexes combined. I also multiplied the value column by 1000 to get the actual number of people, and restricted the years to 1990 through 2020 so it lines up perfectly with our methane dataset.</p>
 </section>
-<section id="deep-dive-to-methane-emissions" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Deep Dive to Methane Emissions</h1>
+<section id="deep-dive-to-methane-emissions" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Deep Dive to Methane Emissions</h1>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -530,23 +532,23 @@ window.Quarto = {
 <span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>gt_coef</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="grresbwyvk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#grresbwyvk table {
+<div id="cdcscggabe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cdcscggabe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#grresbwyvk thead, #grresbwyvk tbody, #grresbwyvk tfoot, #grresbwyvk tr, #grresbwyvk td, #grresbwyvk th {
+#cdcscggabe thead, #cdcscggabe tbody, #cdcscggabe tfoot, #cdcscggabe tr, #cdcscggabe td, #cdcscggabe th {
   border-style: none;
 }
 
-#grresbwyvk p {
+#cdcscggabe p {
   margin: 0;
   padding: 0;
 }
 
-#grresbwyvk .gt_table {
+#cdcscggabe .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -572,12 +574,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_caption {
+#cdcscggabe .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#grresbwyvk .gt_title {
+#cdcscggabe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -589,7 +591,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#grresbwyvk .gt_subtitle {
+#cdcscggabe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -601,7 +603,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#grresbwyvk .gt_heading {
+#cdcscggabe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -613,13 +615,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_bottom_border {
+#cdcscggabe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_col_headings {
+#cdcscggabe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -634,7 +636,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_col_heading {
+#cdcscggabe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -654,7 +656,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#grresbwyvk .gt_column_spanner_outer {
+#cdcscggabe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -666,15 +668,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#grresbwyvk .gt_column_spanner_outer:first-child {
+#cdcscggabe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#grresbwyvk .gt_column_spanner_outer:last-child {
+#cdcscggabe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#grresbwyvk .gt_column_spanner {
+#cdcscggabe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -686,11 +688,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#grresbwyvk .gt_spanner_row {
+#cdcscggabe .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#grresbwyvk .gt_group_heading {
+#cdcscggabe .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -716,7 +718,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#grresbwyvk .gt_empty_group_heading {
+#cdcscggabe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -731,15 +733,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#grresbwyvk .gt_from_md > :first-child {
+#cdcscggabe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#grresbwyvk .gt_from_md > :last-child {
+#cdcscggabe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#grresbwyvk .gt_row {
+#cdcscggabe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -758,7 +760,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#grresbwyvk .gt_stub {
+#cdcscggabe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -771,7 +773,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#grresbwyvk .gt_stub_row_group {
+#cdcscggabe .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -785,15 +787,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#grresbwyvk .gt_row_group_first td {
+#cdcscggabe .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#grresbwyvk .gt_row_group_first th {
+#cdcscggabe .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#grresbwyvk .gt_summary_row {
+#cdcscggabe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -803,16 +805,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#grresbwyvk .gt_first_summary_row {
+#cdcscggabe .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_first_summary_row.thick {
+#cdcscggabe .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#grresbwyvk .gt_last_summary_row {
+#cdcscggabe .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -822,7 +824,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_grand_summary_row {
+#cdcscggabe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -832,7 +834,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#grresbwyvk .gt_first_grand_summary_row {
+#cdcscggabe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -842,7 +844,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_last_grand_summary_row_top {
+#cdcscggabe .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -852,11 +854,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_striped {
+#cdcscggabe .gt_striped {
   background-color: #FAFAFA;
 }
 
-#grresbwyvk .gt_table_body {
+#cdcscggabe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -865,7 +867,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_footnotes {
+#cdcscggabe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -879,7 +881,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_footnote {
+#cdcscggabe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -888,7 +890,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#grresbwyvk .gt_sourcenotes {
+#cdcscggabe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -902,7 +904,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#grresbwyvk .gt_sourcenote {
+#cdcscggabe .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -910,72 +912,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#grresbwyvk .gt_left {
+#cdcscggabe .gt_left {
   text-align: left;
 }
 
-#grresbwyvk .gt_center {
+#cdcscggabe .gt_center {
   text-align: center;
 }
 
-#grresbwyvk .gt_right {
+#cdcscggabe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#grresbwyvk .gt_font_normal {
+#cdcscggabe .gt_font_normal {
   font-weight: normal;
 }
 
-#grresbwyvk .gt_font_bold {
+#cdcscggabe .gt_font_bold {
   font-weight: bold;
 }
 
-#grresbwyvk .gt_font_italic {
+#cdcscggabe .gt_font_italic {
   font-style: italic;
 }
 
-#grresbwyvk .gt_super {
+#cdcscggabe .gt_super {
   font-size: 65%;
 }
 
-#grresbwyvk .gt_footnote_marks {
+#cdcscggabe .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#grresbwyvk .gt_asterisk {
+#cdcscggabe .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#grresbwyvk .gt_indent_1 {
+#cdcscggabe .gt_indent_1 {
   text-indent: 5px;
 }
 
-#grresbwyvk .gt_indent_2 {
+#cdcscggabe .gt_indent_2 {
   text-indent: 10px;
 }
 
-#grresbwyvk .gt_indent_3 {
+#cdcscggabe .gt_indent_3 {
   text-indent: 15px;
 }
 
-#grresbwyvk .gt_indent_4 {
+#cdcscggabe .gt_indent_4 {
   text-indent: 20px;
 }
 
-#grresbwyvk .gt_indent_5 {
+#cdcscggabe .gt_indent_5 {
   text-indent: 25px;
 }
 
-#grresbwyvk .katex-display {
+#cdcscggabe .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#grresbwyvk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cdcscggabe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1021,23 +1023,23 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gt_fit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="owmgxnlafw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#owmgxnlafw table {
+<div id="btbadfktfk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#btbadfktfk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#owmgxnlafw thead, #owmgxnlafw tbody, #owmgxnlafw tfoot, #owmgxnlafw tr, #owmgxnlafw td, #owmgxnlafw th {
+#btbadfktfk thead, #btbadfktfk tbody, #btbadfktfk tfoot, #btbadfktfk tr, #btbadfktfk td, #btbadfktfk th {
   border-style: none;
 }
 
-#owmgxnlafw p {
+#btbadfktfk p {
   margin: 0;
   padding: 0;
 }
 
-#owmgxnlafw .gt_table {
+#btbadfktfk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1063,12 +1065,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_caption {
+#btbadfktfk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#owmgxnlafw .gt_title {
+#btbadfktfk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1080,7 +1082,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#owmgxnlafw .gt_subtitle {
+#btbadfktfk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1092,7 +1094,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#owmgxnlafw .gt_heading {
+#btbadfktfk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1104,13 +1106,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_bottom_border {
+#btbadfktfk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_col_headings {
+#btbadfktfk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1125,7 +1127,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_col_heading {
+#btbadfktfk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1145,7 +1147,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#owmgxnlafw .gt_column_spanner_outer {
+#btbadfktfk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1157,15 +1159,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#owmgxnlafw .gt_column_spanner_outer:first-child {
+#btbadfktfk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#owmgxnlafw .gt_column_spanner_outer:last-child {
+#btbadfktfk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#owmgxnlafw .gt_column_spanner {
+#btbadfktfk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1177,11 +1179,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#owmgxnlafw .gt_spanner_row {
+#btbadfktfk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#owmgxnlafw .gt_group_heading {
+#btbadfktfk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1207,7 +1209,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#owmgxnlafw .gt_empty_group_heading {
+#btbadfktfk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1222,15 +1224,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#owmgxnlafw .gt_from_md > :first-child {
+#btbadfktfk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#owmgxnlafw .gt_from_md > :last-child {
+#btbadfktfk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#owmgxnlafw .gt_row {
+#btbadfktfk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1249,7 +1251,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#owmgxnlafw .gt_stub {
+#btbadfktfk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1262,7 +1264,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#owmgxnlafw .gt_stub_row_group {
+#btbadfktfk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1276,15 +1278,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#owmgxnlafw .gt_row_group_first td {
+#btbadfktfk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#owmgxnlafw .gt_row_group_first th {
+#btbadfktfk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#owmgxnlafw .gt_summary_row {
+#btbadfktfk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1294,16 +1296,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#owmgxnlafw .gt_first_summary_row {
+#btbadfktfk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_first_summary_row.thick {
+#btbadfktfk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#owmgxnlafw .gt_last_summary_row {
+#btbadfktfk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1313,7 +1315,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_grand_summary_row {
+#btbadfktfk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1323,7 +1325,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#owmgxnlafw .gt_first_grand_summary_row {
+#btbadfktfk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1333,7 +1335,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_last_grand_summary_row_top {
+#btbadfktfk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1343,11 +1345,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_striped {
+#btbadfktfk .gt_striped {
   background-color: #FAFAFA;
 }
 
-#owmgxnlafw .gt_table_body {
+#btbadfktfk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1356,7 +1358,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_footnotes {
+#btbadfktfk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1370,7 +1372,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_footnote {
+#btbadfktfk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1379,7 +1381,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#owmgxnlafw .gt_sourcenotes {
+#btbadfktfk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1393,7 +1395,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#owmgxnlafw .gt_sourcenote {
+#btbadfktfk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1401,72 +1403,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#owmgxnlafw .gt_left {
+#btbadfktfk .gt_left {
   text-align: left;
 }
 
-#owmgxnlafw .gt_center {
+#btbadfktfk .gt_center {
   text-align: center;
 }
 
-#owmgxnlafw .gt_right {
+#btbadfktfk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#owmgxnlafw .gt_font_normal {
+#btbadfktfk .gt_font_normal {
   font-weight: normal;
 }
 
-#owmgxnlafw .gt_font_bold {
+#btbadfktfk .gt_font_bold {
   font-weight: bold;
 }
 
-#owmgxnlafw .gt_font_italic {
+#btbadfktfk .gt_font_italic {
   font-style: italic;
 }
 
-#owmgxnlafw .gt_super {
+#btbadfktfk .gt_super {
   font-size: 65%;
 }
 
-#owmgxnlafw .gt_footnote_marks {
+#btbadfktfk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#owmgxnlafw .gt_asterisk {
+#btbadfktfk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#owmgxnlafw .gt_indent_1 {
+#btbadfktfk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#owmgxnlafw .gt_indent_2 {
+#btbadfktfk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#owmgxnlafw .gt_indent_3 {
+#btbadfktfk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#owmgxnlafw .gt_indent_4 {
+#btbadfktfk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#owmgxnlafw .gt_indent_5 {
+#btbadfktfk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#owmgxnlafw .katex-display {
+#btbadfktfk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#owmgxnlafw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#btbadfktfk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1722,8 +1724,8 @@ window.Quarto = {
 </details>
 </div>
 </section>
-<section id="deep-dive-to-population-trends" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Deep Dive to Population trends</h1>
+<section id="deep-dive-to-population-trends" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Deep Dive to Population trends</h1>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1762,23 +1764,23 @@ window.Quarto = {
 <span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>gt_pop_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="qlbaoqodiq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qlbaoqodiq table {
+<div id="qlntrpasmz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qlntrpasmz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qlbaoqodiq thead, #qlbaoqodiq tbody, #qlbaoqodiq tfoot, #qlbaoqodiq tr, #qlbaoqodiq td, #qlbaoqodiq th {
+#qlntrpasmz thead, #qlntrpasmz tbody, #qlntrpasmz tfoot, #qlntrpasmz tr, #qlntrpasmz td, #qlntrpasmz th {
   border-style: none;
 }
 
-#qlbaoqodiq p {
+#qlntrpasmz p {
   margin: 0;
   padding: 0;
 }
 
-#qlbaoqodiq .gt_table {
+#qlntrpasmz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1804,12 +1806,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_caption {
+#qlntrpasmz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qlbaoqodiq .gt_title {
+#qlntrpasmz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1821,7 +1823,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#qlbaoqodiq .gt_subtitle {
+#qlntrpasmz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1833,7 +1835,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#qlbaoqodiq .gt_heading {
+#qlntrpasmz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1845,13 +1847,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_bottom_border {
+#qlntrpasmz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_col_headings {
+#qlntrpasmz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1866,7 +1868,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_col_heading {
+#qlntrpasmz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1886,7 +1888,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#qlbaoqodiq .gt_column_spanner_outer {
+#qlntrpasmz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1898,15 +1900,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#qlbaoqodiq .gt_column_spanner_outer:first-child {
+#qlntrpasmz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qlbaoqodiq .gt_column_spanner_outer:last-child {
+#qlntrpasmz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qlbaoqodiq .gt_column_spanner {
+#qlntrpasmz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1918,11 +1920,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#qlbaoqodiq .gt_spanner_row {
+#qlntrpasmz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qlbaoqodiq .gt_group_heading {
+#qlntrpasmz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1948,7 +1950,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#qlbaoqodiq .gt_empty_group_heading {
+#qlntrpasmz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1963,15 +1965,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#qlbaoqodiq .gt_from_md > :first-child {
+#qlntrpasmz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qlbaoqodiq .gt_from_md > :last-child {
+#qlntrpasmz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qlbaoqodiq .gt_row {
+#qlntrpasmz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1990,7 +1992,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#qlbaoqodiq .gt_stub {
+#qlntrpasmz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2003,7 +2005,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#qlbaoqodiq .gt_stub_row_group {
+#qlntrpasmz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2017,15 +2019,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#qlbaoqodiq .gt_row_group_first td {
+#qlntrpasmz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qlbaoqodiq .gt_row_group_first th {
+#qlntrpasmz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qlbaoqodiq .gt_summary_row {
+#qlntrpasmz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2035,16 +2037,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#qlbaoqodiq .gt_first_summary_row {
+#qlntrpasmz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_first_summary_row.thick {
+#qlntrpasmz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qlbaoqodiq .gt_last_summary_row {
+#qlntrpasmz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2054,7 +2056,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_grand_summary_row {
+#qlntrpasmz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2064,7 +2066,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#qlbaoqodiq .gt_first_grand_summary_row {
+#qlntrpasmz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2074,7 +2076,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_last_grand_summary_row_top {
+#qlntrpasmz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2084,11 +2086,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_striped {
+#qlntrpasmz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qlbaoqodiq .gt_table_body {
+#qlntrpasmz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2097,7 +2099,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_footnotes {
+#qlntrpasmz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2111,7 +2113,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_footnote {
+#qlntrpasmz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2120,7 +2122,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#qlbaoqodiq .gt_sourcenotes {
+#qlntrpasmz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2134,7 +2136,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#qlbaoqodiq .gt_sourcenote {
+#qlntrpasmz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2142,72 +2144,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#qlbaoqodiq .gt_left {
+#qlntrpasmz .gt_left {
   text-align: left;
 }
 
-#qlbaoqodiq .gt_center {
+#qlntrpasmz .gt_center {
   text-align: center;
 }
 
-#qlbaoqodiq .gt_right {
+#qlntrpasmz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qlbaoqodiq .gt_font_normal {
+#qlntrpasmz .gt_font_normal {
   font-weight: normal;
 }
 
-#qlbaoqodiq .gt_font_bold {
+#qlntrpasmz .gt_font_bold {
   font-weight: bold;
 }
 
-#qlbaoqodiq .gt_font_italic {
+#qlntrpasmz .gt_font_italic {
   font-style: italic;
 }
 
-#qlbaoqodiq .gt_super {
+#qlntrpasmz .gt_super {
   font-size: 65%;
 }
 
-#qlbaoqodiq .gt_footnote_marks {
+#qlntrpasmz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qlbaoqodiq .gt_asterisk {
+#qlntrpasmz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qlbaoqodiq .gt_indent_1 {
+#qlntrpasmz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qlbaoqodiq .gt_indent_2 {
+#qlntrpasmz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qlbaoqodiq .gt_indent_3 {
+#qlntrpasmz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qlbaoqodiq .gt_indent_4 {
+#qlntrpasmz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qlbaoqodiq .gt_indent_5 {
+#qlntrpasmz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qlbaoqodiq .katex-display {
+#qlntrpasmz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qlbaoqodiq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qlntrpasmz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2349,7 +2351,9 @@ window.Quarto = {
 </div>
 <p>To calculate this annual rate, the code uses a specific math formula that compares each year against the one right before it. First, it takes the current year’s population and subtracts the population from the previous year. This tells us the net number of new people added during that single year. Then, it takes that number of new people and divides it by the previous year’s total population. This converts the raw number of new residents into a percentage rate, showing exactly how fast the country expanded relative to its baseline size.</p>
 <p>The interesting takeaway here is that the annual growth rate has been slowing down consistently, dropping from around 1.3% in the early 1990s to well under 0.6% by 2020. Running this calculation is a crucial detail for our analysis because it shows us the actual velocity of population expansion. Since the percentage rate of human population growth is decelerating over time, any steady acceleration we see in livestock waste emissions cannot simply be blamed on population pressure. Instead, it must be driven by operational shifts within farming infrastructure.</p>
-<p>#Combining the sources</p>
+</section>
+<section id="unifiing-the-sources" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Unifiing the sources</h1>
 <p>Now that we did the individual deep dives into each FAOSTAT table, let’s analyze them together. I combined the two datasets using an inner join on the Year column so we could look at the final emissions footprint per person.</p>
 <p>To make the resulting numbers intuitive and easy to follow, I converted the methane from kilotonnes into pounds. First, I multiplied the raw values by 1,000,000 to convert kilotonnes into kilograms, and then multiplied by 2.20462 to convert those kilograms into pounds. Finally, I divided that total weight by the human population count for each matching year. This calculation moves us away from abstract database numbers and gives us a practical baseline metric: how many pounds (<span class="math inline">\(lb\)</span>) of livestock methane are generated per American citizen each year.</p>
 <div class="cell">
@@ -2366,86 +2370,75 @@ window.Quarto = {
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify the merged output columns</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(usa_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(Year, Population, enteric_per_capita, waste_per_capita, total_per_capita))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#head(usa_combined %&gt;% select(Year, Population, enteric_per_capita, waste_per_capita, total_per_capita))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-   Year Population enteric_per_capita waste_per_capita total_per_capita
-  &lt;int&gt;      &lt;dbl&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-1  1990  253373387               110.             23.0             133.
-2  1991  256471423               109.             23.4             132.
-3  1992  259606019               110.             22.7             132.
-4  1993  262633231               110.             22.9             133.
-5  1994  265474810               110.             23.7             134.
-6  1995  268205795               111.             23.8             135.</code></pre>
-</div>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the per-capita metrics so ggplot can map them as distinct colored lines</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>plot_per_capita <span class="ot">&lt;-</span> usa_combined <span class="sc">%&gt;%</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, enteric_per_capita, waste_per_capita) <span class="sc">%&gt;%</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>Year,</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Emission_Type"</span>,</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"lbs_per_person"</span> <span class="co"># Updated to reflect pounds</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">Emission_Type =</span> <span class="fu">recode</span>(</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>      Emission_Type,</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">enteric_per_capita =</span> <span class="st">"Enteric Fermentation (Digestion)"</span>,</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">waste_per_capita =</span> <span class="st">"Manure Management (Waste)"</span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the visualization</span></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>p_per_capita <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_per_capita, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> lbs_per_person, <span class="at">color =</span> Emission_Type, <span class="at">group =</span> Emission_Type)) <span class="sc">+</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.3</span>) <span class="sc">+</span></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.8</span>) <span class="sc">+</span></span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Enteric Fermentation (Digestion)"</span> <span class="ot">=</span> <span class="st">"#E76F51"</span>,</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Manure Management (Waste)"</span> <span class="ot">=</span> <span class="st">"#17BEBB"</span></span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>(<span class="at">suffix =</span> <span class="st">" lbs"</span>)) <span class="sc">+</span> <span class="co"># Updated axis units</span></span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"U.S. Livestock Methane Footprint Per Capita (1990–2020)"</span>,</span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"While digestion emissions per person stayed relatively stable, waste emissions expanded steadily."</span>,</span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Methane Emissions (lbs per person / year)"</span>, <span class="co"># Updated axis title</span></span>
-<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Emission Source"</span>,</span>
-<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Author's calculations using FAOSTAT livestock environmental and population metrics."</span></span>
-<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">10.5</span>),</span>
-<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">8.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">15</span>))</span>
-<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_reveal</span>(Year)</span>
-<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(</span>
-<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>  p_per_capita,</span>
-<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">fps =</span> <span class="dv">2</span>,</span>
-<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">duration =</span> <span class="dv">10</span>,</span>
-<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">end_pause =</span> <span class="dv">12</span>,</span>
-<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">800</span>,</span>
-<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">500</span>,</span>
-<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">units =</span> <span class="st">"px"</span>,</span>
-<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">res =</span> <span class="dv">96</span></span>
-<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the per-capita metrics so ggplot can map them as distinct colored lines</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plot_per_capita <span class="ot">&lt;-</span> usa_combined <span class="sc">%&gt;%</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, enteric_per_capita, waste_per_capita) <span class="sc">%&gt;%</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>Year,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Emission_Type"</span>,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"lbs_per_person"</span> <span class="co"># Updated to reflect pounds</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">Emission_Type =</span> <span class="fu">recode</span>(</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>      Emission_Type,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">enteric_per_capita =</span> <span class="st">"Enteric Fermentation (Digestion)"</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">waste_per_capita =</span> <span class="st">"Manure Management (Waste)"</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the visualization</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>p_per_capita <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_per_capita, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> lbs_per_person, <span class="at">color =</span> Emission_Type, <span class="at">group =</span> Emission_Type)) <span class="sc">+</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.3</span>) <span class="sc">+</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.8</span>) <span class="sc">+</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Enteric Fermentation (Digestion)"</span> <span class="ot">=</span> <span class="st">"#E76F51"</span>,</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Manure Management (Waste)"</span> <span class="ot">=</span> <span class="st">"#17BEBB"</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>(<span class="at">suffix =</span> <span class="st">" lbs"</span>)) <span class="sc">+</span> <span class="co"># Updated axis units</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"U.S. Livestock Methane Footprint Per Capita (1990–2020)"</span>,</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"While digestion emissions per person stayed relatively stable, waste emissions expanded steadily."</span>,</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Methane Emissions (lbs per person / year)"</span>, <span class="co"># Updated axis title</span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Emission Source"</span>,</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Author's calculations using FAOSTAT livestock environmental and population metrics."</span></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">10.5</span>),</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">8.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">15</span>))</span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_reveal</span>(Year)</span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(</span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>  p_per_capita,</span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">fps =</span> <span class="dv">2</span>,</span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">duration =</span> <span class="dv">10</span>,</span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">end_pause =</span> <span class="dv">12</span>,</span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">800</span>,</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">500</span>,</span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">units =</span> <span class="st">"px"</span>,</span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">res =</span> <span class="dv">96</span></span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2456,88 +2449,88 @@ window.Quarto = {
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">"livestock_per_capita_trends.gif"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="st">"livestock_per_capita_trends.gif"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The animated chart brings the core finding of the project into clear view. Biological digestion emissions per person actually fell over the years, starting at around 110 pounds per person in 1990 and drifting down to about 97 pounds by 2020. This indicates that the livestock sector found ways to become much more efficient per animal, using improved feeding regimens and breeding choices to keep the individual animal footprint in check.</p>
 <p>But waste emissions per person did the exact opposite. They climbed steadily from roughly 23 pounds to over 30 pounds per person. Because this calculation explicitly factors in population size, it provides clear proof that the increase isn’t just a byproduct of feeding a larger nation. The food production system itself became structurally more waste-heavy over time, pointing directly to the impact of industrial factory farming methods.</p>
 </section>
-<section id="predictive-modeling-and-multi-decade-projections" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Predictive Modeling and Multi-Decade Projections</h1>
+<section id="predictive-modeling-and-multi-decade-projections" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Predictive Modeling and Multi-Decade Projections</h1>
 <p>To understand where U.S. livestock emissions might be headed in the future, this section takes our historical trends and models them forward over the next several decades. By looking at how population growth and shifting waste patterns interact, we can estimate what the long-term environmental footprint of these farming systems might look like.</p>
 <p>To see where these patterns are heading over the long term, we can extend our analysis all the way out to 2070. Instead of just drawing a simple straight line forward on our raw emissions totals, this approach builds a composite prediction model by tracking the underlying elements separately.</p>
 <p>The code fits two independent linear regression models using our clean historical baseline: one that tracks population growth over time, and another that tracks the rising waste footprint per person (measured in pounds). By modeling them as separate paths, we can project what human population and per-capita emission rates will look like for our key target milestone years.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Fit individual linear models based on our historical baseline data (1990-2020)</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>model_pop   <span class="ot">&lt;-</span> <span class="fu">lm</span>(Population <span class="sc">~</span> Year, <span class="at">data =</span> usa_combined)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>model_waste <span class="ot">&lt;-</span> <span class="fu">lm</span>(waste_per_capita <span class="sc">~</span> Year, <span class="at">data =</span> usa_combined)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Setup the future milestone years we want to target</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>forecast_years <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Year =</span> <span class="fu">c</span>(<span class="dv">2025</span>, <span class="dv">2030</span>, <span class="dv">2050</span>, <span class="dv">2070</span>)</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Generate predictions and convert the final total back to kilotonnes (kt)</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>projections <span class="ot">&lt;-</span> forecast_years <span class="sc">%&gt;%</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_population   =</span> <span class="fu">predict</span>(model_pop, <span class="at">newdata =</span> forecast_years),</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_waste_capita =</span> <span class="fu">predict</span>(model_waste, <span class="at">newdata =</span> forecast_years),</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Formula: (Population * lbs_per_capita) / (1,000,000 * 2.20462) to get back to kt CH4</span></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_total_waste  =</span> (pred_population <span class="sc">*</span> pred_waste_capita) <span class="sc">/</span> (<span class="dv">1000000</span> <span class="sc">*</span> <span class="fl">2.20462</span>)</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Fit individual linear models based on our historical baseline data (1990-2020)</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>model_pop   <span class="ot">&lt;-</span> <span class="fu">lm</span>(Population <span class="sc">~</span> Year, <span class="at">data =</span> usa_combined)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>model_waste <span class="ot">&lt;-</span> <span class="fu">lm</span>(waste_per_capita <span class="sc">~</span> Year, <span class="at">data =</span> usa_combined)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Setup the future milestone years we want to target</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>forecast_years <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Year =</span> <span class="fu">c</span>(<span class="dv">2025</span>, <span class="dv">2030</span>, <span class="dv">2050</span>, <span class="dv">2070</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Generate predictions and convert the final total back to kilotonnes (kt)</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>projections <span class="ot">&lt;-</span> forecast_years <span class="sc">%&gt;%</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_population   =</span> <span class="fu">predict</span>(model_pop, <span class="at">newdata =</span> forecast_years),</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_waste_capita =</span> <span class="fu">predict</span>(model_waste, <span class="at">newdata =</span> forecast_years),</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Formula: (Population * lbs_per_capita) / (1,000,000 * 2.20462) to get back to kt CH4</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">pred_total_waste  =</span> (pred_population <span class="sc">*</span> pred_waste_capita) <span class="sc">/</span> (<span class="dv">1000000</span> <span class="sc">*</span> <span class="fl">2.20462</span>)</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>To figure out the total future impact, the model takes the projected population and multiplies it by the projected pounds of waste per person for each milestone year. Because global databases track emissions in kilotonnes, the code divides that giant total by 1,000,000 and then by 2.20462. This reverses our earlier math, moving the data out of individual pounds and returning it to standard kilotonnes (<span class="math inline">\(kt\)</span>) so it can be plotted seamlessly next to our historical records</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract historical series for binding</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>hist_series <span class="ot">&lt;-</span> usa_combined <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, Population, waste_methane) <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="st">"Historical"</span>)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Format projected series for binding</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>proj_series <span class="ot">&lt;-</span> projections <span class="sc">%&gt;%</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, <span class="at">Population =</span> pred_population, <span class="at">waste_methane =</span> pred_total_waste) <span class="sc">%&gt;%</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="st">"Projected"</span>)</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge into a single visualization data frame</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>timeline_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(hist_series, proj_series)</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the Compounding Trend</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>p_projection <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(timeline_df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> waste_methane, <span class="at">group =</span> Type)) <span class="sc">+</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> Type), <span class="at">color =</span> <span class="st">"#17BEBB"</span>, <span class="at">linewidth =</span> <span class="fl">1.3</span>) <span class="sc">+</span></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">filter</span>(timeline_df, Type <span class="sc">==</span> <span class="st">"Projected"</span>), <span class="at">color =</span> <span class="st">"#0F766E"</span>, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Historical"</span> <span class="ot">=</span> <span class="st">"solid"</span>, <span class="st">"Projected"</span> <span class="ot">=</span> <span class="st">"dashed"</span>)) <span class="sc">+</span></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>(<span class="at">suffix =</span> <span class="st">" kt"</span>)) <span class="sc">+</span></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Projected U.S. Manure Methane Emissions Through 2070"</span>,</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Compounding impact of population expansion and rising industrial emission intensity."</span>,</span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Manure Management Emissions (kt CH4)"</span>,</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">paste</span>(</span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Note: Projections are baseline linear combinations of population growth and per-capita emission trends."</span>,</span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Source: Author's calculations using FAOSTAT metrics."</span>,</span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">10.5</span>),</span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">8.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">12</span>))</span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_projection)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract historical series for binding</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>hist_series <span class="ot">&lt;-</span> usa_combined <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, Population, waste_methane) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="st">"Historical"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Format projected series for binding</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>proj_series <span class="ot">&lt;-</span> projections <span class="sc">%&gt;%</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, <span class="at">Population =</span> pred_population, <span class="at">waste_methane =</span> pred_total_waste) <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="st">"Projected"</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge into a single visualization data frame</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>timeline_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(hist_series, proj_series)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the Compounding Trend</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>p_projection <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(timeline_df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> waste_methane, <span class="at">group =</span> Type)) <span class="sc">+</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> Type), <span class="at">color =</span> <span class="st">"#17BEBB"</span>, <span class="at">linewidth =</span> <span class="fl">1.3</span>) <span class="sc">+</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">filter</span>(timeline_df, Type <span class="sc">==</span> <span class="st">"Projected"</span>), <span class="at">color =</span> <span class="st">"#0F766E"</span>, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Historical"</span> <span class="ot">=</span> <span class="st">"solid"</span>, <span class="st">"Projected"</span> <span class="ot">=</span> <span class="st">"dashed"</span>)) <span class="sc">+</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>(<span class="at">suffix =</span> <span class="st">" kt"</span>)) <span class="sc">+</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Projected U.S. Manure Methane Emissions Through 2070"</span>,</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Compounding impact of population expansion and rising industrial emission intensity."</span>,</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Manure Management Emissions (kt CH4)"</span>,</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">paste</span>(</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Note: Projections are baseline linear combinations of population growth and per-capita emission trends."</span>,</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Source: Author's calculations using FAOSTAT metrics."</span>,</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">10.5</span>),</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">8.5</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">12</span>))</span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_projection)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2548,8 +2541,9 @@ window.Quarto = {
 </div>
 </div>
 <p>The visualization reveals a clear compounding effect that occurs when population growth and rising per-capita emission intensity are modeled together. While the historical data shows a steady upward trajectory from 1990 through 2020, the projected baseline estimates that U.S. manure management emissions will surpass 4,000 kt by 2025 and ultimately climb past 6,000 kt by 2070. Because this model accounts for both an expanding consumer population and an increasing waste footprint per person measured in pounds, the long-term trend line shows acceleration rather than a simple flat trajectory. Ultimately, these projections demonstrate that without significant operational or technology shifts in how industrial livestock waste is managed, manure will become a progressively dominant driver of the country’s agricultural greenhouse gas footprint over the next several decades.</p>
-<section id="conclusion---final-thoughts" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="conclusion---final-thoughts"><span class="header-section-number">5.1</span> CONCLUSION - FINAL Thoughts</h2>
+</section>
+<section id="conclusion---final-thoughts" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> CONCLUSION - FINAL THOUGHTS</h1>
 <p>In summary, this analysis reveals a critical structural shift within U.S. livestock production over the past three decades: while biological digestion emissions have steadily decoupled from population growth due to efficiency gains, industrial manure management has emerged as an accelerating environmental driver. Moving our primary metrics into real-world pounds per capita explicitly demonstrates that the growing methane footprint is not merely a passive consequence of feeding a larger human population, but rather a direct reflection of structural shifts toward high-density factory farming infrastructure. As the linear models project total manure emissions to climb past 6,000 kt by 2070, the compounding pressure of a growing consumer base and increasing per-capita waste intensity presents a stark multi-decade challenge. Ultimately, these findings indicate that if the agricultural sector is to meet near-term climate targets, policy and operational updates must shift their focus toward systemic reform in industrial waste handling and alternative waste management technologies.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="AI Usage Statement">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -2569,7 +2563,6 @@ window.Quarto = {
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

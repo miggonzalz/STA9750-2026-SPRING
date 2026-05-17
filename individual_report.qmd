@@ -24,7 +24,7 @@ Raw datasets from big international databases are usually set up for storage eff
 
 
 
-# Faostat Methane Download
+# FAOSTAT Methane Download
 ```{r} 
 #| label: api-pull
 
@@ -65,7 +65,7 @@ message(paste("Loaded", nrow(df), "rows from", file_destination))
 ```
 This part of the project starts with the raw FAOSTAT methane data. I pulled the U.S. data, kept the years from 1990 to 2020, and saved it locally so I would not have to rerun the download every time. That made the workflow easier to manage and kept everything in one place.
 
-# FAOSTAT Population
+# FAOSTAT Population Download
 ```{r}
 #| label: pop-clean
 #| message: false
@@ -97,9 +97,6 @@ summary(pop_clean$Population)
 
 ```
 This section reads the local population dataset that we pulled from FAOSTAT. Since the raw file includes a bunch of extra rows that split the population by gender and whether people live in rural or urban areas, I filtered it down strictly to the overall total for both sexes combined. I also multiplied the value column by 1000 to get the actual number of people, and restricted the years to 1990 through 2020 so it lines up perfectly with our methane dataset.
-
-
-
 
 
 # Deep Dive to Methane Emissions 
@@ -502,9 +499,6 @@ animate(
 anim_save("historical_forecast_methane.gif")
 ```
 
-
-
-
 # Deep Dive to Population trends 
 ```{r}
 #| label: pop-summary-table
@@ -659,7 +653,7 @@ usa_combined <- usa_summary %>%
   )
 
 # Verify the merged output columns
-head(usa_combined %>% select(Year, Population, enteric_per_capita, waste_per_capita, total_per_capita))
+#head(usa_combined %>% select(Year, Population, enteric_per_capita, waste_per_capita, total_per_capita))
 
 ```
 
@@ -822,8 +816,7 @@ print(p_projection)
 The visualization reveals a clear compounding effect that occurs when population growth and rising per-capita emission intensity are modeled together. While the historical data shows a steady upward trajectory from 1990 through 2020, the projected baseline estimates that U.S. manure management emissions will surpass 4,000 kt by 2025 and ultimately climb past 6,000 kt by 2070. Because this model accounts for both an expanding consumer population and an increasing waste footprint per person measured in pounds, the long-term trend line shows acceleration rather than a simple flat trajectory. Ultimately, these projections demonstrate that without significant operational or technology shifts in how industrial livestock waste is managed, manure will become a progressively dominant driver of the country's agricultural greenhouse gas footprint over the next several decades.
 
 
-
-## CONCLUSION - FINAL Thoughts
+# CONCLUSION - FINAL THOUGHTS
 
 In summary, this analysis reveals a critical structural shift within U.S. livestock production over the past three decades: while biological digestion emissions have steadily decoupled from population growth due to efficiency gains, industrial manure management has emerged as an accelerating environmental driver. Moving our primary metrics into real-world pounds per capita explicitly demonstrates that the growing methane footprint is not merely a passive consequence of feeding a larger human population, but rather a direct reflection of structural shifts toward high-density factory farming infrastructure. As the linear models project total manure emissions to climb past 6,000 kt by 2070, the compounding pressure of a growing consumer base and increasing per-capita waste intensity presents a stark multi-decade challenge. Ultimately, these findings indicate that if the agricultural sector is to meet near-term climate targets, policy and operational updates must shift their focus toward systemic reform in industrial waste handling and alternative waste management technologies.
 
