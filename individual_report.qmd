@@ -14,20 +14,23 @@ How has the balance between methane from enteric fermentation and manure managem
 suggest about industrial livestock systems?
 
 # Introduction 
-This report looks at how methane emissions from U.S. livestock production changed between 1990 and 2020, and it uses those trends to project what things might look like all the way out to 2070. Methane is a really powerful greenhouse gas, trapping a lot more heat than carbon dioxide over a short period, so figuring out where it is coming from in agriculture is a big deal for climate change. A lot of times, people just look at the total amount of methane from farming, or they assume that emissions just go up naturally as the human population grows. This project shows that the real story is a bit more complicated than that.
+This report examines how methane \(CH_4\) emissions from U.S. livestock production changed between 1990 and 2020 and uses those trends to project emissions through 2070. Methane is a highly potent greenhouse gas, trapping significantly more heat than carbon dioxide \(CO_2\) over a short time horizon, so identifying its agricultural sources is important for climate change analysis. Many studies focus only on total methane emissions from farming or assume that emissions rise automatically as the human population grows. This project shows that the underlying pattern is more complex.
 
-By taking historical emissions data and combining it with U.S. population records from FAOSTAT, we can split livestock methane into its two main sources: enteric fermentation (which is just animal digestion) and manure management (how waste is handled). When you look at the data this way, a really clear split emerges. Animal digestion emissions per person have actually stayed flat or gone down a bit over the last few decades, mostly because farming has become more efficient. On the other hand, manure emissions per person have gone up steadily. This means the increase isn't just because there are more people eating food; it is because the way livestock waste is managed has structurally changed due to large-scale, industrial farming. The report wraps up by looking at future projections, showing that if we keep going down this path, the combination of a growing population and rising waste emissions will cause a pretty significant environmental challenge down the road.
-
+By combining historical emissions data with U.S. population records from **FAOSTAT**, this analysis separates livestock methane into its two main sources: enteric fermentation (animal digestion) and manure management (waste handling). When the data are analyzed this way, a clear divergence emerges. Enteric fermentation emissions per person have remained relatively stable or declined slightly over the last few decades, largely because farming has become more efficient. In contrast, manure emissions per person have increased steadily. This means the increase is not driven solely by population growth; it also reflects structural changes in how livestock waste is managed under large-scale, industrial farming systems. 
+The report concludes with future projections showing that, if current trends continue, the combination of a growing population and rising waste emissions will create a substantial long-term environmental challenge.
 
 # Data Gathering and Enviornmental Set up
-Raw datasets from big international databases are usually set up for storage efficiency rather than quick analysis, so the files required some cleanup. For example, some column names had spaces instead of periods, column types were inconsistent, and the files used a "long" format where a single year had multiple rows stacked on top of each other for different variables.The goal here was to clean up the column headers, make sure numbers and years were formatted correctly, and isolate the exact rows we needed. A quick check of the raw population file showed that it didn't just have one total population number per year. Instead, it broke the numbers down into subgroups like males, females, rural populations, and urban populations. If you don't filter those out, R will add them all together and quadruple the true population during the merge. To fix this, I filtered the data strictly for "United States of America" and "Total Population - Both sexes".Also, because FAOSTAT records population numbers in thousands, I multiplied that column by 1000 so it represents actual person counts. After filtering the methane data down to the key sources, enteric, manure, and the livestock total, I joined the two tables together using the Year column. Finally, I used the combined data to calculate a new metric: how many kilograms ($kg$) of methane are produced per person each year for each source.
+Raw datasets from large international databases are typically optimized for storage efficiency rather than rapid analysis, so the files required preprocessing. For example, some column names contained spaces instead of periods, column types were inconsistent, and the data was stored in a long format in which multiple rows for different variables were stacked under the same year. The goal was to standardize column headers, ensure that numeric fields and years were formatted correctly, and isolate the exact rows needed for analysis.
 
+A check of the raw population file showed that it did not contain a single total population value per year. Instead, it included subgroups such as males, females, rural population, and urban population. If these rows are not filtered out, R will sum them together and substantially inflate the true population during the merge. To avoid this, I filtered the data strictly for "United States of America" and "Total Population – Both sexes." In addition, because FAOSTAT records population numbers in thousands, I multiplied that column by 1,000 so it represents actual person counts.
 
+After filtering the methane data to the key sources (enteric fermentation, manure management, and livestock total), I joined the two tables using the Year column. Finally, I used the combined data to calculate a new metric:kilograms \(kg\) of methane produced per person per year for each source.
 
 # FAOSTAT Methane Download
 ```{r} 
 #| label: api-pull
-
+#| message: false
+#| 
 library(FAOSTAT)  
 library(dplyr)
 library(readr)
@@ -62,13 +65,17 @@ if (file.exists(file_destination)) {
 # 2) Basic sanity check
 message(paste("Loaded", nrow(df), "rows from", file_destination))
 
+# from the FAOSTAT website and saved as methane_us_1990plus.csv
+# element_codes: 72441 = Enteric fermentation, 72254 = Manure management, 72256 = Livestock total
+# item_codes: F1757 = Livestock
 ```
-This part of the project starts with the raw FAOSTAT methane data. I pulled the U.S. data, kept the years from 1990 to 2020, and saved it locally so I would not have to rerun the download every time. That made the workflow easier to manage and kept everything in one place.
+This section begins with the raw FAOSTAT methane emissions data for the United States. I extracted U.S. observations for the years 1990 through 2020 and saved the subset locally so the API does not need to be called repeatedly. Storing a fixed local copy makes the workflow easier to manage and keeps all inputs in a single location.
 
 # FAOSTAT Population Download
 ```{r}
 #| label: pop-clean
 #| message: false
+
 
 # Define the local path for the population file from your directory setup
 pop_path <- file.path("data", "group_project", "faostat", "FAOSTAT_population.csv")
@@ -76,6 +83,7 @@ pop_path <- file.path("data", "group_project", "faostat", "FAOSTAT_population.cs
 # Read the raw local file into memory first so R can filter it
 pop_raw <- read_csv(pop_path, show_col_types = FALSE)
 
+# Rename columns to use periods instead of spaces (easier for R)
 pop_clean <- pop_raw %>%
   rename_with(~ gsub(" ", ".", .x)) %>%
   # Filter strictly for the overall total population row per year
@@ -95,8 +103,13 @@ pop_clean <- pop_raw %>%
 # Re-run your summary statistics to verify
 summary(pop_clean$Population)
 
+# Note: Population data was downloaded from the FAOSTAT website as an Excel file
+# due to API connection issues and saved as FAOSTAT_population.csv.
+
 ```
-This section reads the local population dataset that we pulled from FAOSTAT. Since the raw file includes a bunch of extra rows that split the population by gender and whether people live in rural or urban areas, I filtered it down strictly to the overall total for both sexes combined. I also multiplied the value column by 1000 to get the actual number of people, and restricted the years to 1990 through 2020 so it lines up perfectly with our methane dataset.
+This section reads the local population dataset obtained from FAOSTAT. Due to difficulties accessing the FAOSTAT API directly, I downloaded the population data from the FAOSTAT website as an Excel file and imported it into R. This approach simplified data ingestion and avoided repeated API connection issues.
+
+Because the raw file includes additional rows that split population by gender and by rural or urban status, I filtered the data down to the overall total for both sexes combined. I also multiplied the value column by 1,000 to obtain the actual number of people and restricted the years to 1990 through 2020 so it aligns exactly with the methane dataset.
 
 
 # Deep Dive to Methane Emissions 
@@ -128,12 +141,16 @@ usa_summary <- df %>%
     total_methane = `Livestock total (Emissions CH4)`
   )
 
+# Filter for U.S. livestock methane sources:
+# Area.Code 231 = United States
+# Item.Code 1755 = Livestock
+# Element.Code: 72441 = Enteric, 72254 = Manure, 72256 = Livestock total
 #names(usa_summary)
 ```
 
-After that, I cleaned the dataset by making sure the year and emissions columns were stored in the right format. I then filtered the data down to the methane sources that mattered for the analysis: enteric fermentation, manure management, and total livestock methane. Since the original file was set up in a way that was better for data storage than for analysis, I reshaped it so each year had its own row with separate columns for each source.
+I cleaned the dataset by ensuring that the Year and emissions columns were stored in the correct format. I then filtered the data to the methane sources relevant for the analysis: enteric fermentation, manure management, and total livestock methane. Because the original file was structured for storage rather than analysis, I reshaped it so that each year had its own row with separate columns for each source.
 
-The result was a table that was ready for analysis. From there, it became much easier to compare the two methane sources and look at how they changed over time.
+The result was a table ready for analysis. From there, it became straightforward to compare the two methane sources and examine how they changed over time.
 
 ```{r}
 #| label: source-trend-animated
@@ -207,13 +224,15 @@ animate(
 
 anim_save("livestock_methane_sources.gif")
 ```
-This chart compares methane from enteric fermentation and livestock waste across the study period. The main pattern is pretty clear: enteric fermentation stayed higher the whole time, but manure management increased more steadily. That means the mix of emissions changed, even though the overall story did not shift dramatically at first glance.
+This chart compares methane from enteric fermentation and livestock waste across the study period. The main pattern is clear: enteric fermentation remains higher throughout the period, while manure management increases more steadily. This indicates that the composition of emissions changed, even though the overall total did not shift dramatically at first glance.
 
-The reason this chart matters is that it shows both sources together. If you only looked at totals, you might miss the fact that one source was becoming more important while the other stayed more stable. Here, the manure line rises slowly but consistently, which helps explain why it became a larger part of the overall methane picture.
+This chart is important because it shows both sources together. If you only look at totals, you might miss the fact that one source is becoming more important while the other remains relatively stable. Here, the manure line rises slowly but consistently, which helps explain why manure becomes a larger share of the overall methane picture over time.
 
-The animated version makes that trend easier to see because the change happens year by year. It gives the chart a sense of movement and helps show that the increase in manure methane was gradual rather than sudden.
+The animated version makes this trend easier to see because the change is shown year by year. It gives the chart a sense of movement and helps show that the increase in manure methane was gradual rather than sudden.
 
 ```{r}
+#| label: regression-tables
+
 library(dplyr)
 library(gt)
 library(broom)
@@ -227,6 +246,7 @@ balance_df <- usa_summary %>%
     enteric_share = digestion_methane / total_two_source
   )
 
+# Fit linear model: manure share as a function of year
 model_share <- lm(manure_share ~ Year, data = balance_df)
 
 coef_df <- tidy(model_share) %>%
@@ -298,14 +318,16 @@ gt_fit
 
 ```
 
-This section looks at the share of methane coming from manure management compared with the combined total from manure and enteric fermentation. Using a share instead of raw numbers helps show how the balance between the two sources changed over time. It answers a slightly different question: not just how much methane was produced, but where that methane was coming from.
+This section examines the share of methane coming from manure management relative to the combined total from manure and enteric fermentation. Using a share instead of raw numbers helps show how the balance between the two sources changed over time. It answers a slightly different question: not just how much methane was produced, but where that methane was coming from.
 
-The regression shows a positive trend. In plain terms, manure management made up a larger share of the total as the years went by. The Year coefficient is positive and statistically significant, which lines up with the chart. The very high R-squared also tells us that the model fits the data well and captures the pattern clearly.
+The regression shows a positive trend. In plain terms, manure management made up a larger share of the total as the years progressed. The Year coefficient is positive and statistically significant, which aligns with the chart. The high R-squared also indicates that the model fits the data well and captures the pattern clearly.
 
-The cleaned table helps make those results easier to read. Instead of looking through the full regression output, the table pulls out the key numbers and puts them into a format that is easier to follow. For someone reading the report, the main takeaway is simple: the manure share went up over time.
+The cleaned table makes these results easier to read. Instead of looking through the full regression output, the table extracts the key numbers and presents them in a more readable format. For someone reading the report, the main takeaway is simple: the manure share increased over time.
 
 ```{r}
 #| label: balance-regression-animated
+#| message: false
+#| warning: false
 
 knitr::opts_chunk$set(dev = "png")
 options(bitmapType = "cairo")
@@ -362,11 +384,11 @@ animate(
 anim_save("manure_share_trend.gif")
 
 ```
-This chart shows the same idea in a more visual way. The upward line makes it easy to see that manure management’s share of methane from the two sources increased steadily over the years. The fitted regression line confirms that the pattern is not just random noise from year to year.
+This chart shows the same idea visually. The upward line makes it clear that manure management's share of methane from the two sources increased steadily over the years. The fitted regression line confirms that the pattern is not just random noise from year to year.
 
-What makes this chart useful is that it connects the statistical result to something visual and intuitive. You do not need to know much about regression to see the general direction. The line moves upward, so the share is rising. That is the main point the chart is trying to communicate.
+This chart is useful because it connects the statistical result to something visual and intuitive. You do not need to know much about regression to see the general direction. The line moves upward, so the share is rising. That is the main point the chart is trying to communicate.
 
-The confidence band around the trend line also matters because it shows that the estimate has some uncertainty. Even so, the overall direction is clear. Manure management has taken up a larger share over time, and the trend is consistent across the full period.
+The confidence band around the trend line also matters because it shows that the estimate has some uncertainty. Even so, the overall direction is clear: manure management has taken up a larger share over time, and the trend is consistent across the full period.
 
 ```{r}
 #| label: forecast-methane
@@ -502,6 +524,7 @@ anim_save("historical_forecast_methane.gif")
 # Deep Dive to Population trends 
 ```{r}
 #| label: pop-summary-table
+
 library(dplyr)
 library(gt)
 
@@ -537,7 +560,7 @@ gt_pop_summary <- pop_summary_stats %>%
 gt_pop_summary
 ```
 
-The summary table shows that the United States added over 86 million people between 1990 and 2020. This represents a massive increase in the total number of consumers entering the domestic market, which naturally creates a continuous baseline demand for meat, dairy, and other agricultural products.
+The summary table shows that the United States added over 86 million people between 1990 and 2020. This represents a large increase in the total number of consumers entering the domestic market, which naturally creates a continuous baseline demand for meat, dairy, and other agricultural products..
 
 
 ```{r}
@@ -581,7 +604,7 @@ animate(
 
 anim_save("us_population_trend.gif")
 ```
-The growth path follows a remarkably straight line. If livestock emissions were strictly tied to population growth, we would expect to see our methane emissions graphs move upward in a matching, steady linear pattern.
+The growth path follows a nearly straight line. If livestock emissions were strictly tied to population growth, we would expect to see methane emissions move upward in a matching, steady linear pattern.
 
 
 ```{r}
@@ -630,16 +653,17 @@ animate(
 
 anim_save("us_population_velocity.gif")
 ```
-To calculate this annual rate, the code uses a specific math formula that compares each year against the one right before it. First, it takes the current year's population and subtracts the population from the previous year. This tells us the net number of new people added during that single year. Then, it takes that number of new people and divides it by the previous year's total population. This converts the raw number of new residents into a percentage rate, showing exactly how fast the country expanded relative to its baseline size.
+To calculate the annual growth rate, the code compares each year against the previous year. First, it takes the current year's population and subtracts the population from the previous year, which gives the net number of new people added during that single year. Then, it divides that number by the previous year's total population. This converts the raw number of new residents into a percentage rate, showing how fast the country expanded relative to its baseline size.
 
-The interesting takeaway here is that the annual growth rate has been slowing down consistently, dropping from around 1.3% in the early 1990s to well under 0.6% by 2020. Running this calculation is a crucial detail for our analysis because it shows us the actual velocity of population expansion. Since the percentage rate of human population growth is decelerating over time, any steady acceleration we see in livestock waste emissions cannot simply be blamed on population pressure. Instead, it must be driven by operational shifts within farming infrastructure.
+The key takeaway is that the annual growth rate has been slowing down consistently, dropping from around 1.3% in the early 1990s to well under 0.6% by 2020. This calculation is crucial for the analysis because it shows the actual velocity of population expansion. Since the percentage rate of human population growth is decelerating over time, any steady acceleration in livestock waste emissions cannot be attributed simply to population pressure. Instead, it must be driven by operational shifts within farming infrastructure..
 
 
 # Unifiing the sources 
 
-Now that we did the individual deep dives into each FAOSTAT table, let's analyze them together. I combined the two datasets using an inner join on the Year column so we could look at the final emissions footprint per person.
+Now that the individual deep dives into each FAOSTAT table are complete, the two datasets are analyzed together. I combined them using an inner join on the `Year` column so that the final emissions footprint per person could be examined.
 
-To make the resulting numbers intuitive and easy to follow, I converted the methane from kilotonnes into pounds. First, I multiplied the raw values by 1,000,000 to convert kilotonnes into kilograms, and then multiplied by 2.20462 to convert those kilograms into pounds. Finally, I divided that total weight by the human population count for each matching year. This calculation moves us away from abstract database numbers and gives us a practical baseline metric: how many pounds ($lb$) of livestock methane are generated per American citizen each year.
+To make the resulting numbers more intuitive, I converted methane from kilotonnes into pounds. First, I multiplied the raw values by 1,000,000 to convert kilotonnes to kilograms, then multiplied by 2.20462 to convert kilograms to pounds. Finally, I divided that total by the human population count for each matching year. This calculation moves away from abstract database numbers and provides a practical baseline metric: livestock methane emissions in \(lb\) per American per year.
+
 
 ```{r}
 # Combine the datasets using an inner join and convert to pounds (lbs)
@@ -730,16 +754,16 @@ animate(
 anim_save("livestock_per_capita_trends.gif")
 
 ```
-The animated chart brings the core finding of the project into clear view. Biological digestion emissions per person actually fell over the years, starting at around 110 pounds per person in 1990 and drifting down to about 97 pounds by 2020. This indicates that the livestock sector found ways to become much more efficient per animal, using improved feeding regimens and breeding choices to keep the individual animal footprint in check.
+The animated chart brings the core finding of the project into clear view. Enteric fermentation emissions per person declined over the years, starting at around 110 \(lb\) per person in 1990 and falling to about 97 \(lb\) by 2020. This indicates that the livestock sector became more efficient per animal, using improved feeding regimens and breeding choices to keep the individual animal footprint in check.
 
-But waste emissions per person did the exact opposite. They climbed steadily from roughly 23 pounds to over 30 pounds per person. Because this calculation explicitly factors in population size, it provides clear proof that the increase isn't just a byproduct of feeding a larger nation. The food production system itself became structurally more waste-heavy over time, pointing directly to the impact of industrial factory farming methods.
+In contrast, waste emissions per person increased steadily, climbing from roughly 23 \(lb\) to over 30 \(lb\) per person. Because this calculation explicitly factors in population size, it provides clear evidence that the increase is not just a byproduct of feeding a larger nation. The food production system itself became structurally more waste-heavy over time, pointing directly to the impact of industrial factory farming methods.
 
 # Predictive Modeling and Multi-Decade Projections
-To understand where U.S. livestock emissions might be headed in the future, this section takes our historical trends and models them forward over the next several decades. By looking at how population growth and shifting waste patterns interact, we can estimate what the long-term environmental footprint of these farming systems might look like.
+To understand where U.S. livestock emissions might be headed in the future, this section takes the historical trends and models them forward over the next several decades. By examining how population growth and shifting waste patterns interact, the analysis estimates what the long-term environmental footprint of these farming systems might look like.
 
-To see where these patterns are heading over the long term, we can extend our analysis all the way out to 2070. Instead of just drawing a simple straight line forward on our raw emissions totals, this approach builds a composite prediction model by tracking the underlying elements separately.
+To see where these patterns are heading over the long term, the analysis extends out to 2070. Instead of drawing a simple straight line forward on raw emissions totals, this approach builds a composite prediction model by tracking the underlying components separately.
 
-The code fits two independent linear regression models using our clean historical baseline: one that tracks population growth over time, and another that tracks the rising waste footprint per person (measured in pounds). By modeling them as separate paths, we can project what human population and per-capita emission rates will look like for our key target milestone years.
+The code fits two independent linear regression models using the clean historical baseline: one that tracks population growth over time, and another that tracks the rising waste footprint per person (measured in pounds). By modeling them as separate paths, the analysis projects what human population and per-capita emission rates will be for the key target milestone years.
 
 ```{r}
 #| label: calculate-projections
@@ -766,8 +790,7 @@ projections <- forecast_years %>%
   )
 ```
 
-To figure out the total future impact, the model takes the projected population and multiplies it by the projected pounds of waste per person for each milestone year. Because global databases track emissions in kilotonnes, the code divides that giant total by 1,000,000 and then by 2.20462. This reverses our earlier math, moving the data out of individual pounds and returning it to standard kilotonnes ($kt$) so it can be plotted seamlessly next to our historical records
-
+To compute the total future impact, the model multiplies the projected population by the projected pounds of waste per person for each milestone year. Because global databases track emissions in kilotonnes, the code divides that total by 1,000,000 and then by 2.20462. This reverses the earlier conversion, moving the data out of pounds and returning it to standard kilotonnes \(kt\) so it can be plotted alongside the historical records.
 
 ```{r}
 # Extract historical series for binding
@@ -813,12 +836,13 @@ p_projection <- ggplot(timeline_df, aes(x = Year, y = waste_methane, group = Typ
 print(p_projection)
 ```
 
-The visualization reveals a clear compounding effect that occurs when population growth and rising per-capita emission intensity are modeled together. While the historical data shows a steady upward trajectory from 1990 through 2020, the projected baseline estimates that U.S. manure management emissions will surpass 4,000 kt by 2025 and ultimately climb past 6,000 kt by 2070. Because this model accounts for both an expanding consumer population and an increasing waste footprint per person measured in pounds, the long-term trend line shows acceleration rather than a simple flat trajectory. Ultimately, these projections demonstrate that without significant operational or technology shifts in how industrial livestock waste is managed, manure will become a progressively dominant driver of the country's agricultural greenhouse gas footprint over the next several decades.
+The visualization shows a clear compounding effect that occurs when population growth and rising per-capita emission intensity are modeled together. While the historical data shows a steady upward trajectory from 1990 through 2020, the projected baseline estimates that U.S. manure management emissions will surpass 4,000 \(kt\) by 2025 and ultimately climb past 6,000 \(kt\) by 2070. Because this model accounts for both an expanding population and an increasing waste footprint per person, the long-term trend line shows acceleration rather than a simple linear trajectory. These projections demonstrate that without significant operational or technological shifts in how industrial livestock waste is managed, manure will become a progressively dominant driver of the country's agricultural greenhouse gas footprint over the next several decades.
 
+# CONCLUSION
 
-# CONCLUSION - FINAL THOUGHTS
+In summary, this analysis reveals a critical structural shift within U.S. livestock production over the past three decades: while enteric fermentation emissions have steadily decoupled from population growth due to efficiency gains, industrial manure management has emerged as an accelerating environmental driver. Converting the primary metrics into pounds per capita explicitly shows that the growing methane footprint is not merely a passive consequence of feeding a larger human population, but rather a direct reflection of structural shifts toward high-density factory farming infrastructure.
 
-In summary, this analysis reveals a critical structural shift within U.S. livestock production over the past three decades: while biological digestion emissions have steadily decoupled from population growth due to efficiency gains, industrial manure management has emerged as an accelerating environmental driver. Moving our primary metrics into real-world pounds per capita explicitly demonstrates that the growing methane footprint is not merely a passive consequence of feeding a larger human population, but rather a direct reflection of structural shifts toward high-density factory farming infrastructure. As the linear models project total manure emissions to climb past 6,000 kt by 2070, the compounding pressure of a growing consumer base and increasing per-capita waste intensity presents a stark multi-decade challenge. Ultimately, these findings indicate that if the agricultural sector is to meet near-term climate targets, policy and operational updates must shift their focus toward systemic reform in industrial waste handling and alternative waste management technologies.
+As the linear models project total manure emissions to climb past 6,000 \(kt\) by 2070, the compounding pressure of a growing population and increasing per-capita waste intensity presents a significant multi-decade challenge. These findings indicate that, if the agricultural sector is to meet near-term climate targets, policy and operational changes must focus on systemic reform in industrial waste handling and the adoption of alternative waste management technologies.
 
 
 ::: {.callout-note title="AI Usage Statement" collapse="true"}
