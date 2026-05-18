@@ -2,7 +2,7 @@
 title: ""
 about:
   template: jolla
-  image: miguel-headshot2.jpg
+  image: miguel-headshot2.png
   image-width: 15em
   image-shape: round
   links:
