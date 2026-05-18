@@ -101,7 +101,7 @@ pop_clean <- pop_raw %>%
   select(Year, Population)
 
 # Re-run your summary statistics to verify
-summary(pop_clean$Population)
+#summary(pop_clean$Population)
 
 # Note: Population data was downloaded from the FAOSTAT website as an Excel file
 # due to API connection issues and saved as FAOSTAT_population.csv.
